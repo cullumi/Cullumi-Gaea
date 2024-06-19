@@ -9,6 +9,8 @@ extends ChunkAwareGenerator2D
 @export var settings: HeightmapGenerator2DSettings
 
 
+
+## Generates the entire world based on settings.world_length. Not thread-safe.
 func generate(starting_grid: GaeaGrid = null) -> void:
 	if Engine.is_editor_hint() and not editor_preview:
 		push_warning("%s: Editor Preview is not enabled so nothing happened!" % name)
@@ -43,6 +45,7 @@ func generate(starting_grid: GaeaGrid = null) -> void:
 	generation_finished.emit()
 
 
+## Generates a single chunk. Should be thread-safe.
 func generate_chunk(chunk_position: Vector2i, starting_grid: GaeaGrid = null) -> void:
 	if Engine.is_editor_hint() and not editor_preview:
 		push_warning("%s: Editor Preview is not enabled so nothing happened!" % name)
