@@ -42,7 +42,7 @@ func _ready() -> void:
 		_update_loading(_get_actors_position())
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint() or not is_instance_valid(generator):
 		return
 

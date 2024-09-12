@@ -9,7 +9,7 @@ signal chunk_rendered(chunk_position: Vector3i)
 
 ## Draws the [param area]. Override this function
 ## to make custom [GaeaRenderer]s.
-func _draw_area(area: AABB) -> void:
+func _draw_area(_area: AABB) -> void:
 	push_warning("_draw_area at %s not overriden" % name)
 
 

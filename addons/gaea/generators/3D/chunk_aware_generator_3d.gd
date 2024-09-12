@@ -25,7 +25,7 @@ func _ready() -> void:
 	super._ready()
 
 
-func generate_chunk(chunk_position: Vector3i, starting_grid: GaeaGrid = null) -> void:
+func generate_chunk(_chunk_position: Vector3i, _starting_grid: GaeaGrid = null) -> void:
 	push_warning("generate_chunk method not overriden at %s" % name)
 
 

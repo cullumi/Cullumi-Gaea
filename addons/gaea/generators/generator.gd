@@ -51,7 +51,7 @@ func _ready() -> void:
 		generate()
 
 
-func generate(starting_grid: GaeaGrid = null) -> void:
+func generate(_starting_grid: GaeaGrid = null) -> void:
 	push_warning("generate method at %s not overriden" % name)
 
 

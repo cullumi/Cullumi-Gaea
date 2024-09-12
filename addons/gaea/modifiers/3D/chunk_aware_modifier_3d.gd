@@ -33,7 +33,7 @@ func apply_chunk(grid: GaeaGrid, generator: ChunkAwareGenerator3D, chunk_positio
 	_apply_area(AABB(chunk_position * generator.chunk_size, generator.chunk_size), grid, generator)
 
 
-func _apply_area(area: AABB, grid: GaeaGrid, _generator: GaeaGenerator) -> void:
+func _apply_area(_area: AABB, _grid: GaeaGrid, _generator: GaeaGenerator) -> void:
 	push_warning("%s doesn't have an `_apply_area` implementation" % resource_name)
 
 

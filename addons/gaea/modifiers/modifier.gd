@@ -28,7 +28,7 @@ enum FilterType {
 @export var filter_layers: Array[int] = []
 
 
-func apply(grid: GaeaGrid, generator: GaeaGenerator) -> void:
+func apply(_grid: GaeaGrid, _generator: GaeaGenerator) -> void:
 	pass
 
 
