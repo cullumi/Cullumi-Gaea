@@ -26,7 +26,7 @@ falloff_end = 1.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nescg"]
 noise_type = 0
-seed = -62733995
+seed = -409952903
 domain_warp_amplitude = 8.0
 
 [sub_resource type="Resource" id="Resource_8khye"]
@@ -85,8 +85,7 @@ resource_name = "Settings"
 script = ExtResource("3_oy33y")
 tiles = Array[ExtResource("4_dnwwu")]([SubResource("Resource_4nbbd"), SubResource("Resource_nognf"), SubResource("Resource_amorp")])
 noise = SubResource("FastNoiseLite_nescg")
-infinite = false
-world_size = Vector2i(256, 256)
+infinite = true
 falloff_enabled = true
 falloff_map = SubResource("Resource_4elap")
 modifiers = Array[ExtResource("2_ibjk4")]([])
