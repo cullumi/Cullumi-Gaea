@@ -86,7 +86,7 @@ func _draw_area(area: Rect2i) -> void:
 					continue
 
 			for layer in range(generator.grid.get_layer_count()):
-				var tile = tile_position
+				var tile:Vector2i = tile_position
 				var tile_info = generator.grid.get_value(tile_position, layer)
 
 				if not (tile_info is TilemapTileInfo):
@@ -131,19 +131,34 @@ func _set_tile(cell: Vector2i, tile_info: TilemapTileInfo) -> void:
 				tile_info.atlas_coord, tile_info.alternative_tile
 			)
 
-
+# Sets one cell at a time to match the given TilemapTileInfo's terrain values.
 func _set_terrain(cells: Array, tile_info: TilemapTileInfo) -> void:
+	var increment:int = 10
+	print("Set terrain %d on %d cells. (increments of %d)" % [tile_info.terrain, cells.size(), increment])
+	var count:int = 0
+	for i in range(0, cells.size(), increment):
+		var slice:Array = cells.slice(i, min(i+10, cells.size()))
+		count += slice.size()
+		_set_all_terrain(slice, tile_info)
+	print("%d/%d cells completed." % [count, cells.size()])
+	#for cell in cells:
+		#_set_all_terrain([cell], tile_info)
+	#if (cells.size() > 0):
+		#_set_all_terrain([cells[0]], tile_info)
+	#_set_all_terrain(cells, tile_info)
+
+# Connect every cell to match the given TilemapTileInfo's terrain values.
+func _set_all_terrain(cells: Array, tile_info: TilemapTileInfo) -> void:
 	match node_type:
 		NodeType.TILEMAP:
-			tile_map.set_cells_terrain_connect.call_deferred(
+			tile_map.call_thread_safe("set_cells_terrain_connect",
 					tile_info.tilemap_layer, cells,
 					tile_info.terrain_set, tile_info.terrain, !terrain_gap_fix
 				)
 		NodeType.TILEMAP_LAYERS:
-			tile_map_layers[tile_info.tilemap_layer].set_cells_terrain_connect.call_deferred(
+			tile_map_layers[tile_info.tilemap_layer].call_thread_safe("set_cells_terrain_connect",
 					cells, tile_info.terrain_set, tile_info.terrain, !terrain_gap_fix
 				)
-
 
 func _get_tilemap_layers_count() -> int:
 	match node_type:
