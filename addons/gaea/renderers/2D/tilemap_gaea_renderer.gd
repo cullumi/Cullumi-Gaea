@@ -147,18 +147,24 @@ func _set_terrain(cells: Array, tile_info: TilemapTileInfo) -> void:
 		#_set_all_terrain([cells[0]], tile_info)
 	#_set_all_terrain(cells, tile_info)
 
+@export var ignore_terrain_thread_safety:bool = false
+
 # Connect every cell to match the given TilemapTileInfo's terrain values.
 func _set_all_terrain(cells: Array, tile_info: TilemapTileInfo) -> void:
 	match node_type:
 		NodeType.TILEMAP:
-			tile_map.call_thread_safe("set_cells_terrain_connect",
-					tile_info.tilemap_layer, cells,
-					tile_info.terrain_set, tile_info.terrain, !terrain_gap_fix
-				)
+			_set_terrain_on(cells, tile_info, tile_map)
 		NodeType.TILEMAP_LAYERS:
-			tile_map_layers[tile_info.tilemap_layer].call_thread_safe("set_cells_terrain_connect",
-					cells, tile_info.terrain_set, tile_info.terrain, !terrain_gap_fix
-				)
+			_set_terrain_on(cells, tile_info, tile_map_layers[tile_info.tilemap_layer])
+
+func _set_terrain_on(cells: Array, tile_info: TilemapTileInfo, map: Node):
+	var arguments:Array = [ cells, tile_info.terrain_set, tile_info.terrain, !terrain_gap_fix ]
+	var method:String = "call_thread_safe" if not ignore_terrain_thread_safety else "set_cells_terrain_connect"
+	if (map is TileMap):
+		arguments.push_front(tile_info.tilemap_layer)
+	if (not ignore_terrain_thread_safety):
+		arguments.push_front("set_cells_terrain_connect")
+	map.callv(method, arguments)
 
 func _get_tilemap_layers_count() -> int:
 	match node_type:

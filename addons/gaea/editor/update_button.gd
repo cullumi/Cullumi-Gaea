@@ -80,5 +80,3 @@ func _get_version() -> String:
 func _version_to_number(version: String) -> int:
 	var bits = version.split(".")
 	return bits[0].to_int() * 1000000 + bits[1].to_int() * 1000 + bits[2].to_int()
-
-
