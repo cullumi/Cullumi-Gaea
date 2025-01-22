@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="NoiseGeneratorData" load_steps=3 format=3 uid="uid://cy50pu5b42rxx"]
+
+[ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="1_k7vg1"]
+[ext_resource type="Resource" uid="uid://cf7cg6ytme45o" path="res://scenes/demos/noise/noise data/deep_grass_tile_info.tres" id="2_7v6jp"]
+
+[resource]
+resource_name = "Deep Grass"
+script = ExtResource("1_k7vg1")
+title = "Deep Grass"
+tile = ExtResource("2_7v6jp")
+min = -1.0
+max = -0.2

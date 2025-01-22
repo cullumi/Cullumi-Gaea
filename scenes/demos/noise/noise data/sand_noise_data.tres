@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="NoiseGeneratorData" load_steps=3 format=3 uid="uid://cph2mbas3wrqx"]
+
+[ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="1_qyrat"]
+[ext_resource type="Resource" uid="uid://cxdf3o8b2khi2" path="res://scenes/demos/noise/noise data/sand_tile_info.tres" id="2_36vca"]
+
+[resource]
+resource_name = "Sand"
+script = ExtResource("1_qyrat")
+title = "Sand"
+tile = ExtResource("2_36vca")
+min = 0.15
+max = 0.3

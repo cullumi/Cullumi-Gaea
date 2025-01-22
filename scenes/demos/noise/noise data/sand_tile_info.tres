@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TilemapTileInfo" load_steps=2 format=3 uid="uid://cxdf3o8b2khi2"]
+
+[ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="1_6o3em"]
+
+[resource]
+script = ExtResource("1_6o3em")
+type = 0
+tilemap_layer = 0
+source_id = 0
+atlas_coord = Vector2i(1, 0)
+alternative_tile = 0
+id = ""
+layer = 0
