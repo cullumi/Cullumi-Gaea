@@ -1,10 +1,10 @@
 @tool
 class_name CellularGeneratorSettings
-extends GeneratorSettings2D
+extends TileGeneratorSettings2D
 
 ## [TileInfo] for the tile that will be placed. Has information about
 ## it's position in the TileSet.
-@export var tile: TileInfo
+@export var _tile: TileInfo
 ## The generation's size in tiles.
 @export var world_size: Vector2i = Vector2i(64, 64)
 ## The percentage of empty tiles the generator will start with.
@@ -22,3 +22,7 @@ extends GeneratorSettings2D
 ## tiles than [param min_empty_neighbors], it will become a floor.[br]
 ## Lower values means more empty tiles.
 @export_range(0, 8) var min_empty_neighbors := 3
+
+# tile getter overrides
+func tile(): return _tile
+func tiles(): return [_tile]

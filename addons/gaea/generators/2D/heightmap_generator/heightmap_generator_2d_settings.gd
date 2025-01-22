@@ -1,9 +1,9 @@
 class_name HeightmapGenerator2DSettings
-extends GeneratorSettings2D
+extends TileGeneratorSettings2D
 
 ## Info for the tile that will be placed. Has information about
 ## it's position in the TileSet.
-@export var tile: TileInfo
+@export var _tile: TileInfo
 @export var noise: FastNoiseLite = FastNoiseLite.new()
 ## Infinite worlds only work with a [ChunkLoader2D].
 @export var infinite := false :
@@ -23,6 +23,9 @@ extends GeneratorSettings2D
 ## If [code]true[/code], adds a layer of air ([code]null[/code] tiles above the generated terrain.
 @export var air_layer := true
 
+# tile getter overrides
+func tile(): return _tile
+func tiles(): return [_tile]
 
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "world_size" and infinite == true:

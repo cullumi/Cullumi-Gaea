@@ -1,18 +1,18 @@
 @tool
 class_name NoiseGeneratorSettings
-extends GeneratorSettings2D
+extends TileGeneratorSettings2D
 
 ## Array of [NoiseGeneratorData]´s that contain the thresholds, titles and tiles.
 ## If a new element is empty, it fills it with a new [NoiseGeneratorData].
-@export var tiles: Array[NoiseGeneratorData]:
+@export var _tiles: Array[NoiseGeneratorData]:
 	set(value):
 		## If the last element of the array is not a [param NoiseGeneratorData],
 		## then create a new one.
 		if value.size() > 0:
 			value[-1] = value[-1] if value[-1] is NoiseGeneratorData else NoiseGeneratorData.new()
 
-		tiles = value
-		for tile_data in tiles:
+		_tiles = value
+		for tile_data in _tiles:
 			tile_data.settings = self
 @export var noise: FastNoiseLite = FastNoiseLite.new()
 ## Infinite worlds only work with a [ChunkLoader].
@@ -39,6 +39,9 @@ extends GeneratorSettings2D
 		if falloff_map != null:
 			falloff_map.size = world_size
 
+# tile getter overrides
+func tile(): return _tiles.front()
+func tiles(): return _tiles
 
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "world_size" and infinite == true:

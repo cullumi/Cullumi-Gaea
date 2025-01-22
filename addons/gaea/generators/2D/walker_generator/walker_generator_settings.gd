@@ -1,13 +1,13 @@
 @tool
 class_name WalkerGeneratorSettings
-extends GeneratorSettings2D
+extends TileGeneratorSettings2D
 ## Settings for [WalkerGenerator]
 
 enum FullnessCheck { TILE_AMOUNT, PERCENTAGE }  ## Restricts the generation to a predetermined amount of floor tiles.  ## Restricts the generation to a percentage of the [param world size]. Automatically sets Constrain World Size to true if set to this mode.
 
 ## Info for the tile that will be placed. Has information about
 ## it's position in the TileSet.
-@export var tile: TileInfo
+@export var _tile: TileInfo
 ## The mode of check to stop the generation.
 @export var fullness_check: FullnessCheck:
 	set(value):
@@ -48,6 +48,9 @@ enum FullnessCheck { TILE_AMOUNT, PERCENTAGE }  ## Restricts the generation to a
 ## [b]Note:[/b] Chances are between [code]0-1[/code]
 @export var room_chances = {Vector2i(2, 2): 0.5, Vector2i(3, 3): 0.1}
 
+# tile getter overrides
+func tile(): return _tile
+func tiles(): return [_tile]
 
 func _validate_property(property: Dictionary) -> void:
 	match fullness_check:
