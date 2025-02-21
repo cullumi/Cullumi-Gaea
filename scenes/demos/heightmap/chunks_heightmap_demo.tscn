@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=4 uid="uid://cxty0pak7x2o2"]
 
-[ext_resource type="Script" path="res://addons/gaea/generators/2D/heightmap_generator/heightmap_generator_2d.gd" id="1_lqewx"]
+[ext_resource type="Script" uid="uid://doo31wix6ujyx" path="res://addons/gaea/generators/2D/heightmap_generator/heightmap_generator_2d.gd" id="1_lqewx"]
 [ext_resource type="Resource" uid="uid://db18nmw5jkbtc" path="res://scenes/demos/heightmap/terraria-like_generation_settings.tres" id="2_py0je"]
 [ext_resource type="TileSet" uid="uid://b82h4qofow0oh" path="res://scenes/demos/heightmap/tileset.tres" id="3_k20p5"]
-[ext_resource type="Script" path="res://addons/gaea/others/threaded_chunk_loader_2d.gd" id="5_4wj8l"]
-[ext_resource type="Script" path="res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd" id="6_gb7up"]
-[ext_resource type="Script" path="res://scenes/demos/heightmap/test_actor.gd" id="10_76aeg"]
+[ext_resource type="Script" uid="uid://cddyo0i7im3ai" path="res://addons/gaea/others/threaded_chunk_loader_2d.gd" id="5_4wj8l"]
+[ext_resource type="Script" uid="uid://duoe4eft2brqi" path="res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd" id="6_gb7up"]
+[ext_resource type="Script" uid="uid://jqmuh2c72je6" path="res://scenes/demos/heightmap/test_actor.gd" id="10_76aeg"]
 [ext_resource type="Texture2D" uid="uid://bh3d1rgohpb4x" path="res://icon.svg" id="11_go0dd"]
 
 [node name="HeightmapDemo" type="Node2D"]

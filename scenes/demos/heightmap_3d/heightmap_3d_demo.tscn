@@ -1,17 +1,18 @@
-[gd_scene load_steps=37 format=3 uid="uid://dcn44kotave0d"]
+[gd_scene load_steps=38 format=3 uid="uid://dcn44kotave0d"]
 
-[ext_resource type="Script" path="res://addons/gaea/generators/3D/heightmap_generator_3d/heightmap_generator_3d.gd" id="2_fgwco"]
-[ext_resource type="Script" path="res://addons/gaea/modifiers/3D/heightmap_painter_3d.gd" id="2_mv8xs"]
-[ext_resource type="Script" path="res://addons/gaea/modifiers/3D/carver_3d.gd" id="2_t8akv"]
-[ext_resource type="Script" path="res://addons/gaea/generators/3D/heightmap_generator_3d/heightmap_generator_3d_settings.gd" id="3_d8yvu"]
-[ext_resource type="Script" path="res://addons/gaea/tile_info/gridmap_tile_info.gd" id="3_w4ec0"]
-[ext_resource type="Script" path="res://addons/gaea/renderers/3D/threaded_gridmap_gaea_renderer.gd" id="6_dlrwi"]
+[ext_resource type="Script" uid="uid://dvxiuctfkjob1" path="res://addons/gaea/generators/3D/heightmap_generator_3d/heightmap_generator_3d.gd" id="2_fgwco"]
+[ext_resource type="Script" uid="uid://b4cjeivlvrvfg" path="res://addons/gaea/modifiers/3D/heightmap_painter_3d.gd" id="2_mv8xs"]
+[ext_resource type="Script" uid="uid://c0s8drkx2csft" path="res://addons/gaea/modifiers/3D/modifier_3d.gd" id="2_os81e"]
+[ext_resource type="Script" uid="uid://bu3bavsr7mweh" path="res://addons/gaea/modifiers/3D/carver_3d.gd" id="2_t8akv"]
+[ext_resource type="Script" uid="uid://dt042q4df8gbw" path="res://addons/gaea/generators/3D/heightmap_generator_3d/heightmap_generator_3d_settings.gd" id="3_d8yvu"]
+[ext_resource type="Script" uid="uid://cqa7yrxor5srn" path="res://addons/gaea/tile_info/gridmap_tile_info.gd" id="3_w4ec0"]
+[ext_resource type="Script" uid="uid://b360fy5xom0is" path="res://addons/gaea/renderers/3D/threaded_gridmap_gaea_renderer.gd" id="6_dlrwi"]
 [ext_resource type="Texture2D" uid="uid://dn5fnbvvbowrl" path="res://scenes/demos/heightmap_3d/grass_top.png" id="6_r4fc5"]
 [ext_resource type="Texture2D" uid="uid://cwq2r4c7t6gsv" path="res://scenes/demos/heightmap_3d/stone.png" id="7_aol1v"]
 [ext_resource type="Texture2D" uid="uid://d2q1tt51g1gqq" path="res://scenes/demos/heightmap_3d/dirt.png" id="8_6347s"]
 [ext_resource type="Texture2D" uid="uid://x8sdkn1d27pp" path="res://scenes/demos/heightmap_3d/greystone.png" id="9_pq2v8"]
-[ext_resource type="Script" path="res://addons/gaea/others/threaded_chunk_loader_3d.gd" id="11_0gov2"]
-[ext_resource type="Script" path="res://scenes/demos/heightmap_3d/actor.gd" id="12_qacbp"]
+[ext_resource type="Script" uid="uid://cc6frc5ee0l3p" path="res://addons/gaea/others/threaded_chunk_loader_3d.gd" id="11_0gov2"]
+[ext_resource type="Script" uid="uid://do6vml8npelle" path="res://scenes/demos/heightmap_3d/actor.gd" id="12_qacbp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jumc8"]
 sky_top_color = Color(0.435294, 0.482353, 0.67451, 1)
@@ -107,8 +108,9 @@ world_size = Vector2i(64, 64)
 height_offset = 96
 height_intensity = 20
 min_height = 0
+air_layer = true
 falloff_enabled = false
-modifiers = Array[Resource("res://addons/gaea/modifiers/3D/modifier_3d.gd")]([SubResource("Resource_7ejcr"), SubResource("Resource_51q2p"), SubResource("Resource_m5cy5")])
+modifiers = Array[ExtResource("2_os81e")]([SubResource("Resource_7ejcr"), SubResource("Resource_51q2p"), SubResource("Resource_m5cy5")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o13k8"]
 albedo_texture = ExtResource("6_r4fc5")
@@ -140,24 +142,28 @@ material = SubResource("StandardMaterial3D_2nfw2")
 item/0/name = "grass"
 item/0/mesh = SubResource("BoxMesh_njruc")
 item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
 item/0/shapes = [SubResource("BoxShape3D_22ikv"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
 item/1/name = "stone"
 item/1/mesh = SubResource("BoxMesh_7lb8a")
 item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh_cast_shadow = 1
 item/1/shapes = []
 item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/navigation_layers = 1
 item/2/name = "dirt"
 item/2/mesh = SubResource("BoxMesh_5qcl4")
 item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/mesh_cast_shadow = 1
 item/2/shapes = []
 item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/navigation_layers = 1
 item/3/name = "greystone"
 item/3/mesh = SubResource("BoxMesh_vnl7n")
 item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/3/mesh_cast_shadow = 1
 item/3/shapes = []
 item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/navigation_layers = 1

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=4 uid="uid://cgtpv0u1s0qv2"]
 
-[ext_resource type="Script" path="res://addons/gaea/generators/2D/heightmap_generator/heightmap_generator_2d.gd" id="1_7xrgd"]
+[ext_resource type="Script" uid="uid://doo31wix6ujyx" path="res://addons/gaea/generators/2D/heightmap_generator/heightmap_generator_2d.gd" id="1_7xrgd"]
 [ext_resource type="Resource" uid="uid://db18nmw5jkbtc" path="res://scenes/demos/heightmap/terraria-like_generation_settings.tres" id="2_ua5d7"]
 [ext_resource type="TileSet" uid="uid://b82h4qofow0oh" path="res://scenes/demos/heightmap/tileset.tres" id="4_in8ed"]
-[ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="5_u1niu"]
+[ext_resource type="Script" uid="uid://wim7iyo5ne5q" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="5_u1niu"]
 
 [node name="HeightmapDemo" type="Node2D"]
 

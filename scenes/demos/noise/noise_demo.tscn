@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=4 uid="uid://c632f8skrw3vs"]
 
-[ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="1_3nrdm"]
+[ext_resource type="Script" uid="uid://bw4hb1n66vl3q" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="1_3nrdm"]
 [ext_resource type="Resource" uid="uid://dg4fftxrmm208" path="res://scenes/demos/noise/noise_demo.tres" id="2_faytw"]
 [ext_resource type="Texture2D" uid="uid://dnpju76kpc8ny" path="res://scenes/demos/noise/island-tileset - Kenney.png" id="4_56vnf"]
-[ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="5_5oyvs"]
+[ext_resource type="Script" uid="uid://wim7iyo5ne5q" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="5_5oyvs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hgvtn"]
 texture = ExtResource("4_56vnf")
