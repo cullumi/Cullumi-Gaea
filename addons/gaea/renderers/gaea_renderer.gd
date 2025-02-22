@@ -11,6 +11,9 @@ signal grid_rendered
 ## Emitted when signals become connected.
 signal signals_connected
 
+@export_tool_button("Disconnect")
+var disconnect = _disconnect_signals
+
 ## The generator to be rendered.[br]
 ## [b]Note:[/b] If you're chaining generators together using [param next_pass],
 ## this has to be set to the last generator in the chain.
