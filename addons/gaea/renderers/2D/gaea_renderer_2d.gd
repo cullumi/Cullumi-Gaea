@@ -16,17 +16,16 @@ func _draw_area(area: Rect2i) -> void:
 ## Draws the chunk at [param chunk_position].
 func _draw_chunk(chunk_position: Vector2i) -> void:
 	_draw_area(Rect2i(chunk_position * generator.chunk_size, generator.chunk_size))
-	chunk_rendered.emit(chunk_position)
+	chunk_rendered.emit.call_deferred(chunk_position)
 
 
 ## Draws the whole grid.
 func _draw() -> void:
 	_draw_area(generator.grid.get_area())
-	grid_rendered.emit()
+	grid_rendered.emit.call_deferred()
 
 
 func _connect_signals() -> void:
-	super()
-
 	if generator.has_signal("chunk_updated"):
 		generator.chunk_updated.connect(_draw_chunk)
+	super()

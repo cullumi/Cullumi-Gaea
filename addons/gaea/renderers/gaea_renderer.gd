@@ -8,6 +8,8 @@ extends Node
 
 ## Emitted when the whole grid is rendered.
 signal grid_rendered
+## Emitted when signals become connected.
+signal signals_connected
 
 ## The generator to be rendered.[br]
 ## [b]Note:[/b] If you're chaining generators together using [param next_pass],
@@ -37,8 +39,9 @@ func _draw() -> void:
 
 
 func _connect_signals() -> void:
-	generator.grid_updated.connect(_draw)
-
+	if generator and not generator.grid_updated.is_connected(_draw):
+		generator.grid_updated.connect(_draw)
+	signals_connected.emit()
 
 func _disconnect_signals() -> void:
 	for s in get_incoming_connections():
