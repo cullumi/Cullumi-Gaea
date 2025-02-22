@@ -20,7 +20,6 @@ signal chunk_rendered(chunk_position)
 		if is_instance_valid(render_target):
 			if not render_target.is_node_ready() and not is_node_ready():
 				return
-			print("Doing things?")
 			if render_target.generator:
 				generator = render_target.generator
 			_connect_signals()
@@ -49,7 +48,6 @@ func _process(_delta):
 
 func run_task(_task:Callable):
 	if _task:
-		print("Running task?")
 		_tasks.append(WorkerThreadPool.add_task(_task, false, "Draw Area"))
 
 
@@ -98,7 +96,6 @@ func _draw() -> void:
 
 
 func _render_target_signals_connected() -> void:
-	print("Disconnecting Render Target Signals")
 	render_target._disconnect_signals()
 
 
