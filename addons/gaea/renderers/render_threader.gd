@@ -1,6 +1,6 @@
 @tool
 
-class_name RenderThread
+class_name RenderThreader
 extends GaeaRenderer
 
 ## Emitted when anything is rendered, be it a chunk or the full grid.

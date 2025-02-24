@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://addons/gaea/tile_info/gridmap_tile_info.gd" id="3_w4ec0"]
 [ext_resource type="Texture2D" uid="uid://dn5fnbvvbowrl" path="res://scenes/demos/heightmap_3d/grass_top.png" id="6_r4fc5"]
 [ext_resource type="Texture2D" uid="uid://cwq2r4c7t6gsv" path="res://scenes/demos/heightmap_3d/stone.png" id="7_aol1v"]
-[ext_resource type="Script" path="res://addons/gaea/renderers/render_thread.gd" id="7_bgf6r"]
+[ext_resource type="Script" path="res://addons/gaea/renderers/render_threader.gd" id="7_bgf6r"]
 [ext_resource type="Script" path="res://addons/gaea/renderers/3D/gridmap_gaea_renderer.gd" id="7_eu5jl"]
 [ext_resource type="Texture2D" uid="uid://d2q1tt51g1gqq" path="res://scenes/demos/heightmap_3d/dirt.png" id="8_6347s"]
 [ext_resource type="Texture2D" uid="uid://x8sdkn1d27pp" path="res://scenes/demos/heightmap_3d/greystone.png" id="9_pq2v8"]
@@ -183,12 +183,12 @@ script = ExtResource("2_fgwco")
 settings = SubResource("Resource_lyesv")
 generate_on_ready = false
 
-[node name="RenderThread" type="Node" parent="." node_paths=PackedStringArray("render_target", "generator")]
+[node name="RenderThreader" type="Node" parent="." node_paths=PackedStringArray("render_target", "generator")]
 script = ExtResource("7_bgf6r")
-render_target = NodePath("../GridmapGaeaRenderer")
+render_target = NodePath("../GridmapRenderer")
 generator = NodePath("../HeightmapGenerator3D")
 
-[node name="GridmapGaeaRenderer" type="Node" parent="." node_paths=PackedStringArray("grid_map", "generator")]
+[node name="GridmapRenderer" type="Node" parent="." node_paths=PackedStringArray("grid_map", "generator")]
 script = ExtResource("7_eu5jl")
 grid_map = NodePath("../GridMap")
 generator = NodePath("../HeightmapGenerator3D")
