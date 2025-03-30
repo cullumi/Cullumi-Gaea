@@ -14,23 +14,23 @@ Gaea comes with a bunch of different **generator nodes**. To make a dungeon, we'
 
 > You can use the scene at `res://scenes/tutorials/getting_started/getting_started.tscn` to follow this tutorial. It starts with WalkerGenerator, TilemapGaeaRenderer and TileMapLayer nodes:
 > 
-> ![Scene tree](../assets/tutorials/getting_started/scene-tree.png)
+> ![Scene tree](../../assets/tutorials/getting_started/scene-tree.png)
 
 ## The renderer
 
 To see the generation, you'll have to render it with a `GaeaRenderer` node. In this case, we will use a `TilemapGaeaRenderer`, which uses a `TileMap` to draw the generator's grid. Set up its references to the `TileMap` and the `WalkerGenerator`.
 
-![Referencing nodes](../assets/tutorials/getting_started/referencing_nodes.gif)
+![Referencing nodes](../../assets/tutorials/getting_started/referencing_nodes.gif)
 
 > In Godot 4.3, you'll probably want to use `TileMapLayer`s instead. This is also the default in Gaea from that version.
-![Assinging TileMapLayer nodes](../assets/tutorials/getting_started/tilemap-layers.gif)
+![Assinging TileMapLayer nodes](../../assets/tutorials/getting_started/tilemap-layers.gif)
 
 
 ### GeneratorSettings
 
 First, let's set up the generator's settings. Go to the generator's inspector, and add a `WalkerGeneratorSettings` resource to its `settings` property.
 
-![Adding settings to the generator](../assets/tutorials/getting_started/adding_settings.gif)
+![Adding settings to the generator](../../assets/tutorials/getting_started/adding_settings.gif)
 
 #### What is this resource?
 
@@ -45,7 +45,7 @@ Now, press **Generate**!
 
 See what happened? The floor of the dungeon was generated! It should look something like this:
 
-![Dungeon floor](../assets/tutorials/getting_started/dungeon_floor.png)
+![Dungeon floor](../../assets/tutorials/getting_started/dungeon_floor.png)
 
 Change some of the values such as `fullness_check`, `max_tiles`/`fullness_percentage`, and the values under the `Walkers` category to see how the generation changes!
 
@@ -65,7 +65,7 @@ This modifier fills the empty areas in the generator's rectangle with the `TileI
 
 Now press **Generate** again! See how it generates a ceiling around the floor?
 
-![Ceiling](../assets/tutorials/getting_started/ceiling.png)
+![Ceiling](../../assets/tutorials/getting_started/ceiling.png)
 
 You can change its `Expand` values to add more ceiling around the generation.
 
@@ -75,7 +75,7 @@ Now, add a new modifier, and set it to a new `Walls` modifier. Again, set it's `
 
 Click **Generate**, and see how it generates walls below the ceiling tiles!
 
-![Walls](../assets/tutorials/getting_started/walls.png)
+![Walls](../../assets/tutorials/getting_started/walls.png)
 
 ## And that's it!
 Now you have a very cool looking dungeon for your roguelikes or zelda-likes, in just a few minutes! Remember to play around with the settings to check out the different generations you can get.

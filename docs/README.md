@@ -8,9 +8,9 @@
 > Join the **Gamedev Graveyard** discord server to get notified about Gaea and hang out with other devs.
 
 
-Gaea is an **add-on for Godot 4.4**\*, designed to empower your project with advanced **procedural generation** capabilities.
+Gaea is an **add-on for Godot 4**\*, designed to empower your project with advanced **procedural generation** capabilities.
 
-*For 4.3, use v1.X . For 4.2, use v1.1.3 or lower. For 4.0-4.1, use v0.6.2 or lower.
+*For Godot 4.4, use v2.0. For Godot 4.3, use v1.X. for 4.2, use v1.1.3 or lower. For 4.0-4.1, use v0.6.2 or lower.
 
 > **NOTE:** Gaea 2.0 is currently in early development, and may not yet be optimized for larger, more complex projects. Stay tuned for ongoing improvements and enhancements!
 
@@ -19,18 +19,15 @@ Gaea is an **add-on for Godot 4.4**\*, designed to empower your project with adv
 **Gaea**, in Greek mythology, is the personification of Earth - a nod towards the terrain and world generation capabilities this addon brings to your game development toolkit. Plus, we think it sounds pretty cool.
 
 # 💫 The Idea
+Gaea is a toolkit for procedural generation in Godot. This means it aims to equip you with some of the most common procedural generation techniques so you can create worlds faster. It's all written in GD Script so you can easily customize it to suit your own needs.
 
-Gaea uses a graph system to create a flow of customizable nodes for endless posibilities in generation, both 2D and 3D. Creating custom nodes is easy, too, so you aren't limited by what the addon has.
+Gaea 1.0 and 2.0 work differently. whereas the bulk of the interface in 1.0 relies on Godot's inspector interface, 2.0 aims to recreate most of Gaea's generation functionality in the form of a node graph.
 
-![A graph showing a bunch of interconnected nodes leading to a final output node](assets/graph_system.png)
-
-Gaea can generate terrains such as:
-
-![Natural-looking terrain with grass, sand and water](assets/terrain-showcase.png)
-![Natural-looking cave-like system similar to Nuclear Throne, with chests, cacti and grass](assets/nuclear-throne-style-showcase.png)
+Check out the full documentation for each:
+* [Gaea 1.X](/1.X/)
+* [Gaea 2.0 (beta)](/2.0/)
 
 # Videos
-> Note: These are currently outdated and showcase the 1.X version of Gaea.
 
 [![How to Create Procedural Generation in Godot 4](assets/devworm-thumbnail.jpg)](https://youtu.be/oB1xsCcO9wI "How to Create Procedural Generation in Godot 4")
 [![10+2 AWESOME ADDONS for GODOT 4 by MrElipteach](assets/mrelipteach-thumbnail.jpg)](https://youtu.be/-FQNPCB7e3s?t=144&si=myv2OsGoLa7jiUfi "10+2 AWESOME ADDONS for GODOT 4 by MrElipteach")

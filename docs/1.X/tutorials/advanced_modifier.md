@@ -20,24 +20,24 @@ It will only be met where the noise value is between `min` and `max`.
 
 It will only be met if any tile at `offset` in any `layers` has an id listed in `ids`. 
 
-![An OffsetCondition with an offset of "Below", a "ground" string element in IDs and a 0 int element in layers](../assets/tutorials/advanced_modifier/offset_condition_example.png)
+![An OffsetCondition with an offset of "Below", a "ground" string element in IDs and a 0 int element in layers](../../assets/tutorials/advanced_modifier/offset_condition_example.png)
 > In this example, the condition is only met if any tiles at layer 0 below the cell it's trying to modify have an id of "ground".
 
 ## Uses
 
-![A terraria-like generation with trees and grass on top.](../assets/tutorials/advanced_modifier/advanced_modifier_example.png)
+![A terraria-like generation with trees and grass on top.](../../assets/tutorials/advanced_modifier/advanced_modifier_example.png)
 
 In this example, it's used to place vegetation on top of a `HeightmapGenerator2D`'s generation. 
 
-![The setup](../assets/tutorials/advanced_modifier/setup.png)
+![The setup](../../assets/tutorials/advanced_modifier/setup.png)
 
 In the setup, you can see it's checking for a ground tile below it and it will only place it 50% of the time. Then the `RandomTileInfo` chooses between grass, tall grass and a tree. _It's also worth noting that the modifier's `filter_type` is set to ONLY_EMPTY_CELLS, meaning it will only attempt this in "air" tiles._
 
-![A dungeon with torches](../assets/tutorials/advanced_modifier/dungeon.png)
+![A dungeon with torches](../../assets/tutorials/advanced_modifier/dungeon.png)
 
 In this other example, it's used to place torches in a dungeon.
 
-![3D terrain with trees](../assets/tutorials/advanced_modifier/3D.png)
+![3D terrain with trees](../../assets/tutorials/advanced_modifier/3D.png)
 
 And it also works in 3D!
 

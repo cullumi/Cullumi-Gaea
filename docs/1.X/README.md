@@ -1,4 +1,4 @@
-![Gaea](logo.svg)
+![Gaea](../logo.svg)
 
 # 🌍 Gaea
 
@@ -23,7 +23,7 @@ Gaea is an **add-on for Godot 4.3***, designed to empower your project with adva
 ## Generators
 Our collection of generators, including Cellular, Heightmap, and Walker, allow for dynamic and unique world creation. Whether you're looking to create intricate cave systems or sprawling landscapes, Gaea's got you covered.
 
-![generators showcase](assets/generators-showcase.png)
+![generators showcase](../assets/generators-showcase.png)
 
 ## Modifiers
 Further fine-tune your procedurally generated worlds with our set of modifiers. Add layers of complexity and fine-tune the details to create environments that truly come alive.
@@ -36,8 +36,8 @@ Gaea comes with a `ChunkLoader` node that can generate an area around an `actor`
 
 # Videos
 #### A great tutorial for beginners:
-[![How to Create Procedural Generation in Godot 4](assets/devworm-thumbnail.jpg)](https://youtu.be/oB1xsCcO9wI "How to Create Procedural Generation in Godot 4")
-[![10+2 AWESOME ADDONS for GODOT 4 by MrElipteach](assets/mrelipteach-thumbnail.jpg)](https://youtu.be/-FQNPCB7e3s?t=144&si=myv2OsGoLa7jiUfi "10+2 AWESOME ADDONS for GODOT 4 by MrElipteach")
+[![How to Create Procedural Generation in Godot 4](../assets/devworm-thumbnail.jpg)](https://youtu.be/oB1xsCcO9wI "How to Create Procedural Generation in Godot 4")
+[![10+2 AWESOME ADDONS for GODOT 4 by MrElipteach](../assets/mrelipteach-thumbnail.jpg)](https://youtu.be/-FQNPCB7e3s?t=144&si=myv2OsGoLa7jiUfi "10+2 AWESOME ADDONS for GODOT 4 by MrElipteach")
 
 # 🔧 Installation Steps
 

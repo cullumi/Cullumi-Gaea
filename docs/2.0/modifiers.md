@@ -26,7 +26,7 @@ Generate border tiles around already placed tiles.
 
 Fills the full rectangle of tiles.
 
-![fill showcase](assets/fill-showcase.png)
+![fill showcase](../assets/fill-showcase.png)
 *Using Fill to generate autotiled walls around a WalkerGenerator's generation.*
 
 ### <img src="assets/icons/carver.svg" width="24" height="24" style="float:left;margin:0px 8px 0px 0px"> Carver <sup>2D/3D</sup>
@@ -41,12 +41,12 @@ Smoothes the map using Cellular Automata.
 
 Adds tiles to those below already placed tiles that aren't the Generator's default tile.
 
-![walls modifier showcase](assets/walls-modifier-showcase.png)
+![walls modifier showcase](../assets/walls-modifier-showcase.png)
 
 In this example, the walls are added after both the floor and ceiling *(using the Fill modifier)* are added, giving the dungeon a different perspective.<br>
 An example without the Walls modifier looks like this:
 
-![without walls modifier](assets/walls-modifier-showcase-before.png)
+![without walls modifier](../assets/walls-modifier-showcase-before.png)
 
 ### <img src="assets/icons/noise_painter.svg" width="24" height="24" style="float:left;margin:0px 8px 0px 0px"> Noise Painter <sup>2D/3D</sup>
 

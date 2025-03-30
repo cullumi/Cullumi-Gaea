@@ -16,23 +16,23 @@ Gaea comes pre-packaged with multiple different generators, but for this example
 
 > Only certain generators work with chunk loading. These are the `ChunkAwareGenerator`s, such as the noise or heightmap generators. `ChunkAwareGenerator` is an abstract class that you can extend to make your own generators, but shouldn't be used on its own.
 
-![Nodes needed for the Tutorial](../assets/tutorials/chunk_generation/chunk-generation-loader.png)
+![Nodes needed for the Tutorial](../../assets/tutorials/chunk_generation/chunk-generation-loader.png)
 
 ### Setup
 
 Once you have all the pre-requisite nodes mentioned above setup in your scene, you will want to search for the `ChunkLoader2D` node.
 
-![Find the ChunkLoader node in the Node search](..%2Fassets%2Ftutorials%2Fchunk_generation%2Fchunk-loader-2d.png)
+![Find the ChunkLoader node in the Node search](../../%2Fassets%2Ftutorials%2Fchunk_generation%2Fchunk-loader-2d.png)
 
 After finding this node, you can add it anywhere in the scene tree, in this instance, I've added it as a child node of the `NoiseGenerator`
 
-![Add the Chunk](../assets/tutorials/chunk_generation/chunk-generation-nodes.png)
+![Add the Chunk](../../assets/tutorials/chunk_generation/chunk-generation-nodes.png)
 
 Once this node has been added to the tree, you need to assign the `Generator` and `Actor` nodes to the `ChunkLoader2D`, these map to the `NoiseGenerator` and `CharacterBody2D` nodes mentioned earlier!
 
-![assign-nodes.gif](..%2Fassets%2Ftutorials%2Fchunk_generation%2Fassign-nodes.gif)
+![assign-nodes.gif](../../%2Fassets%2Ftutorials%2Fchunk_generation%2Fassign-nodes.gif)
 
-![Set the settings' infinite property to true](../assets/tutorials/chunk_generation/infinite.png)
+![Set the settings' infinite property to true](../../assets/tutorials/chunk_generation/infinite.png)
 
 It's also important that you set the settings' `infinite` property to `true`!
 

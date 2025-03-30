@@ -13,7 +13,7 @@ Gaea offers 2 renderers with **threaded** variants, the `TileMapRenderer` and th
 
 These threaded renderers will also render multiple chunks in parallel (at the same time) when used alongside a Chunk Loader. This means **threaded** renderers can render the same amount of chunks in a shorter amount of time compared to an **unthreaded** one.
 
-![Nodes](<../assets/tutorials/optimization/nodes.png>)
+![Nodes](<../../assets/tutorials/optimization/nodes.png>)
 
 As such, `ThreadedRenderer`s have an additional parameter, `task_limit`. It decides the maximum number of WorkerThreadPool tasks that can be created and run concurrently. A default, negative value (-1) means there is no limit. In most cases, you'll leave the `task_limit` parameter at this default value.
 > As an example, a value of 8 suggests that a maximum of 8 chunks are allowed to be rendered at one time. Any chunks sent to the renderer beyond this limit will be queued, then rendered as soon as space becomes available.
@@ -24,7 +24,7 @@ Gaea offers a **threaded** variant of the `ChunkLoader`, called `ThreadedChunkLo
 #### Comparison
 Most **threaded** variations include a way to toggle multi-threading on and off. This is included to debug errors that could be hidden as a result of running in a thread, as well as just for the sake of comparison.
 
-![Unthreaded version vs threaded version in a 3D scene](<../assets/tutorials/optimization/unthreaded-vs-threaded.gif>)
+![Unthreaded version vs threaded version in a 3D scene](<../../assets/tutorials/optimization/unthreaded-vs-threaded.gif>)
 > **Unthreaded** chunk loader + **threaded** renderer (left) vs. **threaded** chunk loader & renderer (right). 
 
 You can see how much it stutters without threading (it even crashed later!), vs how smooth it runs with threading enabled.
