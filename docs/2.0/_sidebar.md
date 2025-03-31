@@ -1,0 +1,7 @@
+* [📦 Home](/)
+* [🍻 Contribute](/contribute.md)
+* [2.0 (beta)](/2.0/)
+  * [✨ How Gaea Works](/2.0/how-gaea-works.md)
+  * [💡 Tutorials](/2.0/tutorials/)
+    * [🩻 Anatomy of a Graph](/2.0/tutorials/anatomy-of-a-graph.md) 
+    * [⭐ Generating Terrain](/2.0/tutorials/generating-terrain.md)

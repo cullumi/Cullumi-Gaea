@@ -1,4 +1,4 @@
-![Gaea](logo.svg)
+![Gaea](../logo.svg)
 
 # 🌍 Gaea
 
@@ -22,18 +22,18 @@ Gaea is an **add-on for Godot 4.4**\*, designed to empower your project with adv
 
 Gaea uses a graph system to create a flow of customizable nodes for endless posibilities in generation, both 2D and 3D. Creating custom nodes is easy, too, so you aren't limited by what the addon has.
 
-![A graph showing a bunch of interconnected nodes leading to a final output node](assets/graph_system.png)
+![A graph showing a bunch of interconnected nodes leading to a final output node](../assets/graph_system.png)
 
 Gaea can generate terrains such as:
 
-![Natural-looking terrain with grass, sand and water](assets/terrain-showcase.png)
-![Natural-looking cave-like system similar to Nuclear Throne, with chests, cacti and grass](assets/nuclear-throne-style-showcase.png)
+![Natural-looking terrain with grass, sand and water](../assets/terrain-showcase.png)
+![Natural-looking cave-like system similar to Nuclear Throne, with chests, cacti and grass](../assets/nuclear-throne-style-showcase.png)
 
 # Videos
 > Note: These are currently outdated and showcase the 1.X version of Gaea.
 
-[![How to Create Procedural Generation in Godot 4](assets/devworm-thumbnail.jpg)](https://youtu.be/oB1xsCcO9wI "How to Create Procedural Generation in Godot 4")
-[![10+2 AWESOME ADDONS for GODOT 4 by MrElipteach](assets/mrelipteach-thumbnail.jpg)](https://youtu.be/-FQNPCB7e3s?t=144&si=myv2OsGoLa7jiUfi "10+2 AWESOME ADDONS for GODOT 4 by MrElipteach")
+[![How to Create Procedural Generation in Godot 4](../assets/devworm-thumbnail.jpg)](https://youtu.be/oB1xsCcO9wI "How to Create Procedural Generation in Godot 4")
+[![10+2 AWESOME ADDONS for GODOT 4 by MrElipteach](../assets/mrelipteach-thumbnail.jpg)](https://youtu.be/-FQNPCB7e3s?t=144&si=myv2OsGoLa7jiUfi "10+2 AWESOME ADDONS for GODOT 4 by MrElipteach")
 
 
 

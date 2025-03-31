@@ -11,6 +11,7 @@
 <body>
   <div id="app"></div>
   <script>
+    // Docsify configuration
     window.$docsify = {
       themeColor: "#9dbd4b",
       search: 'auto', // default
@@ -20,7 +21,8 @@
       loadNavbar: true,
       coverpage: true,
       alias: {
-        '/.*/_sidebar.md': '/_sidebar.md'
+        '/.*/_navbar.md': '/_navbar.md',
+        '/.*/_sidebar.md': '/_sidebar.md' // Leaving this off uses the sidebar from whatever subdirectory we're in.
       },
       footer: {
         copy: '<span>&copy; 2023</span>',
@@ -29,7 +31,15 @@
         style: 'text-align: right;',
         class: 'className',
       },
-    }
+      // Docsify Sidebar Collapse
+      sidebarDisplayLevel: 0, // sets the sidebar display level
+      // Docsify Versioned Plugin
+      versions: [
+        {folder: '#/2.0', label: 'v2.0', default: false },
+        {folder: '#/1.X', label: 'v1.X', default: false }
+      ],
+      versionSelectorLabel: 'Version'
+    };
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
@@ -39,5 +49,33 @@
   <script src="//unpkg.com/docsify-footer-enh/dist/docsify-footer-enh.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-gdscript.min.js"></script>
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+
+  <!-- Docsify Sidebar Collapse -->
+  <!-- Has wierd behavior w/ Docsify Versioned Plugin -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+
+  <!-- Docsify Versioned Plugin -->
+  <!-- Breaks direct links... -->
+  <!--
+  <script src="https://cdn.jsdelivr.net/npm/docsify-versioned-plugin@0.0.1/index.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-versioned-plugin@0.0.1/styles.css">
+  <script>
+    (function() {
+      // Get the current version from the URL
+      const versionFolder = window.location.pathname.split('/')[1];
+
+      // Set the search configuration based on the current version
+      window.$docsify.search = {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Search',
+        noData: 'No Results!',
+        depth: 2,
+        hideOtherSidebarContent: false,
+        namespace: 'docs-' + versionFolder // Set a unique namespace for each version
+      };
+    })();
+  </script>
+  -->
 </body>
 </html>
