@@ -31,9 +31,9 @@ func direction():
 	var down:int  = 1 if move.move_down else 0
 	return Vector2(left + right, down + up)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	dir = direction()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = dir * speed
 	move_and_slide()

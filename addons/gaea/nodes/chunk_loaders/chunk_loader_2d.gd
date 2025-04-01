@@ -36,7 +36,7 @@ func _ready() -> void:
 	_last_run = Time.get_ticks_msec()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var current_time = Time.get_ticks_msec()
 	if current_time - _last_run > update_rate:
 		_try_loading()
@@ -48,7 +48,7 @@ func _try_loading() -> void:
 
 	if actor_position == _last_position:
 		return
-
+	
 	_last_position = actor_position
 	_update_loading(actor_position)
 
