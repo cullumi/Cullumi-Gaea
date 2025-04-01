@@ -19,6 +19,9 @@ signal area_erased(area: AABB)
 @warning_ignore("shadowed_global_identifier")
 @export var seed: int = randi()
 @export var random_seed_on_generate: bool = true
+## Used to offset noise coordinates.
+## For example: an offset of 1,1 would cause features generated at 1,1 to appear at 0,0 instead.
+@export var world_origin: Vector3i = Vector3i()
 ## Leave [param z] as [code]1[/code] for 2D worlds.
 @export var world_size: Vector3i = Vector3i(128, 128, 1)
 ## Used with [ChunkLoader]s, or to get the cell position of a node with [method global_to_map].
@@ -56,7 +59,7 @@ func generate_area(area: AABB) -> void:
 			output_resource = resource
 
 	output_resource.execute(
-		area,
+		AABBO.new(area, world_origin),
 		data,
 		self
 	)

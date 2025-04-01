@@ -11,7 +11,7 @@ class Walker:
 
 
 
-func get_data(_output_port: int, area: AABB, generator_data: GaeaData) -> Dictionary:
+func get_data(_output_port: int, area: AABBO, generator_data: GaeaData) -> Dictionary:
 	var _starting_position: Vector3 = get_arg("starting_position", generator_data)
 
 	var rotation_weights: Dictionary = {
@@ -26,8 +26,8 @@ func get_data(_output_port: int, area: AABB, generator_data: GaeaData) -> Dictio
 	var bigger_room_size_range: Dictionary = get_arg("bigger_room_size_range", generator_data)
 
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	rng.set_seed(generator_data.generator.seed + salt)
-	seed(generator_data.generator.seed + salt)
+	rng.set_seed(area_seed(area, generator_data))
+	seed(area_seed(area, generator_data))
 	var max_cells: int = get_arg("max_cells", generator_data)
 	max_cells = mini(
 		max_cells,

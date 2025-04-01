@@ -2,7 +2,7 @@
 extends GaeaNodeResource
 
 
-func get_data(_output_port: int, area: AABB, generator_data: GaeaData) -> Dictionary[Vector3i, GaeaMaterial]:
+func get_data(_output_port: int, area: AABBO, generator_data: GaeaData) -> Dictionary[Vector3i, GaeaMaterial]:
 	var data_connected_idx: int = get_connected_resource_idx(0)
 	if data_connected_idx == -1:
 		return {}
@@ -36,7 +36,7 @@ func get_data(_output_port: int, area: AABB, generator_data: GaeaData) -> Dictio
 				var cell: Vector3i = Vector3i(x, y, z)
 				for offset: Vector2i in rules:
 					var offset_3d: Vector3i = Vector3i(offset.x, offset.y, 0)
-					if _is_point_outside_area(area, cell + offset_3d):
+					if _is_point_outside_area(area.area, cell + offset_3d):
 						place = false
 						break
 

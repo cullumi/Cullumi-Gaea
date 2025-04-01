@@ -5,7 +5,7 @@ extends GaeaNodeResource
 @export_enum("Vector2", "Vector3") var type: int = 0
 
 
-func get_data(output_port: int, area: AABB, generator_data: GaeaData) -> Dictionary:
+func get_data(output_port: int, area: AABBO, generator_data: GaeaData) -> Dictionary:
 	if type == 0:
 		return {
 			"value": Vector2(

@@ -2,7 +2,7 @@
 extends GaeaNodeResource
 
 
-func get_data(output_port: int, area: AABB, generator_data: GaeaData) -> Dictionary:
+func get_data(output_port: int, area: AABBO, generator_data: GaeaData) -> Dictionary:
 	var vector = get_arg("vector", generator_data)
 	match output_port:
 		0:

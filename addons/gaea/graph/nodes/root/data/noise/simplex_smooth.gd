@@ -6,18 +6,19 @@ extends GaeaNodeResource
 
 
 
-func get_data(output_port: int, area: AABB, generator_data: GaeaData) -> Dictionary[Vector3i, float]:
+func get_data(_output_port: int, area: AABBO, generator_data: GaeaData) -> Dictionary[Vector3i, float]:
 	var _noise: FastNoiseLite = FastNoiseLite.new()
-	_noise.seed = generator_data.generator.seed + salt
+	_noise.seed = simple_seed(generator_data)
 
 	_noise.frequency = get_arg("frequency", generator_data)
 	_noise.fractal_octaves = get_arg("octaves", generator_data)
 	_noise.fractal_lacunarity = get_arg("lacunarity", generator_data)
 	var dictionary: Dictionary[Vector3i, float]
-	for x in get_axis_range(Axis.X, area):
-		for y in get_axis_range(Axis.Y, area):
-			for z in get_axis_range(Axis.Z, area):
-				dictionary[Vector3i(x, y, z)] = (_get_noise_value(Vector3i(x, y, z), _noise) + 1.0) / 2.0
+	for x in get_axis_range(Axis.X, area.aabb):
+		for y in get_axis_range(Axis.Y, area.aabb):
+			for z in get_axis_range(Axis.Z, area.aabb):
+				dictionary[Vector3i(x, y, z)] = (_get_noise_value(Vector3i(x, y, z) + Vector3i(area.offset), _noise) + 1.0) / 2.0
+	
 	return dictionary
 
 

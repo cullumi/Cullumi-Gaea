@@ -65,7 +65,7 @@ func update() -> void:
 
 	var data: Dictionary = resource.get_data(
 		output_idx,
-		AABB(Vector3.ZERO, Vector3(resolution.x, resolution.y, 1)),
+		AABBO.new(AABB(Vector3.ZERO, Vector3(resolution.x, resolution.y, 1))),
 		node.generator.data
 	)
 

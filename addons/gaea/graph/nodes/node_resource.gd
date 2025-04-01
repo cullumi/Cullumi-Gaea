@@ -26,12 +26,20 @@ var node: GaeaGraphNode
 
 enum Axis {X, Y, Z}
 
+func simple_seed(generator_data: GaeaData) -> int:
+	return generator_data.generator.seed + salt
 
-func get_data(_output_port: int, _area: AABB, _generator_data: GaeaData) -> Dictionary:
+func area_seed(area: AABBO, generator_data: GaeaData) -> int:
+	return simple_seed(generator_data) + area_salt(area)
+
+func area_salt(area: AABBO) -> int:
+	return int("%d%d" % [area.position.x + area.offset.x, area.position.y + area.offset.y])
+
+func get_data(_output_port: int, _area: AABBO, _generator_data: GaeaData) -> Dictionary:
 	return {}
 
 
-func execute(_area: AABB, _generator_data: GaeaData, _generator: GaeaGenerator) -> void:
+func execute(_area: AABBO, _generator_data: GaeaData, _generator: GaeaGenerator) -> void:
 	pass
 
 
@@ -49,7 +57,7 @@ func get_arg(name: String, generator_data: GaeaData) -> Variant:
 		if connected_idx != -1:
 			return generator_data.resources[connected_idx].get_data(
 				get_connected_port_to(arg_connection_idx),
-				AABB(),
+				AABBO.new(),
 				generator_data
 			).get("value")
 
@@ -76,8 +84,7 @@ static func get_scene() -> PackedScene:
 
 func get_axis_range(axis: Axis, area: AABB) -> Array:
 	match axis:
-		Axis.X:
-			return range(area.position.x, area.end.x)
+		Axis.X: return range(area.position.x, area.end.x)
 		Axis.Y: return range(area.position.y, area.end.y)
 		Axis.Z: return range(area.position.z, area.end.z)
 	return []

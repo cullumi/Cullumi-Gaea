@@ -2,7 +2,7 @@
 extends GaeaNodeResource
 
 
-func execute(area: AABB, generator_data: GaeaData, generator: GaeaGenerator) -> void:
+func execute(area: AABBO, generator_data: GaeaData, generator: GaeaGenerator) -> void:
 	var grid: GaeaGrid = GaeaGrid.new()
 	for layer_idx in generator_data.layers.size():
 		var map_connected_idx: int = get_connected_resource_idx(layer_idx)

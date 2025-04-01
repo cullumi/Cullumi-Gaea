@@ -2,7 +2,7 @@
 extends GaeaNodeResource
 
 
-func get_data(_output_port: int, area: AABB, generator_data: GaeaData) -> Dictionary:
+func get_data(_output_port: int, area: AABBO, generator_data: GaeaData) -> Dictionary:
 	var grids: Array[Dictionary] = []
 	for i: int in input_slots.size():
 		if get_connected_resource_idx(i) == -1:
