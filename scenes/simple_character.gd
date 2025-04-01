@@ -29,7 +29,7 @@ func direction():
 	var right:int = 1 if move.move_right else 0
 	var up:int   = -1 if move.move_up else 0
 	var down:int  = 1 if move.move_down else 0
-	return Vector2(left + right, down + up)
+	return Vector2(left + right, down + up).normalized()
 
 func _process(_delta: float) -> void:
 	dir = direction()
