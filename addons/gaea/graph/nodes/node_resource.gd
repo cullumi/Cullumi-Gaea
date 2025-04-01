@@ -83,7 +83,7 @@ static func get_scene() -> PackedScene:
 
 
 func get_axis_range(axis: Axis, area) -> Array:
-	if not area is AABB or area is AABBO:
+	if not area is AABB and not area is AABBO:
 		push_error("get_axis_range expected parameter area to be of type AABB or AABBO.")
 		
 	match axis:

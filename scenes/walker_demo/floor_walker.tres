@@ -1608,7 +1608,7 @@ other = {
 "attached": Array[StringName]([&"_GraphNode_46619", &"_GraphNode_46660", &"_GraphNode_38697", &"_GraphNode_52512", &"_GraphNode_38727", &"_GraphNode_46754", &"_GraphNode_46723", &"_GraphNode_73049", &"_GraphNode_46691"]),
 "name": &"_GraphFrame_37029",
 "position": Vector2(220, -421),
-"size": Vector2(1012, 691),
+"size": Vector2(1012, 683),
 "tint_color": Color(0.133333, 0.12549, 0.203922, 1),
 "tint_color_enabled": true,
 "title": "Walls"
@@ -1616,7 +1616,7 @@ other = {
 "attached": Array[StringName]([&"_GraphNode_52354", &"_GraphNode_42526", &"_GraphNode_41445", &"_GraphNode_64947", &"_GraphNode_64894"]),
 "name": &"_GraphFrame_37038",
 "position": Vector2(400, 639),
-"size": Vector2(692, 582),
+"size": Vector2(692, 572),
 "tint_color": Color(0.55, 0.415983, 0.3135, 0.52549),
 "tint_color_enabled": true,
 "title": "Place Chests & Enemies"
@@ -1624,7 +1624,7 @@ other = {
 "attached": Array[StringName]([&"_GraphNode_40711", &"_GraphNode_40506", &"_GraphNode_52437", &"_GraphNode_57799"]),
 "name": &"_GraphFrame_37035",
 "position": Vector2(400, 1259),
-"size": Vector2(552, 462),
+"size": Vector2(552, 452),
 "tint_color": Color(0.125118, 0.226562, 0.110626, 0.75),
 "tint_color_enabled": true,
 "title": "Place Decorations"
@@ -1632,7 +1632,7 @@ other = {
 "attached": Array[StringName]([&"BaseNode2", &"BaseNode6", &"BaseNode", &"_GraphNode_60208"]),
 "name": &"_GraphFrame_37032",
 "position": Vector2(-900, 119),
-"size": Vector2(1032, 666),
+"size": Vector2(1032, 636),
 "tint_color": Color(0.174225, 0.208835, 0.257812, 0.75),
 "tint_color_enabled": true,
 "title": "Floor"
