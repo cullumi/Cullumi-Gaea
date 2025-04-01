@@ -25,8 +25,15 @@ var _loaded_chunks: Array[Vector2]
 
 func _ready() -> void:
 	generator.reset()
+	
 	if load_on_ready:
-		_update_loading(actor.global_position)
+		_last_position = _get_actor_position()
+		_update_loading(_last_position)
+	else:
+		var int_max = (1<<31)^(~0) # 11111111... ^ 100000... = 01111111...
+		_last_position = Vector2i(int_max, int_max) # use a big number that won't ever be our actual start position.
+	
+	_last_run = Time.get_ticks_msec()
 
 
 func _process(delta: float) -> void:
