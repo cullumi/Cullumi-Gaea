@@ -82,7 +82,10 @@ static func get_scene() -> PackedScene:
 	return preload("res://addons/gaea/graph/nodes/node.tscn")
 
 
-func get_axis_range(axis: Axis, area: AABB) -> Array:
+func get_axis_range(axis: Axis, area) -> Array:
+	if not area is AABB or area is AABBO:
+		push_error("get_axis_range expected parameter area to be of type AABB or AABBO.")
+		
 	match axis:
 		Axis.X: return range(area.position.x, area.end.x)
 		Axis.Y: return range(area.position.y, area.end.y)
