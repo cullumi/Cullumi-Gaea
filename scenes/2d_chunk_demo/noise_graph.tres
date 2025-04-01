@@ -1,0 +1,1511 @@
+[gd_resource type="Resource" script_class="GaeaData" load_steps=119 format=3 uid="uid://clggkdi2012h5"]
+
+[ext_resource type="Script" uid="uid://e45byecr4gi6" path="res://addons/gaea/resources/materials/tilemap_material.gd" id="1_rrqeh"]
+[ext_resource type="Script" uid="uid://cj08rybcfwlle" path="res://addons/gaea/resources/materials/gaea_material.gd" id="2_bt7jm"]
+[ext_resource type="Script" uid="uid://dtocuov1r8agi" path="res://addons/gaea/resources/materials/random_material.gd" id="3_toqb3"]
+[ext_resource type="Script" uid="uid://3qsmwhn2sk47" path="res://addons/gaea/resources/gaea_layer.gd" id="4_y5o0e"]
+[ext_resource type="Script" uid="uid://brb1clh2y2bv0" path="res://addons/gaea/graph/nodes/node_resource.gd" id="5_mrvf4"]
+[ext_resource type="Script" uid="uid://bh3sajxnmp14w" path="res://addons/gaea/graph/nodes/node_argument.gd" id="6_7vq2i"]
+[ext_resource type="Script" uid="uid://ote622wl6axc" path="res://addons/gaea/graph/nodes/node_slot.gd" id="7_n6tqh"]
+[ext_resource type="Script" uid="uid://bmxbe51xh0t7d" path="res://addons/gaea/graph/nodes/union.gd" id="8_2oksj"]
+[ext_resource type="Script" uid="uid://4fup8piv8iac" path="res://addons/gaea/graph/nodes/difference.gd" id="9_77u7c"]
+[ext_resource type="Resource" uid="uid://bbkdvyxkj2slo" path="res://addons/gaea/graph/nodes/output_node_resource.tres" id="10_rkc12"]
+[ext_resource type="Script" uid="uid://dnj3grm2qv20y" path="res://addons/gaea/graph/nodes/root/data/filters/distance_filter.gd" id="11_tvpdy"]
+[ext_resource type="Script" uid="uid://bqa8aufofkr81" path="res://addons/gaea/graph/nodes/root/input/variables/variable_node.gd" id="12_gso0c"]
+[ext_resource type="Script" uid="uid://bjmyuomcmtwq6" path="res://addons/gaea/graph/nodes/root/map/random/random_scatter.gd" id="13_088dv"]
+[ext_resource type="Script" uid="uid://dux0bq53p61ls" path="res://addons/gaea/graph/nodes/root/map/mappers/basic_mapper.gd" id="15_brbsa"]
+[ext_resource type="Script" uid="uid://741f2tjbjf7c" path="res://addons/gaea/graph/nodes/root/data/border/border.gd" id="16_d5bbv"]
+[ext_resource type="Script" uid="uid://dvbwtw53ut2hc" path="res://addons/gaea/graph/nodes/complement.gd" id="17_lomi3"]
+[ext_resource type="Script" uid="uid://bcp5jmkertrct" path="res://addons/gaea/graph/nodes/root/data/noise/simplex_smooth.gd" id="17_qbw4a"]
+[ext_resource type="Script" uid="uid://dae6umbqb872e" path="res://addons/gaea/resources/gaea_data.gd" id="18_mn7nc"]
+
+[sub_resource type="Resource" id="Resource_j6vep"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(2, 1)
+alternative_tile = 0
+preview_color = Color(0.548666, 0.952075, 0.652068, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_2jxu3"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(1, 4)
+alternative_tile = 0
+preview_color = Color(0.879785, 0.195255, 0.388657, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_o0o4j"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(0, 1)
+alternative_tile = 0
+preview_color = Color(0.85098, 0.580392, 0.341176, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_h5ves"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(0, 2)
+alternative_tile = 0
+preview_color = Color(0.847059, 0.623529, 0.4, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_e1h74"]
+script = ExtResource("3_toqb3")
+materials = Array[ExtResource("2_bt7jm")]([SubResource("Resource_o0o4j"), SubResource("Resource_h5ves")])
+preview_color = Color(0.564382, 0.180166, 0.575045, 1)
+metadata/_custom_type_script = "uid://dtocuov1r8agi"
+
+[sub_resource type="Resource" id="Resource_lm46c"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(2, 3)
+alternative_tile = 0
+preview_color = Color(0.627481, 0.227889, 0.838571, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_jlmdo"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(2, 4)
+alternative_tile = 0
+preview_color = Color(0.483951, 0.769272, 0.838571, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_y3srg"]
+script = ExtResource("3_toqb3")
+materials = Array[ExtResource("2_bt7jm")]([SubResource("Resource_lm46c"), SubResource("Resource_jlmdo")])
+preview_color = Color(0.0559988, 0.886948, 0.662938, 1)
+metadata/_custom_type_script = "uid://dtocuov1r8agi"
+
+[sub_resource type="Resource" id="Resource_qtqn2"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(0, 3)
+alternative_tile = 0
+preview_color = Color(0.838571, 0.466981, 0.473734, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_wbro0"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(1, 3)
+alternative_tile = 0
+preview_color = Color(0.834095, 0.838571, 0.515955, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_mfiu2"]
+script = ExtResource("3_toqb3")
+materials = Array[ExtResource("2_bt7jm")]([SubResource("Resource_qtqn2"), SubResource("Resource_wbro0")])
+preview_color = Color(0.604519, 0.617006, 0.236859, 1)
+metadata/_custom_type_script = "uid://dtocuov1r8agi"
+
+[sub_resource type="Resource" id="Resource_30ot8"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(2, 2)
+alternative_tile = 0
+preview_color = Color(0.248195, 0.605651, 0.342506, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_payrb"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(1, 2)
+alternative_tile = 0
+preview_color = Color(0.773438, 0.20493, 0.228018, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_kk1e5"]
+script = ExtResource("1_rrqeh")
+type = 0
+source_id = 1
+atlas_coord = Vector2i(1, 1)
+alternative_tile = 0
+preview_color = Color(0.270588, 0.156863, 0.235294, 1)
+metadata/_custom_type_script = "uid://e45byecr4gi6"
+
+[sub_resource type="Resource" id="Resource_nr2x3"]
+script = ExtResource("4_y5o0e")
+enabled = true
+
+[sub_resource type="Resource" id="Resource_q5q5d"]
+script = ExtResource("4_y5o0e")
+enabled = true
+metadata/_custom_type_script = "uid://3qsmwhn2sk47"
+
+[sub_resource type="Resource" id="Resource_entu7"]
+script = ExtResource("4_y5o0e")
+enabled = true
+metadata/_custom_type_script = "uid://3qsmwhn2sk47"
+
+[sub_resource type="Resource" id="Resource_woxbp"]
+script = ExtResource("4_y5o0e")
+enabled = false
+metadata/_custom_type_script = "uid://3qsmwhn2sk47"
+
+[sub_resource type="Resource" id="Resource_qksdc"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 1
+left_label = "Map A"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+
+[sub_resource type="Resource" id="Resource_x35wo"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 1
+left_label = "Map B"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+
+[sub_resource type="Resource" id="Resource_ij1ao"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 1
+left_label = "Map C"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+
+[sub_resource type="Resource" id="Resource_abt6c"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 1
+left_label = "Map D"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+
+[sub_resource type="Resource" id="Resource_t3085"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 1
+right_label = "Union"
+right_show_preview = true
+
+[sub_resource type="Resource" id="Resource_wctuo"]
+script = ExtResource("8_2oksj")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_qksdc"), SubResource("Resource_x35wo"), SubResource("Resource_ij1ao"), SubResource("Resource_abt6c")])
+args = Array[ExtResource("6_7vq2i")]([])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_t3085")])
+title = "MapUnion"
+description = "Merges [param]map A-D[/bg][/c]. The latter overrides any overlapping cells from the former."
+is_output = false
+data = {}
+salt = 1380013154
+
+[sub_resource type="Resource" id="Resource_xn6xr"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 1
+left_label = "Map A"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+
+[sub_resource type="Resource" id="Resource_6bjao"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 1
+left_label = "Map B"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+
+[sub_resource type="Resource" id="Resource_7pnsf"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 1
+left_label = "Map C"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+
+[sub_resource type="Resource" id="Resource_4lorr"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 1
+left_label = "Map D"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+
+[sub_resource type="Resource" id="Resource_6tskg"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 1
+right_label = "Union"
+right_show_preview = true
+
+[sub_resource type="Resource" id="Resource_0c54b"]
+script = ExtResource("8_2oksj")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_xn6xr"), SubResource("Resource_6bjao"), SubResource("Resource_7pnsf"), SubResource("Resource_4lorr")])
+args = Array[ExtResource("6_7vq2i")]([])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_6tskg")])
+title = "MapUnion"
+description = "Merges [param]map A-D[/bg][/c]. The latter overrides any overlapping cells from the former."
+is_output = false
+data = {}
+salt = 1022077936
+
+[sub_resource type="Resource" id="Resource_g4g4d"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data A"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_l204x"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data B"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_5c1mv"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 0
+right_label = "Difference"
+right_show_preview = true
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_d1e86"]
+script = ExtResource("9_77u7c")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_g4g4d"), SubResource("Resource_l204x")])
+args = Array[ExtResource("6_7vq2i")]([])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_5c1mv")])
+title = "DataDifference"
+description = "Returns the difference between [param]data A[/bg][/c] - [param]data B[/bg][/c]."
+is_output = false
+data = {}
+salt = 1095001467
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_58cm0"]
+script = ExtResource("6_7vq2i")
+type = 10
+name = &"to_point"
+default_value = null
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+metadata/_custom_type_script = "uid://bh3sajxnmp14w"
+
+[sub_resource type="Resource" id="Resource_o7clu"]
+script = ExtResource("6_7vq2i")
+type = 4
+name = &"distance_range"
+default_value = {
+"max": 64.0
+}
+hint = Dictionary[String, Variant]({
+"allow_lesser": false,
+"max": 64.0,
+"min": 0.0
+})
+disable_input_slot = false
+add_output_slot = false
+
+[sub_resource type="Resource" id="Resource_ppkgb"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+
+[sub_resource type="Resource" id="Resource_hqu83"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 0
+right_label = "Filtered Data"
+right_show_preview = true
+
+[sub_resource type="Resource" id="Resource_tr8qa"]
+script = ExtResource("11_tvpdy")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_ppkgb")])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_58cm0"), SubResource("Resource_o7clu")])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_hqu83")])
+title = "DistanceFilter"
+description = "Filters [param]data[/bg][/c] to only the cells at a distance from [param]to_point[/bg][/c] between [param]min[/bg][/c] and [param]max[/bg][/c]."
+is_output = false
+data = {
+&"distance_range": {
+"max": 64.0,
+"min": 4.0
+},
+&"to_point": Vector3(24, 24, 0)
+}
+salt = 2767213228
+
+[sub_resource type="Resource" id="Resource_vi7ex"]
+script = ExtResource("6_7vq2i")
+type = 3
+name = &"name"
+default_value = null
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+
+[sub_resource type="Resource" id="Resource_4pc45"]
+script = ExtResource("12_gso0c")
+type = 24
+hint = 17
+hint_string = "GaeaMaterial"
+output_type = 2
+input_slots = Array[ExtResource("7_n6tqh")]([])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_vi7ex")])
+output_slots = Array[ExtResource("7_n6tqh")]([])
+title = "MaterialVariable"
+description = "GaeaMaterial variable editable in the inspector."
+is_output = false
+data = {
+&"name": "Chest"
+}
+salt = 3043193593
+
+[sub_resource type="Resource" id="Resource_306cy"]
+script = ExtResource("6_7vq2i")
+type = 1
+name = &"amount"
+default_value = 10
+hint = Dictionary[String, Variant]({
+"min": 0
+})
+disable_input_slot = false
+add_output_slot = false
+metadata/_custom_type_script = "uid://bh3sajxnmp14w"
+
+[sub_resource type="Resource" id="Resource_wga38"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_rs7w7"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 2
+left_label = "Material"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_qponm"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 1
+right_label = "Map"
+right_show_preview = true
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_x7tuv"]
+script = ExtResource("13_088dv")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_wga38"), SubResource("Resource_rs7w7")])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_306cy")])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_qponm")])
+title = "RandomScatter"
+description = "Randomly places [param]amount[/bg][/c] [param]material[/bg][/c]s in the cells of [param]data[/bg][/c]"
+is_output = false
+data = {
+&"amount": 2.0
+}
+salt = 308118276
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_6omvp"]
+script = ExtResource("6_7vq2i")
+type = 1
+name = &"amount"
+default_value = 10
+hint = Dictionary[String, Variant]({
+"min": 0
+})
+disable_input_slot = false
+add_output_slot = false
+metadata/_custom_type_script = "uid://bh3sajxnmp14w"
+
+[sub_resource type="Resource" id="Resource_baidw"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_3mjes"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 2
+left_label = "Material"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_wjgt5"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 1
+right_label = "Map"
+right_show_preview = true
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_7xkp0"]
+script = ExtResource("13_088dv")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_baidw"), SubResource("Resource_3mjes")])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_6omvp")])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_wjgt5")])
+title = "RandomScatter"
+description = "Randomly places [param]amount[/bg][/c] [param]material[/bg][/c]s in the cells of [param]data[/bg][/c]"
+is_output = false
+data = {
+&"amount": 4.0
+}
+salt = 118549782
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_gy70f"]
+script = ExtResource("6_7vq2i")
+type = 3
+name = &"name"
+default_value = null
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+
+[sub_resource type="Resource" id="Resource_8r1rx"]
+script = ExtResource("12_gso0c")
+type = 24
+hint = 17
+hint_string = "GaeaMaterial"
+output_type = 2
+input_slots = Array[ExtResource("7_n6tqh")]([])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_gy70f")])
+output_slots = Array[ExtResource("7_n6tqh")]([])
+title = "MaterialVariable"
+description = "GaeaMaterial variable editable in the inspector."
+is_output = false
+data = {
+&"name": "Enemy"
+}
+salt = 37181106
+
+[sub_resource type="Resource" id="Resource_lcf3h"]
+script = ExtResource("6_7vq2i")
+type = 11
+name = &"neighbors"
+default_value = Array[Vector2i]([Vector2i(-1, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(0, -1)])
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+metadata/_custom_type_script = "uid://bh3sajxnmp14w"
+
+[sub_resource type="Resource" id="Resource_ku63g"]
+script = ExtResource("6_7vq2i")
+type = 9
+name = &"inside"
+default_value = null
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+metadata/_custom_type_script = "uid://bh3sajxnmp14w"
+
+[sub_resource type="Resource" id="Resource_yrt4i"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_58jv4"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 0
+right_label = "Border"
+right_show_preview = true
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_qvm6g"]
+script = ExtResource("16_d5bbv")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_yrt4i")])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_lcf3h"), SubResource("Resource_ku63g")])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_58jv4")])
+title = "Border2D"
+description = ""
+is_output = false
+data = {
+&"inside": true,
+&"neighbors": Array[Vector2i]([Vector2i(0, 1)])
+}
+salt = 699283390
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_lbx5x"]
+script = ExtResource("6_7vq2i")
+type = 3
+name = &"name"
+default_value = null
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+
+[sub_resource type="Resource" id="Resource_15p8x"]
+script = ExtResource("12_gso0c")
+type = 24
+hint = 17
+hint_string = "GaeaMaterial"
+output_type = 2
+input_slots = Array[ExtResource("7_n6tqh")]([])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_lbx5x")])
+output_slots = Array[ExtResource("7_n6tqh")]([])
+title = "MaterialVariable"
+description = "GaeaMaterial variable editable in the inspector."
+is_output = false
+data = {
+&"name": "WallAboveVariable"
+}
+salt = 2224158555
+
+[sub_resource type="Resource" id="Resource_1k6dw"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_8hnvc"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 2
+left_label = "Material"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_hls61"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 1
+right_label = "Map"
+right_show_preview = true
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_schlh"]
+script = ExtResource("15_brbsa")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_1k6dw"), SubResource("Resource_8hnvc")])
+args = Array[ExtResource("6_7vq2i")]([])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_hls61")])
+title = "Mapper"
+description = "Maps all non-empty cells in [param]data[/bg][/c] to [param]material[/bg][/c]."
+is_output = false
+data = {}
+salt = 2719390094
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_qgdjv"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_jx8kx"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 2
+left_label = "Material"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_cxwr2"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 1
+right_label = "Map"
+right_show_preview = true
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_vxr6c"]
+script = ExtResource("15_brbsa")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_qgdjv"), SubResource("Resource_jx8kx")])
+args = Array[ExtResource("6_7vq2i")]([])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_cxwr2")])
+title = "Mapper"
+description = "Maps all non-empty cells in [param]data[/bg][/c] to [param]material[/bg][/c]."
+is_output = false
+data = {}
+salt = 2224158555
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_1stj3"]
+script = ExtResource("15_brbsa")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_qgdjv"), SubResource("Resource_jx8kx")])
+args = Array[ExtResource("6_7vq2i")]([])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_cxwr2")])
+title = "Mapper"
+description = "Maps all non-empty cells in [param]data[/bg][/c] to [param]material[/bg][/c]."
+is_output = false
+data = {}
+salt = 1095001467
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_ous1k"]
+script = ExtResource("6_7vq2i")
+type = 11
+name = &"neighbors"
+default_value = Array[Vector2i]([Vector2i(-1, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(0, -1)])
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+metadata/_custom_type_script = "uid://bh3sajxnmp14w"
+
+[sub_resource type="Resource" id="Resource_3s2ir"]
+script = ExtResource("6_7vq2i")
+type = 9
+name = &"inside"
+default_value = null
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+metadata/_custom_type_script = "uid://bh3sajxnmp14w"
+
+[sub_resource type="Resource" id="Resource_mragm"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_x06ro"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 0
+right_label = "Border"
+right_show_preview = true
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_t0o6h"]
+script = ExtResource("16_d5bbv")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_mragm")])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_ous1k"), SubResource("Resource_3s2ir")])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_x06ro")])
+title = "Border2D"
+description = ""
+is_output = false
+data = {
+&"inside": false,
+&"neighbors": Array[Vector2i]([Vector2i(0, 1)])
+}
+salt = 3593849733
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_m7j8q"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_bie4n"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 0
+right_label = "Complement [1]"
+right_show_preview = true
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_du0iw"]
+script = ExtResource("17_lomi3")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_m7j8q")])
+args = Array[ExtResource("6_7vq2i")]([])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_bie4n")])
+title = "DataComplement"
+description = "Returns the complement of [param]data[/bg][/c]."
+is_output = false
+data = {}
+salt = 1095001467
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_cvpld"]
+script = ExtResource("6_7vq2i")
+type = 3
+name = &"name"
+default_value = null
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+
+[sub_resource type="Resource" id="Resource_oc7x7"]
+script = ExtResource("12_gso0c")
+type = 24
+hint = 17
+hint_string = "GaeaMaterial"
+output_type = 2
+input_slots = Array[ExtResource("7_n6tqh")]([])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_cvpld")])
+output_slots = Array[ExtResource("7_n6tqh")]([])
+title = "MaterialVariable"
+description = "GaeaMaterial variable editable in the inspector."
+is_output = false
+data = {
+&"name": "WallMaterial"
+}
+salt = 3078290440
+
+[sub_resource type="Resource" id="Resource_i22ej"]
+script = ExtResource("12_gso0c")
+type = 24
+hint = 17
+hint_string = "GaeaMaterial"
+output_type = 2
+input_slots = Array[ExtResource("7_n6tqh")]([])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_lbx5x")])
+output_slots = Array[ExtResource("7_n6tqh")]([])
+title = "MaterialVariable"
+description = "GaeaMaterial variable editable in the inspector."
+is_output = false
+data = {
+&"name": "WallBelowVariable"
+}
+salt = 1065991013
+
+[sub_resource type="Resource" id="Resource_ql431"]
+script = ExtResource("12_gso0c")
+type = 24
+hint = 17
+hint_string = "GaeaMaterial"
+output_type = 2
+input_slots = Array[ExtResource("7_n6tqh")]([])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_gy70f")])
+output_slots = Array[ExtResource("7_n6tqh")]([])
+title = "MaterialVariable"
+description = "GaeaMaterial variable editable in the inspector."
+is_output = false
+data = {
+&"name": "Vegetation"
+}
+salt = 3147852408
+
+[sub_resource type="Resource" id="Resource_8jdkr"]
+script = ExtResource("13_088dv")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_baidw"), SubResource("Resource_3mjes")])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_6omvp")])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_wjgt5")])
+title = "RandomScatter"
+description = "Randomly places [param]amount[/bg][/c] [param]material[/bg][/c]s in the cells of [param]data[/bg][/c]"
+is_output = false
+data = {
+&"amount": 10.0
+}
+salt = 1325322751
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_ogkvd"]
+script = ExtResource("12_gso0c")
+type = 24
+hint = 17
+hint_string = "GaeaMaterial"
+output_type = 2
+input_slots = Array[ExtResource("7_n6tqh")]([])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_gy70f")])
+output_slots = Array[ExtResource("7_n6tqh")]([])
+title = "MaterialVariable"
+description = "GaeaMaterial variable editable in the inspector."
+is_output = false
+data = {
+&"name": "SpikyVegetation"
+}
+salt = 2702524083
+
+[sub_resource type="Resource" id="Resource_aecm1"]
+script = ExtResource("13_088dv")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_baidw"), SubResource("Resource_3mjes")])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_6omvp")])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_wjgt5")])
+title = "RandomScatter"
+description = "Randomly places [param]amount[/bg][/c] [param]material[/bg][/c]s in the cells of [param]data[/bg][/c]"
+is_output = false
+data = {
+&"amount": 7.0
+}
+salt = 2018665567
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_88nce"]
+script = ExtResource("6_7vq2i")
+type = 0
+name = &"frequency"
+default_value = 0.01
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+
+[sub_resource type="Resource" id="Resource_w4c4h"]
+script = ExtResource("6_7vq2i")
+type = 0
+name = &"lacunarity"
+default_value = 2.0
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+
+[sub_resource type="Resource" id="Resource_7ltu6"]
+script = ExtResource("6_7vq2i")
+type = 1
+name = &"octaves"
+default_value = 5
+hint = Dictionary[String, Variant]({})
+disable_input_slot = false
+add_output_slot = false
+
+[sub_resource type="Resource" id="Resource_8tvqk"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 0
+right_label = "Data [0, 1]"
+right_show_preview = true
+
+[sub_resource type="Resource" id="Resource_f5amp"]
+script = ExtResource("17_qbw4a")
+type = 0
+input_slots = Array[ExtResource("7_n6tqh")]([])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_88nce"), SubResource("Resource_w4c4h"), SubResource("Resource_7ltu6")])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_8tvqk")])
+title = "SimplexSmooth2D"
+description = "Creates a grid of values from [code]0[/bg][/c] to [code]1[/bg][/c] based on a SimplexSmooth noise texture.
+[b]Ignores the z axis.[/b]"
+is_output = false
+data = {
+&"frequency": 0.01,
+&"lacunarity": 2.0,
+&"octaves": 5.0
+}
+salt = 4272860188
+
+[sub_resource type="Resource" id="Resource_wnynr"]
+script = ExtResource("12_gso0c")
+type = 24
+hint = 17
+hint_string = "GaeaMaterial"
+output_type = 2
+input_slots = Array[ExtResource("7_n6tqh")]([])
+args = Array[ExtResource("6_7vq2i")]([SubResource("Resource_cvpld")])
+output_slots = Array[ExtResource("7_n6tqh")]([])
+title = "MaterialVariable"
+description = "GaeaMaterial variable editable in the inspector."
+is_output = false
+data = {
+&"name": "FloorMaterial"
+}
+salt = 3203641953
+
+[sub_resource type="Resource" id="Resource_iooy1"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_drb3t"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 2
+left_label = "Material"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_cf2mk"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 1
+right_label = "Map"
+right_show_preview = true
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_6slir"]
+script = ExtResource("15_brbsa")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_iooy1"), SubResource("Resource_drb3t")])
+args = Array[ExtResource("6_7vq2i")]([])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_cf2mk")])
+title = "Mapper"
+description = "Maps all non-empty cells in [param]data[/bg][/c] to [param]material[/bg][/c]."
+is_output = false
+data = {}
+salt = 845489457
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[sub_resource type="Resource" id="Resource_084vb"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data A"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_reyt4"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data B"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_h4yhw"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data C"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_tpjb4"]
+script = ExtResource("7_n6tqh")
+left_enabled = true
+left_type = 0
+left_label = "Data D"
+right_enabled = false
+right_type = 0
+right_label = ""
+right_show_preview = false
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_k8tsn"]
+script = ExtResource("7_n6tqh")
+left_enabled = false
+left_type = 0
+left_label = ""
+right_enabled = true
+right_type = 0
+right_label = "Union"
+right_show_preview = true
+metadata/_custom_type_script = "uid://ote622wl6axc"
+
+[sub_resource type="Resource" id="Resource_d8eog"]
+script = ExtResource("8_2oksj")
+input_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_084vb"), SubResource("Resource_reyt4"), SubResource("Resource_h4yhw"), SubResource("Resource_tpjb4")])
+args = Array[ExtResource("6_7vq2i")]([])
+output_slots = Array[ExtResource("7_n6tqh")]([SubResource("Resource_k8tsn")])
+title = "DataUnion"
+description = "Merges [param]data A-D[/bg][/c]. Later grids override any cells from the previous grids when valid. (B overrides A, C overrides B, etc.)"
+is_output = false
+data = {}
+salt = 1564179893
+metadata/_custom_type_script = "uid://brb1clh2y2bv0"
+
+[resource]
+script = ExtResource("18_mn7nc")
+layers = Array[ExtResource("4_y5o0e")]([SubResource("Resource_nr2x3"), SubResource("Resource_q5q5d"), SubResource("Resource_entu7"), SubResource("Resource_woxbp")])
+connections = Array[Dictionary]([{
+"from_node": 23,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 24,
+"to_port": 1
+}, {
+"from_node": 5,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 6,
+"to_port": 1
+}, {
+"from_node": 4,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 6,
+"to_port": 0
+}, {
+"from_node": 24,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 3,
+"to_port": 0
+}, {
+"from_node": 15,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 14,
+"to_port": 0
+}, {
+"from_node": 15,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 13,
+"to_port": 0
+}, {
+"from_node": 16,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 13,
+"to_port": 1
+}, {
+"from_node": 14,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 12,
+"to_port": 0
+}, {
+"from_node": 17,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 12,
+"to_port": 1
+}, {
+"from_node": 0,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 3,
+"to_port": 2
+}, {
+"from_node": 14,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 2,
+"to_port": 1
+}, {
+"from_node": 2,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 4,
+"to_port": 0
+}, {
+"from_node": 9,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 11,
+"to_port": 0
+}, {
+"from_node": 10,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 11,
+"to_port": 1
+}, {
+"from_node": 15,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 9,
+"to_port": 0
+}, {
+"from_node": 11,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 0,
+"to_port": 1
+}, {
+"from_node": 13,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 0,
+"to_port": 0
+}, {
+"from_node": 12,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 0,
+"to_port": 2
+}, {
+"from_node": 2,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 19,
+"to_port": 0
+}, {
+"from_node": 18,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 19,
+"to_port": 1
+}, {
+"from_node": 6,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 1,
+"to_port": 1
+}, {
+"from_node": 19,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 1,
+"to_port": 0
+}, {
+"from_node": 1,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 3,
+"to_port": 1
+}, {
+"from_node": 20,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 21,
+"to_port": 1
+}, {
+"from_node": 2,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 21,
+"to_port": 0
+}, {
+"from_node": 25,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 24,
+"to_port": 0
+}, {
+"from_node": 9,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 25,
+"to_port": 0
+}, {
+"from_node": 4,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 7,
+"to_port": 0
+}, {
+"from_node": 7,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 3,
+"to_port": 3
+}, {
+"from_node": 8,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 7,
+"to_port": 1
+}, {
+"from_node": 21,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 1,
+"to_port": 3
+}, {
+"from_node": 22,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 25,
+"to_port": 1
+}, {
+"from_node": 22,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 15,
+"to_port": 0
+}, {
+"from_node": 22,
+"from_port": 0,
+"keep_alive": false,
+"to_node": 2,
+"to_port": 0
+}])
+resources = Array[ExtResource("5_mrvf4")]([SubResource("Resource_wctuo"), SubResource("Resource_0c54b"), SubResource("Resource_d1e86"), ExtResource("10_rkc12"), SubResource("Resource_tr8qa"), SubResource("Resource_4pc45"), SubResource("Resource_x7tuv"), SubResource("Resource_7xkp0"), SubResource("Resource_8r1rx"), SubResource("Resource_qvm6g"), SubResource("Resource_15p8x"), SubResource("Resource_schlh"), SubResource("Resource_vxr6c"), SubResource("Resource_1stj3"), SubResource("Resource_t0o6h"), SubResource("Resource_du0iw"), SubResource("Resource_oc7x7"), SubResource("Resource_i22ej"), SubResource("Resource_ql431"), SubResource("Resource_8jdkr"), SubResource("Resource_ogkvd"), SubResource("Resource_aecm1"), SubResource("Resource_f5amp"), SubResource("Resource_wnynr"), SubResource("Resource_6slir"), SubResource("Resource_d8eog")])
+node_data = Array[Dictionary]([{
+"name": &"_GraphNode_52318",
+"position": Vector2(1340, -140)
+}, {
+"name": &"_GraphNode_41946",
+"position": Vector2(1180, 780)
+}, {
+"name": &"_GraphNode_52395",
+"position": Vector2(100, 840)
+}, {
+"name": &"BaseNode7",
+"position": Vector2(1660, 600)
+}, {
+"name": &"_GraphNode_52355",
+"position": Vector2(440, 680)
+}, {
+"name": &"_GraphNode_42527",
+"position": Vector2(860, 700)
+}, {
+"name": &"_GraphNode_41446",
+"position": Vector2(860, 800)
+}, {
+"name": &"_GraphNode_64895",
+"position": Vector2(860, 1000)
+}, {
+"name": &"_GraphNode_64948",
+"position": Vector2(620, 1000)
+}, {
+"name": &"_GraphNode_38698",
+"position": Vector2(500, 0)
+}, {
+"name": &"_GraphNode_52513",
+"position": Vector2(760, 0)
+}, {
+"name": &"_GraphNode_38728",
+"position": Vector2(1000, 0)
+}, {
+"name": &"_GraphNode_46724",
+"position": Vector2(1000, -180)
+}, {
+"name": &"_GraphNode_46692",
+"position": Vector2(1000, -340)
+}, {
+"name": &"_GraphNode_46661",
+"position": Vector2(500, -260)
+}, {
+"name": &"_GraphNode_46620",
+"position": Vector2(260, -380)
+}, {
+"name": &"_GraphNode_73050",
+"position": Vector2(760, -280)
+}, {
+"name": &"_GraphNode_46755",
+"position": Vector2(760, -160)
+}, {
+"name": &"_GraphNode_40712",
+"position": Vector2(440, 1300)
+}, {
+"name": &"_GraphNode_40507",
+"position": Vector2(720, 1300)
+}, {
+"name": &"_GraphNode_52438",
+"position": Vector2(440, 1440)
+}, {
+"name": &"_GraphNode_57800",
+"position": Vector2(720, 1500)
+}, {
+"name": &"BaseNode2",
+"position": Vector2(-720, 300)
+}, {
+"name": &"BaseNode8",
+"position": Vector2(-440, 600)
+}, {
+"name": &"BaseNode4",
+"position": Vector2(-140, 560)
+}, {
+"name": &"_GraphNode_60209",
+"position": Vector2(-160, 280)
+}])
+parameters = Dictionary[StringName, Variant]({
+&"Chest": {
+"hint": 17,
+"hint_string": "GaeaMaterial",
+"name": "Chest",
+"type": 24,
+"value": SubResource("Resource_j6vep")
+},
+&"Enemy": {
+"hint": 17,
+"hint_string": "GaeaMaterial",
+"name": "Enemy",
+"type": 24,
+"value": SubResource("Resource_2jxu3")
+},
+&"FloorMaterial": {
+"hint": 17,
+"hint_string": "GaeaMaterial",
+"name": "FloorMaterial",
+"type": 24,
+"value": SubResource("Resource_e1h74")
+},
+&"SpikyVegetation": {
+"hint": 17,
+"hint_string": "GaeaMaterial",
+"name": "SpikyVegetation",
+"type": 24,
+"value": SubResource("Resource_y3srg")
+},
+&"Vegetation": {
+"hint": 17,
+"hint_string": "GaeaMaterial",
+"name": "Vegetation",
+"type": 24,
+"value": SubResource("Resource_mfiu2")
+},
+&"WallAboveVariable": {
+"hint": 17,
+"hint_string": "GaeaMaterial",
+"name": "WallAboveVariable",
+"type": 24,
+"value": SubResource("Resource_30ot8")
+},
+&"WallBelowVariable": {
+"hint": 17,
+"hint_string": "GaeaMaterial",
+"name": "WallBelowVariable",
+"type": 24,
+"value": SubResource("Resource_payrb")
+},
+&"WallMaterial": {
+"hint": 17,
+"hint_string": "GaeaMaterial",
+"name": "WallMaterial",
+"type": 24,
+"value": SubResource("Resource_kk1e5")
+}
+})
+scroll_offset = Vector2(0, 0)
+other = {
+"frames": [{
+"attached": Array[StringName]([]),
+"name": &"_GraphFrame_44563",
+"position": Vector2(400, 1259),
+"size": Vector2(552, 452),
+"tint_color": Color(0.125118, 0.226562, 0.110626, 0.75),
+"tint_color_enabled": true,
+"title": "Place Decorations"
+}, {
+"attached": Array[StringName]([]),
+"name": &"_GraphFrame_44560",
+"position": Vector2(400, 639),
+"size": Vector2(692, 572),
+"tint_color": Color(0.55, 0.415983, 0.3135, 0.52549),
+"tint_color_enabled": true,
+"title": "Place Chests & Enemies"
+}, {
+"attached": Array[StringName]([]),
+"name": &"_GraphFrame_44557",
+"position": Vector2(220, -421),
+"size": Vector2(1012, 683),
+"tint_color": Color(0.133333, 0.12549, 0.203922, 1),
+"tint_color_enabled": true,
+"title": "Walls"
+}, {
+"attached": Array[StringName]([&"BaseNode", &"BaseNode8", &"_GraphNode_60209"]),
+"name": &"_GraphFrame_44566",
+"position": Vector2(-480, 239),
+"size": Vector2(612, 497),
+"tint_color": Color(0.174225, 0.208835, 0.257812, 0.75),
+"tint_color_enabled": true,
+"title": "Floor"
+}],
+"scroll_offset": Vector2(-542.608, -126.031)
+}
+Chest = SubResource("Resource_j6vep")
+Enemy = SubResource("Resource_2jxu3")
+FloorMaterial = SubResource("Resource_e1h74")
+SpikyVegetation = SubResource("Resource_y3srg")
+Vegetation = SubResource("Resource_mfiu2")
+WallAboveVariable = SubResource("Resource_30ot8")
+WallBelowVariable = SubResource("Resource_payrb")
+WallMaterial = SubResource("Resource_kk1e5")
