@@ -18,5 +18,5 @@ func get_icon() -> Texture2D:
 	if for_type == GaeaNodeArgument.Type.FLOAT:
 		return preload("res://addons/gaea/assets/types/float.svg")
 	if for_type == GaeaNodeArgument.Type.INT:
-		return preload("../../assets/types/int.svg")
+		return preload("res://addons/gaea/assets/types/int.svg")
 	return get_icon_for_slot_type(get_type())
