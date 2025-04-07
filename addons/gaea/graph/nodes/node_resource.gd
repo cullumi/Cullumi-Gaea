@@ -34,6 +34,8 @@ func execute(_area: AABB, _generator_data: GaeaData, _generator: GaeaGenerator) 
 
 # Traversal
 func traverse(output_port:int, area: AABB, generator_data:GaeaData) -> Dictionary:
+	log_traverse(generator_data)
+	
 	# Caching
 	if has_cached_data(generator_data):
 		return get_cached_data(generator_data)
@@ -101,6 +103,8 @@ func get_input_resource(slot:int, generator_data:GaeaData) -> GaeaNodeResource:
 # Args
 ## Pass in `generator_data` to allow overriding with input slots.
 func get_arg(name: String, generator_data: GaeaData) -> Variant:
+	log_arg(name, generator_data)
+	
 	var arg_connection_idx: int = 0
 	var args_with_input: Array[GaeaNodeArgument] = args.filter(func(arg: GaeaNodeArgument) -> bool: return not arg.type == GaeaNodeArgument.Type.CATEGORY and not arg.disable_input_slot)
 	for i in args_with_input.size():
@@ -135,6 +139,27 @@ func get_connected_port_to(to: int) -> int:
 			return connection.from_port
 	return -1
 
+
+# Logging
+
+func log_execute(area:AABB, generator_data:GaeaData):
+	if is_instance_valid(generator_data) and generator_data.logging & GaeaData.Log.Execute > 0:
+		print("Execute   |   %s on %s" % [area, title])
+
+func log_traverse(generator_data:GaeaData):
+	if is_instance_valid(generator_data) and generator_data.logging & GaeaData.Log.Traverse > 0:
+		print("Traverse  |   %s" % [title])
+
+func log_data(output_port:int, generator_data:GaeaData):
+	if is_instance_valid(generator_data) and generator_data.logging & GaeaData.Log.Data > 0:
+		print("Data      |   %s from port %d" % [title, output_port])
+
+func log_arg(arg:String, generator_data:GaeaData):
+	if is_instance_valid(generator_data) and generator_data.logging & GaeaData.Log.Args > 0:
+		print("Arg       |   %s on %s" % [arg, title])
+
+
+# Miscelaneous
 
 static func get_scene() -> PackedScene:
 	return preload("res://addons/gaea/graph/nodes/node.tscn")
