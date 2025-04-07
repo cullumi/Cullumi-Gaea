@@ -147,9 +147,17 @@ func get_connected_port_to(to: int) -> int:
 
 # Logging
 
-func log_execute(area:AABB, generator_data:GaeaData):
+func log_execute(message:String, area:AABB, generator_data:GaeaData):
 	if is_instance_valid(generator_data) and generator_data.logging & GaeaData.Log.Execute > 0:
-		print("Execute   |   %s on %s" % [area, title])
+		message = message.strip_edges()
+		message = message if message == "" else message + " "
+		print("Execute   |   %sArea %s on %s" % [message, area, title])
+
+func log_layer(message:String, layer:int, generator_data:GaeaData):
+	if is_instance_valid(generator_data) and generator_data.logging & GaeaData.Log.Execute > 0:
+		message = message.strip_edges()
+		message = message if message == "" else message + " "
+		print("Execute   |   %sLayer %d on %s" % [message, layer, title])
 
 func log_traverse(generator_data:GaeaData):
 	if is_instance_valid(generator_data) and generator_data.logging & GaeaData.Log.Traverse > 0:
