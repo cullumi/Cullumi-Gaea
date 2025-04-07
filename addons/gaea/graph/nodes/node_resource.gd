@@ -37,8 +37,8 @@ func traverse(output_port:int, area: AABB, generator_data:GaeaData) -> Dictionar
 	log_traverse(generator_data)
 	
 	# Caching
-	if has_cached_data(generator_data):
-		return get_cached_data(generator_data)
+	if has_cached_data(output_port, generator_data):
+		return get_cached_data(output_port, generator_data)
 	
 	# Validation
 	if not has_inputs_connected(required_inputs(), generator_data):
@@ -57,7 +57,7 @@ func traverse(output_port:int, area: AABB, generator_data:GaeaData) -> Dictionar
 		passed_data.append(slot_data)
 	
 	var results:Dictionary = get_data(passed_data, output_port, area, generator_data)
-	set_cached_data(results, generator_data)
+	set_cached_data(results, output_port, generator_data)
 	
 	return results
 
@@ -68,14 +68,19 @@ func get_data(_passed_data:Array[Dictionary], _output_port: int, _area: AABB, _g
 
 
 # Caching
-func set_cached_data(data:Dictionary, generator_data:GaeaData) -> void:
-	generator_data.cache[self] = data
+## Adds or sets data to the cache at GaeaNodeResource, then output_port index.
+func set_cached_data(data:Dictionary, output_port:int, generator_data:GaeaData) -> void:
+	var node_cache:Dictionary = generator_data.cache.get_or_add(self, {})
+	node_cache[output_port] = data
 
-func has_cached_data(generator_data:GaeaData) -> bool:
-	return generator_data.cache.has(self)
+## Checks if the cache has data corresponding to GaeaNodeResource, then output_port index.
+func has_cached_data(output_port:int, generator_data:GaeaData) -> bool:
+	return generator_data.cache.has(self) and generator_data.cache[self].has(output_port)
 
-func get_cached_data(generator_data:GaeaData) -> Dictionary:
-	return generator_data.cache[self]
+## Gets cached data by GaeaNodeResource, then output_port index.
+## Assumes that data exists, will error out if it doesn't.
+func get_cached_data(output_port:int, generator_data:GaeaData) -> Dictionary:
+	return generator_data.cache[self][output_port]
 
 
 # Inputs
