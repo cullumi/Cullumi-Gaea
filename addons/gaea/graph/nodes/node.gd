@@ -15,6 +15,7 @@ signal connections_updated
 
 @export var resource: GaeaNodeResource
 
+static var titlebar_styleboxes: Dictionary[SlotTypes, Dictionary]
 var generator: GaeaGenerator
 var connections: Array[Dictionary]
 var preview: PreviewTexture
@@ -73,8 +74,25 @@ func initialize() -> void:
 		preview_container.hide()
 	title = resource.title
 	resource.node = self
-	
-	
+
+	var output_type: SlotTypes = resource.get_type()
+	var titlebar: StyleBoxFlat
+	var titlebar_selected: StyleBoxFlat
+	if output_type != SlotTypes.NULL:
+		if not titlebar_styleboxes.has(output_type):
+			titlebar = get_theme_stylebox("titlebar", "GraphNode").duplicate()
+			titlebar_selected = get_theme_stylebox("titlebar_selected", "GraphNode").duplicate()
+			titlebar.bg_color = titlebar.bg_color.blend(Color(resource.get_title_color(), 0.3))
+			titlebar_selected.bg_color = titlebar.bg_color
+			titlebar_styleboxes.set(output_type, {"titlebar": titlebar, "selected": titlebar_selected})
+		else:
+			titlebar = titlebar_styleboxes.get(output_type).get("titlebar")
+			titlebar_selected = titlebar_styleboxes.get(output_type).get("selected")
+		add_theme_stylebox_override("titlebar", titlebar)
+		add_theme_stylebox_override("titlebar_selected", titlebar_selected)
+
+
+
 func _has_output_slot(arg: GaeaNodeArgument) -> bool:
 	return arg.add_output_slot
 
@@ -166,7 +184,7 @@ static func get_color_from_type(type: SlotTypes) -> Color:
 		SlotTypes.VECTOR3:
 			return Color("8e44ad") # MAGENTA
 		SlotTypes.NUMBER:
-			return Color("00d8d6") # JADE
+			return Color("a0a0a0") # JADE
 		SlotTypes.RANGE:
 			return Color("f04c7f") # PINK
 		SlotTypes.BOOL:
@@ -178,21 +196,27 @@ static func get_color_from_type(type: SlotTypes) -> Color:
 
 static func get_icon_from_type(type: SlotTypes) -> Texture2D:
 	match type:
+		SlotTypes.RANGE:
+			return load("res://addons/gaea/assets/slots/ring.svg")
+		SlotTypes.BOOL:
+			return load("res://addons/gaea/assets/slots/rounded_square.svg")
 		SlotTypes.VALUE_DATA:
 			return load("res://addons/gaea/assets/slots/square.svg")
 		SlotTypes.MAP_DATA:
-			return load("res://addons/gaea/assets/slots/hexagon.svg")
+			return load("res://addons/gaea/assets/slots/tag.svg")
 		SlotTypes.TILE_INFO:
 			return load("res://addons/gaea/assets/slots/diamond.svg")
-		SlotTypes.VECTOR2, SlotTypes.VECTOR3:
+		SlotTypes.VECTOR3:
+			return load("res://addons/gaea/assets/slots/hourglass.svg")
+		SlotTypes.VECTOR2:
 			return load("res://addons/gaea/assets/slots/triangle.svg")
 
 	return load("res://addons/gaea/assets/slots/circle.svg")
 
-
 func _make_custom_tooltip(for_text: String) -> Object:
 	var rich_text_label: RichTextLabel = RichTextLabel.new()
 	rich_text_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+
 	rich_text_label.bbcode_enabled = true
 	rich_text_label.text = for_text
 	rich_text_label.fit_content = true
