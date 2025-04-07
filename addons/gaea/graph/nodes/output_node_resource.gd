@@ -3,6 +3,8 @@ extends GaeaNodeResource
 
 
 func execute(area: AABB, generator_data: GaeaData, generator: GaeaGenerator) -> void:
+	log_execute(area, generator_data)
+
 	var grid: GaeaGrid = GaeaGrid.new()
 	for layer_idx in generator_data.layers.size():
 		var map_connected_idx: int = get_connected_resource_idx(layer_idx)
@@ -15,7 +17,7 @@ func execute(area: AABB, generator_data: GaeaData, generator: GaeaGenerator) -> 
 			grid.add_layer(layer_idx, {}, layer_resource)
 			continue
 
-		var grid_data: Dictionary = map_input_resource.get_data(
+		var grid_data: Dictionary = map_input_resource.traverse(
 			get_connected_port_to(layer_idx), area, generator_data
 		)
 		grid.add_layer(layer_idx, grid_data, layer_resource)
