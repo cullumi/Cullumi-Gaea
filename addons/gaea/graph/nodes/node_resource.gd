@@ -27,14 +27,78 @@ var node: GaeaGraphNode
 enum Axis {X, Y, Z}
 
 
-func get_data(_output_port: int, _area: AABB, _generator_data: GaeaData) -> Dictionary:
-	return {}
-
-
+# Execution
 func execute(_area: AABB, _generator_data: GaeaData, _generator: GaeaGenerator) -> void:
 	pass
 
 
+# Traversal
+func traverse(output_port:int, area: AABB, generator_data:GaeaData) -> Dictionary:
+	# Caching
+	if has_cached_data(generator_data):
+		return get_cached_data(generator_data)
+	
+	# Validation
+	if not has_inputs_connected(required_inputs(), generator_data):
+		return {}
+	
+	# Traversal
+	var passed_data:Array[Dictionary] = []
+	for slot in range(input_slots.size()):
+		var data_input_resource = get_input_resource(slot, generator_data)
+		var slot_data:Dictionary = {}
+		if is_instance_valid(data_input_resource):
+			slot_data = data_input_resource.traverse(
+				get_connected_port_to(slot),
+				area, generator_data
+			)
+		passed_data.append(slot_data)
+	
+	var results:Dictionary = get_data(passed_data, output_port, area, generator_data)
+	set_cached_data(results, generator_data)
+	
+	return results
+
+
+# Data Retrieval
+func get_data(_passed_data:Array[Dictionary], _output_port: int, _area: AABB, _generator_data: GaeaData) -> Dictionary:
+	return {}
+
+
+# Caching
+func set_cached_data(data:Dictionary, generator_data:GaeaData) -> void:
+	generator_data.cache[self] = data
+
+func has_cached_data(generator_data:GaeaData) -> bool:
+	return generator_data.cache.has(self)
+
+func get_cached_data(generator_data:GaeaData) -> Dictionary:
+	return generator_data.cache[self]
+
+
+# Inputs
+func required_inputs() -> Array[int]:
+	return []
+
+func has_inputs_connected(required: Array[int], generator_data:GaeaData) -> bool:
+	for idx in required:
+		if get_input_resource(idx, generator_data) == null:
+			return false
+	return true
+
+func get_input_resource(slot:int, generator_data:GaeaData) -> GaeaNodeResource:
+	var data_connected_idx: int = get_connected_resource_idx(slot)
+	if data_connected_idx == -1:
+		return null
+
+	var data_input_resource: GaeaNodeResource = generator_data.resources.get(data_connected_idx)
+	if not is_instance_valid(data_input_resource):
+		return null
+	
+	return data_input_resource
+
+
+# Args
 ## Pass in `generator_data` to allow overriding with input slots.
 func get_arg(name: String, generator_data: GaeaData) -> Variant:
 	var arg_connection_idx: int = 0
@@ -47,7 +111,7 @@ func get_arg(name: String, generator_data: GaeaData) -> Variant:
 	if arg_connection_idx != -1 and is_instance_valid(generator_data):
 		var connected_idx: int = get_connected_resource_idx(arg_connection_idx)
 		if connected_idx != -1:
-			return generator_data.resources[connected_idx].get_data(
+			return generator_data.resources[connected_idx].traverse(
 				get_connected_port_to(arg_connection_idx),
 				AABB(),
 				generator_data
@@ -55,6 +119,8 @@ func get_arg(name: String, generator_data: GaeaData) -> Variant:
 
 	return data.get(name)
 
+
+# Connections
 
 func get_connected_resource_idx(at: int) -> int:
 	for connection in connections:

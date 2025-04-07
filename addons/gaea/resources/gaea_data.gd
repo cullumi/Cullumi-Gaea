@@ -20,6 +20,7 @@ signal layer_count_modified
 @export_storage var other: Dictionary
 
 var generator: GaeaGenerator
+var cache: Dictionary[GaeaNodeResource, Dictionary] = {}
 
 
 func _init() -> void:
