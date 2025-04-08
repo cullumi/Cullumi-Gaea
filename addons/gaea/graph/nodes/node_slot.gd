@@ -3,7 +3,7 @@ class_name GaeaNodeSlot
 extends Resource
 
 
-const SLOT_SCENE = preload("res://addons/gaea/graph/components/slot.tscn")
+const SLOT_SCENE = preload("uid://cqpby5jyv71l0") # GaeaNodeSlot
 
 @export_group("Left", "left")
 @export var left_enabled: bool = true

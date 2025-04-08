@@ -1,5 +1,5 @@
 @tool
-@icon("../../assets/renderer.svg")
+@icon("uid://d33e3tgsbmdf8") # Renderer
 class_name GaeaRenderer
 extends Node
 

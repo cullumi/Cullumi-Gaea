@@ -2,8 +2,8 @@
 extends CheckBox
 
 
-const CHECK = preload("res://addons/gaea/assets/check.svg")
-const CROSS = preload("res://addons/gaea/assets/cross.svg")
+const CHECK = preload("uid://w7nuor02uk24") # Check
+const CROSS = preload("uid://cl81d05sq3dmb") # Cross
 
 var current_state: bool = true
 

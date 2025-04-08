@@ -36,7 +36,7 @@ func get_type() -> GaeaGraphNode.SlotTypes:
 
 
 static func get_scene() -> PackedScene:
-	return preload("res://addons/gaea/graph/nodes/output_node.tscn")
+	return preload("uid://leflx3tpvb4s") # Output Node Scene
 
 
 func get_title_color() -> Color:

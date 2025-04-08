@@ -3,7 +3,7 @@ class_name GaeaGraphNode
 extends GraphNode
 
 
-const PreviewTexture = preload("res://addons/gaea/graph/nodes/preview_texture.gd")
+const PreviewTexture = preload("uid://dns7s4v8lom4t") # Preview Texture Script
 const PREVIEW_TYPES := [SlotTypes.MAP_DATA, SlotTypes.VALUE_DATA]
 
 enum SlotTypes {
@@ -197,21 +197,21 @@ static func get_color_from_type(type: SlotTypes) -> Color:
 static func get_icon_from_type(type: SlotTypes) -> Texture2D:
 	match type:
 		SlotTypes.RANGE:
-			return load("res://addons/gaea/assets/slots/ring.svg")
+			return load("uid://dqob6v3dudlri") # Circle
 		SlotTypes.BOOL:
-			return load("res://addons/gaea/assets/slots/rounded_square.svg")
+			return load("uid://4b3i1xqd4052") # Rounded Square
 		SlotTypes.VALUE_DATA:
-			return load("res://addons/gaea/assets/slots/square.svg")
+			return load("uid://yo87adchyr3w") # Square
 		SlotTypes.MAP_DATA:
-			return load("res://addons/gaea/assets/slots/tag.svg")
+			return load("uid://d2rmsal7c6sdi") # Tag
 		SlotTypes.TILE_INFO:
-			return load("res://addons/gaea/assets/slots/diamond.svg")
+			return load("uid://daasmk1v2rpcm") # Diamong
 		SlotTypes.VECTOR3:
-			return load("res://addons/gaea/assets/slots/hourglass.svg")
+			return load("uid://dbvw3j8fnmhpu") # Hourglass
 		SlotTypes.VECTOR2:
-			return load("res://addons/gaea/assets/slots/triangle.svg")
+			return load("uid://bidpo1iw1t0vt") # Triangle
 
-	return load("res://addons/gaea/assets/slots/circle.svg")
+	return load("uid://dqob6v3dudlri") # Circle
 
 func _make_custom_tooltip(for_text: String) -> Object:
 	var rich_text_label: RichTextLabel = RichTextLabel.new()

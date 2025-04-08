@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/gaea/graph/nodes/root/data/filters/filter.gd"
+extends "filter.gd"
 
 
 func _passes_filter(passed_data: Dictionary, cell: Vector3i, generator_data: GaeaData) -> bool:

@@ -54,25 +54,25 @@ func get_arg_name() -> StringName:
 static func get_scene_from_type(for_type: Type) -> PackedScene:
 	match for_type:
 		Type.FLOAT, Type.INT:
-			return preload("res://addons/gaea/graph/components/inputs/number_parameter.tscn")
+			return preload("uid://dp7blnx7abb5e") # Number Parameter
 		Type.VECTOR2:
-			return preload("res://addons/gaea/graph/components/inputs/vector2_parameter.tscn")
+			return preload("uid://rlocedi6g62i") # Vector2 Parameter
 		Type.VARIABLE_NAME:
-			return preload("res://addons/gaea/graph/components/inputs/variable_name_parameter.tscn")
+			return preload("uid://bn8i1l4q13pdw") # Variable Name Parameter
 		Type.RANGE:
-			return preload("res://addons/gaea/graph/components/inputs/range_parameter.tscn")
+			return preload("uid://dy3oumbnydlmp") # Range Parameter
 		Type.BITMASK, Type.BITMASK_EXCLUSIVE, Type.FLAGS:
-			return preload("res://addons/gaea/graph/components/inputs/bitmask_parameter.tscn")
+			return preload("uid://chdg8ey4ln8d1") # Bitmask Parameter
 		Type.CATEGORY:
-			return preload("res://addons/gaea/graph/components/inputs/category.tscn")
+			return preload("uid://x6n8ylnxoyno") # Category
 		Type.BOOLEAN:
-			return preload("res://addons/gaea/graph/components/inputs/boolean_parameter.tscn")
+			return preload("uid://byaonbbfa2bx8") # Boolean Parameter
 		Type.VECTOR3:
-			return preload("res://addons/gaea/graph/components/inputs/vector3_parameter.tscn")
+			return preload("uid://mlwupvg8a886") # Vector3 Parameter
 		Type.NEIGHBOR:
-			return preload("res://addons/gaea/graph/components/inputs/neighbor_parameter.tscn")
+			return preload("uid://d11yc7l6sneof") # Neighbor Parameter
 		Type.RULES:
-			return preload("res://addons/gaea/graph/components/inputs/rules_parameter.tscn")
+			return preload("uid://dy4n2a5hkaxsb") # Rules Parameter
 	return null
 
 
@@ -94,9 +94,9 @@ static func get_slot_type_equivalent(for_type: Type) -> GaeaGraphNode.SlotTypes:
 
 static func get_icon_for_type(for_type: Type) -> Texture2D:
 	if for_type == Type.FLOAT:
-		return preload("../../assets/types/float.svg")
+		return preload("uid://baw7ye0h4xdcx") # Float
 	if for_type == Type.INT:
-		return preload("../../assets/types/int.svg")
+		return preload("uid://bilsfh3nrbhkl") # Int
 	return GaeaNodeResource.get_icon_for_slot_type(get_slot_type_equivalent(for_type))
 
 

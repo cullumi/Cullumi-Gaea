@@ -4,7 +4,7 @@ extends Control
 var _selected_generator: GaeaGenerator = null : get = get_selected_generator
 var _output_node: GraphNode
 
-const _LinkPopup = preload("uid://btt4eqjkp5pyf")
+const _LinkPopup = preload("uid://btt4eqjkp5pyf") # Link Popup
 
 @onready var _no_data: Control = $NoData
 @onready var _editor: Control = $Editor
@@ -24,8 +24,8 @@ const _LinkPopup = preload("uid://btt4eqjkp5pyf")
 
 
 func _ready() -> void:
-	_reload_node_tree_button.icon = preload("../assets/reload_tree.svg")
-	_reload_parameters_list_button.icon = preload("../assets/reload_variables_list.svg")
+	_reload_node_tree_button.icon = preload("uid://crs5x6wghxmmb") # Reload Tree
+	_reload_parameters_list_button.icon = preload("uid://cwg7oy4i2cbwq") # Reolad Variables List
 	_save_button.icon = EditorInterface.get_base_control().get_theme_icon(&"Save", &"EditorIcons")
 	_load_button.icon = EditorInterface.get_base_control().get_theme_icon(&"Load", &"EditorIcons")
 	_window_popout_button.icon = EditorInterface.get_base_control().get_theme_icon(&"MakeFloating", &"EditorIcons")
@@ -243,7 +243,7 @@ func _load_data() -> void:
 			node.load_save_data.call_deferred(node_data)
 
 	if not has_output_node:
-		_add_node(preload("res://addons/gaea/graph/nodes/output_node_resource.tres"))
+		_add_node(preload("uid://bbkdvyxkj2slo")) # Output Node Resource
 
 	# from_node and to_node are indexes in the resources array
 	for connection in _selected_generator.data.connections:

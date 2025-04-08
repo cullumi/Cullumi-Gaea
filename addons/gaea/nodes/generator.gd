@@ -1,5 +1,5 @@
 @tool
-@icon("../assets/generator.svg")
+@icon("uid://bagab60q30jx7") # Generator
 class_name GaeaGenerator
 extends Node
 

@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/gaea/graph/nodes/root/data/operation.gd"
+extends "../operation.gd"
 
 func _get_required_input_ports(): return [0]
 

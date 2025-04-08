@@ -179,7 +179,7 @@ func log_arg(arg:String, generator_data:GaeaData):
 # Miscelaneous
 
 static func get_scene() -> PackedScene:
-	return preload("res://addons/gaea/graph/nodes/node.tscn")
+	return preload("uid://b7e2d15kxt2im") # Gaea Graph Node
 
 
 func get_axis_range(axis: Axis, area: AABB) -> Array:
@@ -222,21 +222,21 @@ func get_title_color() -> Color:
 static func get_icon_for_slot_type(slot_type: GaeaGraphNode.SlotTypes) -> Texture2D:
 	match slot_type:
 		GaeaGraphNode.SlotTypes.VALUE_DATA:
-			return preload("../../assets/types/data_grid.svg")
+			return preload("uid://dkccxw7yq1mth") # Data Grid
 		GaeaGraphNode.SlotTypes.MAP_DATA:
-			return preload("../../assets/types/map.svg")
+			return preload("uid://c2i5wqidu1r1o") # Map
 		GaeaGraphNode.SlotTypes.TILE_INFO:
-			return preload("../../assets/types/material.svg")
+			return preload("uid://b0vqox8bodse") # Material
 		GaeaGraphNode.SlotTypes.VECTOR2:
-			return preload("../../assets/types/vec2.svg")
+			return preload("uid://c8uvy6c2syjk5") # Vec2
 		GaeaGraphNode.SlotTypes.NUMBER:
-			return preload("../../assets/types/num.svg")
+			return preload("uid://by6s78k1thpy2") # Num
 		GaeaGraphNode.SlotTypes.RANGE:
-			return preload("../../assets/types/range.svg")
+			return preload("uid://wx4ccwofr8yy") # Range
 		GaeaGraphNode.SlotTypes.BOOL:
-			return preload("../../assets/types/bool.svg")
+			return preload("uid://0l53mu4blspj") # Bool
 		GaeaGraphNode.SlotTypes.VECTOR3:
-			return preload("../../assets/types/vec3.svg")
+			return preload("uid://bkknri7u8ghs4") # Vec3
 	return null
 
 

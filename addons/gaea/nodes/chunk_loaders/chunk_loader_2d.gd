@@ -1,4 +1,4 @@
-@icon("../../assets/chunk_loader.svg")
+@icon("uid://bk37rqok56spk") # Chunk Loader
 class_name ChunkLoader2D
 extends Node
 

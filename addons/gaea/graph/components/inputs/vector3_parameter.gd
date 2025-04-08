@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/gaea/graph/components/inputs/graph_node_parameter.gd"
+extends GaeaGraphNodeParameter # "res://addons/gaea/graph/components/inputs/graph_node_parameter.gd"
 
 
 @onready var _x_spin_box: SpinBox = $XSpinBox

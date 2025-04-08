@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://dvbwtw53ut2hc" path="res://addons/gaea/graph/nodes/root/data/complement.gd" id="14_oc7x7"]
 [ext_resource type="Script" uid="uid://bmxbe51xh0t7d" path="res://addons/gaea/graph/nodes/root/data/union.gd" id="17_drb3t"]
 [ext_resource type="Script" uid="uid://br8gcsyc04ksj" path="res://addons/gaea/graph/nodes/root/map/placing/rules_placer.gd" id="17_x5s41"]
-[ext_resource type="Script" path="res://addons/gaea/graph/nodes/root/data/filters/random_filter.gd" id="18_vyp3c"]
+[ext_resource type="Script" uid="uid://b38syakgm25ya" path="res://addons/gaea/graph/nodes/root/data/filters/random_filter.gd" id="18_vyp3c"]
 
 [sub_resource type="Resource" id="Resource_j6vep"]
 script = ExtResource("1_wtjh4")
@@ -1182,70 +1182,70 @@ connections = Array[Dictionary]([{
 }])
 resources = Array[ExtResource("3_qhqpc")]([SubResource("Resource_tr8qa"), SubResource("Resource_4pc45"), SubResource("Resource_x7tuv"), SubResource("Resource_3sv33"), SubResource("Resource_1stj3"), SubResource("Resource_ogkvd"), SubResource("Resource_iqurr"), SubResource("Resource_le1sa"), SubResource("Resource_d8638"), SubResource("Resource_15p8x"), SubResource("Resource_oc7x7"), SubResource("Resource_i22ej"), SubResource("Resource_wctuo"), ExtResource("7_du0iw"), SubResource("Resource_ql431"), SubResource("Resource_xer5s"), SubResource("Resource_0c54b"), SubResource("Resource_wnynr"), SubResource("Resource_jipni"), SubResource("Resource_5mmfj"), SubResource("Resource_6slir"), SubResource("Resource_du0iw")])
 node_data = Array[Dictionary]([{
-"name": &"_GraphNode_52354",
+"name": &"_GraphNode_52355",
 "position": Vector2(280, 1300)
 }, {
-"name": &"_GraphNode_42526",
+"name": &"_GraphNode_42527",
 "position": Vector2(700, 1320)
 }, {
-"name": &"_GraphNode_41445",
+"name": &"_GraphNode_41446",
 "position": Vector2(700, 1420)
 }, {
-"name": &"_GraphNode_25309",
+"name": &"_GraphNode_25310",
 "position": Vector2(620, 20)
 }, {
-"name": &"_GraphNode_46691",
+"name": &"_GraphNode_46692",
 "position": Vector2(620, -480)
 }, {
-"name": &"_GraphNode_52437",
+"name": &"_GraphNode_52438",
 "position": Vector2(260, 920)
 }, {
-"name": &"_GraphNode_30037",
+"name": &"_GraphNode_30038",
 "position": Vector2(800, 900)
 }, {
-"name": &"_GraphNode_29879",
+"name": &"_GraphNode_29880",
 "position": Vector2(800, 560)
 }, {
-"name": &"_GraphNode_25390",
+"name": &"_GraphNode_25391",
 "position": Vector2(620, -300)
 }, {
-"name": &"_GraphNode_52512",
+"name": &"_GraphNode_52513",
 "position": Vector2(400, 60)
 }, {
-"name": &"_GraphNode_73049",
+"name": &"_GraphNode_73050",
 "position": Vector2(380, -440)
 }, {
-"name": &"_GraphNode_46754",
+"name": &"_GraphNode_46755",
 "position": Vector2(400, -260)
 }, {
-"name": &"_GraphNode_52317",
+"name": &"_GraphNode_52318",
 "position": Vector2(1000, -160)
 }, {
-"name": &"BaseNode5",
+"name": &"BaseNode7",
 "position": Vector2(1400, 560)
 }, {
-"name": &"_GraphNode_40711",
+"name": &"_GraphNode_40712",
 "position": Vector2(280, 560)
 }, {
-"name": &"_GraphNode_29932",
+"name": &"_GraphNode_29933",
 "position": Vector2(500, 540)
 }, {
-"name": &"_GraphNode_41945",
+"name": &"_GraphNode_41946",
 "position": Vector2(1160, 740)
 }, {
-"name": &"BaseNode6",
+"name": &"BaseNode8",
 "position": Vector2(-700, 820)
 }, {
-"name": &"_GraphNode_29997",
+"name": &"_GraphNode_29998",
 "position": Vector2(500, 880)
 }, {
-"name": &"BaseNode2",
+"name": &"BaseNode3",
 "position": Vector2(-1180, 140)
 }, {
-"name": &"BaseNode",
+"name": &"BaseNode4",
 "position": Vector2(-480, 780)
 }, {
-"name": &"_GraphNode_46619",
+"name": &"_GraphNode_46620",
 "position": Vector2(-680, 520)
 }])
 parameters = Dictionary[StringName, Variant]({
@@ -1302,45 +1302,45 @@ parameters = Dictionary[StringName, Variant]({
 scroll_offset = Vector2(0, 0)
 other = {
 "frames": [{
-"attached": Array[StringName]([&"_GraphNode_25390", &"_GraphNode_73049", &"_GraphNode_25309", &"_GraphNode_52512", &"_GraphNode_46691", &"_GraphNode_46754"]),
+"attached": Array[StringName]([]),
 "autoshrink": true,
-"name": &"_GraphFrame_37029",
+"name": &"_GraphFrame_27140",
 "position": Vector2(340, -521),
 "size": Vector2(544, 874),
 "tint_color": Color(0.133333, 0.12549, 0.203922, 1),
 "tint_color_enabled": true,
 "title": "Walls"
 }, {
-"attached": Array[StringName]([&"_GraphNode_40711", &"_GraphNode_29932", &"_GraphNode_29997", &"_GraphNode_30037", &"_GraphNode_52437", &"_GraphNode_29879"]),
+"attached": Array[StringName]([]),
 "autoshrink": true,
-"name": &"_GraphFrame_31859",
+"name": &"_GraphFrame_27143",
 "position": Vector2(220, 499),
 "size": Vector2(812, 714),
 "tint_color": Color(0.0964966, 0.363281, 0.175698, 0.75),
 "tint_color_enabled": true,
 "title": "Add Vegetation"
 }, {
-"attached": Array[StringName]([&"_GraphNode_52354", &"_GraphNode_42526", &"_GraphNode_41445"]),
+"attached": Array[StringName]([]),
 "autoshrink": true,
-"name": &"_GraphFrame_37038",
+"name": &"_GraphFrame_27146",
 "position": Vector2(240, 1259),
 "size": Vector2(692, 387),
 "tint_color": Color(0.55, 0.415983, 0.3135, 0.52549),
 "tint_color_enabled": true,
 "title": "Place Chests"
 }, {
-"attached": Array[StringName]([&"_GraphNode_46619"]),
+"attached": Array[StringName]([]),
 "autoshrink": true,
-"name": &"_GraphFrame_31934",
+"name": &"_GraphFrame_27149",
 "position": Vector2(-720, 479),
 "size": Vector2(306, 194),
 "tint_color": Color(0.3125, 0.155029, 0.155029, 0.75),
 "tint_color_enabled": true,
 "title": "Get Everything Outside Floor"
 }, {
-"attached": Array[StringName]([&"BaseNode", &"BaseNode6"]),
+"attached": Array[StringName]([]),
 "autoshrink": true,
-"name": &"_GraphFrame_37032",
+"name": &"_GraphFrame_27152",
 "position": Vector2(-740, 739),
 "size": Vector2(492, 232),
 "tint_color": Color(0.174225, 0.208835, 0.257812, 0.75),

@@ -2,7 +2,7 @@
 extends EditorPlugin
 
 
-const BottomPanel = preload("res://addons/gaea/editor/panel.tscn")
+const BottomPanel = preload("uid://dngytsjlmkfg7") # Editor Panel
 
 var _container: MarginContainer
 var _panel: Control

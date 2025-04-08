@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/gaea/graph/components/inputs/graph_node_parameter.gd"
+extends GaeaGraphNodeParameter # "uid://dk8gbt41h5e08" # Graph Node Parameter
 
 
 @onready var spin_box: SpinBox = $SpinBox
