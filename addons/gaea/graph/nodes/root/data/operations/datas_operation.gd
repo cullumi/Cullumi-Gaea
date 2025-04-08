@@ -1,7 +1,7 @@
 @tool
 extends "res://addons/gaea/graph/nodes/root/data/operation.gd"
 
-func required_slots(): return [0]
+func _get_required_input_ports(): return [0]
 
 func get_data(passed_data:Array[Dictionary], output_port: int, area: AABB, generator_data: GaeaData) -> Dictionary[Vector3i, float]:
 

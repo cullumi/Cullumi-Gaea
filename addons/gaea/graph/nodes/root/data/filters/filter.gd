@@ -1,7 +1,7 @@
 @tool
 extends GaeaNodeResource
 
-func required_inputs() -> Array[int]: return [0]
+func _get_required_input_ports() -> Array[int]: return [0]
 
 func get_data(passed_data:Array[Dictionary], _output_port: int, area: AABB, generator_data: GaeaData) -> Dictionary:
 	log_data(_output_port, generator_data)

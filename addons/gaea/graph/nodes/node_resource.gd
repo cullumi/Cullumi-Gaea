@@ -41,7 +41,7 @@ func traverse(output_port:int, area: AABB, generator_data:GaeaData) -> Dictionar
 		return get_cached_data(output_port, generator_data)
 	
 	# Validation
-	if not has_inputs_connected(required_inputs(), generator_data):
+	if not has_inputs_connected(_get_required_input_ports(), generator_data):
 		return {}
 	
 	# Traversal
@@ -84,7 +84,11 @@ func get_cached_data(output_port:int, generator_data:GaeaData) -> Dictionary:
 
 
 # Inputs
-func required_inputs() -> Array[int]:
+## Returns an array of input port indexes that are
+## expected to be connected for the Node Resource to
+## execute properly. Should be overridden in nodes
+## that extend NodeResource.
+func _get_required_input_ports() -> Array[int]:
 	return []
 
 func has_inputs_connected(required: Array[int], generator_data:GaeaData) -> bool:
