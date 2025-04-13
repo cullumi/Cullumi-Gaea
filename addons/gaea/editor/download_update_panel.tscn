@@ -21,7 +21,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -38,6 +41,16 @@ layout_mode = 2
 text = "v1.0.0 is available for download"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MigrationWarning" type="Label" parent="MarginContainer/VBoxContainer/CenterContainer3"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.952941, 0.611765, 0.0705882, 1)
+layout_mode = 2
+text = "Warning: Upgrading from 1.X to 2.X will break your projects!"
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

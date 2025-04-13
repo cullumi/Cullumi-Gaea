@@ -4,7 +4,7 @@ extends Button
 ## at https://github.com/nathanhoad/godot_dialogue_manager
 
 
-const RELEASES_URL := "https://api.github.com/repos/BenjaTK/Gaea/releases"
+const RELEASES_URL := "https://api.github.com/repos/gaea-godot/gaea/releases"
 const LOCAL_CONFIG_PATH := "res://addons/gaea/plugin.cfg"
 
 
@@ -42,8 +42,19 @@ func _on_http_request_request_completed(result: int, response_code: int, headers
 	# GitHub releases are in order of creation, not order of version
 	var versions = (response as Array).filter(func(release):
 		var version: String = release.tag_name.substr(1)
+		if version.left(3) != "v1.":
+			return false
 		return _version_to_number(version) > _version_to_number(current_version)
 	)
+	if versions.size() == 0:
+		versions = (response as Array).filter(func(release):
+			var version: String = release.tag_name.substr(1)
+			return _version_to_number(version) > _version_to_number(current_version)
+		)
+		if versions.size() > 0:
+			download_update_panel.migration_warning.show()
+	
+	
 	if versions.size() > 0:
 		download_update_panel.next_version_release = versions[0]
 		text = "Gaea v%s available" % versions[0].tag_name.substr(1)
@@ -80,5 +91,3 @@ func _get_version() -> String:
 func _version_to_number(version: String) -> int:
 	var bits = version.split(".")
 	return bits[0].to_int() * 1000000 + bits[1].to_int() * 1000 + bits[2].to_int()
-
-

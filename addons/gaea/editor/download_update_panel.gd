@@ -10,6 +10,7 @@ const TEMP_FILE_PATH = "user://temp.zip"
 @onready var label: Label = $MarginContainer/VBoxContainer/Label
 @onready var download_button: Button = %DownloadButton
 @onready var release_notes_button: LinkButton = %ReleaseNotesButton
+@onready var migration_warning: Label = %MigrationWarning
 
 var next_version_release: Dictionary:
 	set(value):
