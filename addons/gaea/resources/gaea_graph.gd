@@ -412,3 +412,20 @@ func _setup_local_to_scene() -> void:
 			return
 		resource._load_save_data(data)
 		_resources.set(id, resource)
+
+
+func _duplicate(subresources:bool = false) -> Resource:
+	var new_graph = GaeaGraph.new()
+	var sub_map:Dictionary[GaeaNodeResource, GaeaNodeResource] = {}
+	for sub in resources:
+		var new_sub = sub.duplicate(true)
+		sub_map[sub] = new_sub
+		new_graph.resources.append(new_sub)
+	
+	new_graph.resource_uids = resource_uids.duplicate(true)
+	new_graph.connections = connections.duplicate(true)
+	new_graph.node_data = node_data.duplicate(true)
+	new_graph.parameters = parameters.duplicate(true)
+	new_graph.other = other.duplicate(true)
+	
+	return new_graph
