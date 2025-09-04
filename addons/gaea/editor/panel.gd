@@ -24,7 +24,8 @@ var plugin: EditorPlugin
 @onready var _load_button: Button = %LoadButton
 @onready var _reload_node_tree_button: Button = %ReloadNodeTreeButton
 @onready var _reload_parameters_list_button: Button = %ReloadParametersListButton
-@onready var _file_dialog: FileDialog = $FileDialog
+@onready var _file_open_dialog: FileDialog = $OpenFileDialog
+@onready var _file_save_dialog: FileDialog = $SaveFileDialog
 @onready var _online_docs_button: Button = %OnlineDocsButton
 @onready var _window_popout_separator: VSeparator = %WindowPopoutSeparator
 @onready var _window_popout_button: Button = %WindowPopoutButton
@@ -394,6 +395,10 @@ func _on_graph_edit_connection_to_empty(_from_node: StringName, _from_port: int,
 
 
 #region Buttons
+func _on_duplicate_button_pressed() -> void:
+	_file_save_dialog.popup_centered()
+
+
 func _on_generate_button_pressed() -> void:
 	_selected_generator.generate()
 
@@ -402,11 +407,16 @@ func _on_reload_node_tree_button_pressed() -> void:
 	_create_node_tree.populate()
 
 func _on_load_button_pressed() -> void:
-	_file_dialog.popup_centered()
+	_file_open_dialog.popup_centered()
 
 
-func _on_file_dialog_file_selected(path: String) -> void:
+func _on_open_file_dialog_selected(path: String) -> void:
 	_selected_generator.data = load(path)
+
+
+func _on_save_file_dialog_selected(path: String) -> void:
+	var copy:GaeaGraph = _selected_generator.data.duplicate(true)
+	ResourceSaver.save(copy, path)
 
 
 func _on_reload_parameters_list_button_pressed() -> void:

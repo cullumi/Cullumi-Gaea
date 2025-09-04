@@ -128,14 +128,17 @@ flat = true
 
 [node name="LoadButton" type="Button" parent="Editor/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 tooltip_text = "Load data."
 icon = SubResource("ImageTexture_ve3i7")
 flat = true
 
+[node name="DuplicateButton" type="Button" parent="Editor/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Duplicate"
+
 [node name="VSeparator" type="VSeparator" parent="Editor/VBoxContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="ReloadNodeTreeButton" type="Button" parent="Editor/VBoxContainer/HBoxContainer"]
@@ -373,10 +376,15 @@ item_0/id = 0
 script = ExtResource("7_dhpru")
 graph_edit = NodePath("../VBoxContainer/GraphEdit")
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="OpenFileDialog" type="FileDialog" parent="."]
 title = "Open a File"
 ok_button_text = "Open"
 file_mode = 0
+filters = PackedStringArray("*.tres,*.res;Resources")
+
+[node name="SaveFileDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Save a Copy"
 filters = PackedStringArray("*.tres,*.res;Resources")
 
 [node name="AboutWindow" parent="." instance=ExtResource("9_affj1")]
@@ -386,6 +394,7 @@ exclusive = true
 [connection signal="pressed" from="NoData/NewDataButton" to="." method="_on_new_data_button_pressed"]
 [connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/DuplicateButton" to="." method="_on_duplicate_button_pressed"]
 [connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/ReloadNodeTreeButton" to="." method="_on_reload_node_tree_button_pressed"]
 [connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/ReloadParametersListButton" to="." method="_on_reload_parameters_list_button_pressed"]
 [connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/GenerateButton" to="." method="_on_generate_button_pressed"]
@@ -412,4 +421,5 @@ exclusive = true
 [connection signal="pressed" from="Editor/CreateNodePopup/MainContentContainer/VBox/HBoxContainer/CreateButton" to="Editor/CreateNodePopup/MainContentContainer/VBox/CreateNodeTree" method="_on_create_button_pressed"]
 [connection signal="create_node_popup_requested" from="Editor/NodePopup" to="." method="_popup_create_node_menu_at_mouse"]
 [connection signal="new_reroute_requested" from="Editor/LinkPopup" to="." method="_on_new_reroute_requested"]
-[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="file_selected" from="OpenFileDialog" to="." method="_on_open_file_dialog_selected"]
+[connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_selected"]
