@@ -401,6 +401,13 @@ func _setup_local_to_scene() -> void:
 		GaeaGraphMigration.migrate(self)
 
 	_resources.clear()
+	var uniques = _get_unique_resources()
+	for id in uniques.keys():
+		_resources.set(id, uniques[id])
+
+
+func _get_unique_resources() -> Dictionary[Variant, GaeaNodeResource]:
+	var uniques:Dictionary[Variant, GaeaNodeResource] = {}
 	for id in _node_data.keys():
 		var base_uid: String = get_node_data(id).get(&"uid", "")
 		if base_uid.is_empty():
@@ -409,19 +416,16 @@ func _setup_local_to_scene() -> void:
 		var resource: GaeaNodeResource = load(base_uid).new()
 		if not resource is GaeaNodeResource:
 			push_error("Something went wrong, the resource at %s is not a GaeaNodeResource" % base_uid)
-			return
+			return uniques
 		resource._load_save_data(data)
-		_resources.set(id, resource)
+		uniques.set(id, resource)
+	return uniques
 
 
-func _duplicate(subresources:bool = false) -> Resource:
+func _duplicate(_subresources:bool = false) -> Resource:
 	var new_graph = GaeaGraph.new()
-	var sub_map:Dictionary[GaeaNodeResource, GaeaNodeResource] = {}
-	for sub in resources:
-		var new_sub = sub.duplicate(true)
-		sub_map[sub] = new_sub
-		new_graph.resources.append(new_sub)
 	
+	new_graph.resources = _get_unique_resources()
 	new_graph.resource_uids = resource_uids.duplicate(true)
 	new_graph.connections = connections.duplicate(true)
 	new_graph.node_data = node_data.duplicate(true)
