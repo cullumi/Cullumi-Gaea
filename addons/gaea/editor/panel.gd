@@ -22,6 +22,7 @@ var plugin: EditorPlugin
 @onready var _search_bar: LineEdit = %SearchBar
 @onready var _save_button: Button = %SaveButton
 @onready var _load_button: Button = %LoadButton
+@onready var _duplicate_button: Button = %DuplicateButton
 @onready var _reload_node_tree_button: Button = %ReloadNodeTreeButton
 @onready var _reload_parameters_list_button: Button = %ReloadParametersListButton
 @onready var _file_open_dialog: FileDialog = $OpenFileDialog
@@ -43,6 +44,7 @@ func _ready() -> void:
 	_reload_parameters_list_button.icon = preload("../assets/reload_variables_list.svg")
 	_save_button.icon = EditorInterface.get_base_control().get_theme_icon(&"Save", &"EditorIcons")
 	_load_button.icon = EditorInterface.get_base_control().get_theme_icon(&"Load", &"EditorIcons")
+	_duplicate_button.icon = EditorInterface.get_base_control().get_theme_icon(&"Duplicate", &"EditorIcons")
 	_window_popout_button.icon = EditorInterface.get_base_control().get_theme_icon(&"MakeFloating", &"EditorIcons")
 	_online_docs_button.icon = EditorInterface.get_base_control().get_theme_icon(&"ExternalLink", &"EditorIcons")
 	_create_node_panel.add_theme_stylebox_override(&"panel", EditorInterface.get_base_control().get_theme_stylebox(&"panel", &"PopupPanel"))

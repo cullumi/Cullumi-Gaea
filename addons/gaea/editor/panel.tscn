@@ -134,9 +134,10 @@ icon = SubResource("ImageTexture_ve3i7")
 flat = true
 
 [node name="DuplicateButton" type="Button" parent="Editor/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Duplicate"
+flat = true
 
 [node name="VSeparator" type="VSeparator" parent="Editor/VBoxContainer/HBoxContainer"]
 layout_mode = 2
