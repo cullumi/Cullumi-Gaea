@@ -77,7 +77,12 @@ var cache: Dictionary[GaeaNodeResource, Dictionary] = {}
 
 
 func _init() -> void:
+	_refresh()
+
+
+func _refresh() -> void:
 	resource_local_to_scene = true
+	_setup_local_to_scene()
 	notify_property_list_changed()
 
 
