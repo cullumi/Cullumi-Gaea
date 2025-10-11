@@ -1,11 +1,9 @@
 extends Node2D
-
+class_name WalkerDemo
 
 @onready var gaea_generator: GaeaGenerator = $GaeaGenerator
 
 var last_grid: GaeaGrid
-
-
 
 
 ## Used for integration testing.
