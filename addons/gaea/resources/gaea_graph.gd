@@ -430,11 +430,12 @@ func _get_unique_resources() -> Dictionary[Variant, GaeaNodeResource]:
 func _duplicate(_subresources:bool = false) -> Resource:
 	var new_graph = GaeaGraph.new()
 	
-	new_graph.resources = _get_unique_resources()
-	new_graph.resource_uids = resource_uids.duplicate(true)
-	new_graph.connections = connections.duplicate(true)
-	new_graph.node_data = node_data.duplicate(true)
-	new_graph.parameters = parameters.duplicate(true)
-	new_graph.other = other.duplicate(true)
+	#new_graph.resources = _get_unique_resources()
+	#new_graph.resource_uids = resource_uids.duplicate(true)
+	new_graph._connections = _connections.duplicate(true)
+	new_graph._node_data = _node_data.duplicate(true)
+	new_graph._parameters = _parameters.duplicate(true)
+	new_graph.save_version = save_version
+	#new_graph._other = other.duplicate(true)
 	
 	return new_graph
