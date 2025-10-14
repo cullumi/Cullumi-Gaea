@@ -129,7 +129,7 @@ flat = true
 [node name="LoadButton" type="Button" parent="Editor/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "Load data."
+tooltip_text = "Assign a graph to this generator."
 icon = SubResource("ImageTexture_ve3i7")
 flat = true
 
@@ -137,6 +137,7 @@ flat = true
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+tooltip_text = "Duplicate this graph."
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="Editor/VBoxContainer/HBoxContainer"]

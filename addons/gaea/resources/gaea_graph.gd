@@ -415,7 +415,7 @@ func _setup_local_to_scene() -> void:
 
 
 func _get_unique_resources() -> Dictionary[Variant, GaeaNodeResource]:
-	var uniques:Dictionary[Variant, GaeaNodeResource] = {}
+	var uniques: Dictionary[Variant, GaeaNodeResource] = {}
 	for id in _node_data.keys():
 		var base_uid: String = get_node_data(id).get(&"uid", "")
 		if base_uid.is_empty():
