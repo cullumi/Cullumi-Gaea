@@ -24,7 +24,6 @@ signal area_erased(area: AABB)
 	set(value):
 		data = value
 		if is_instance_valid(data):
-			data._refresh()
 			data.generator = self
 		data_changed.emit()
 ## The seed used for the randomization of the generation.

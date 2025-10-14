@@ -70,7 +70,10 @@ var scroll_offset: Vector2 = Vector2(NAN, NAN)
 var zoom: float = 1.0
 
 ## The currently related generator.
-var generator: GaeaGenerator
+var generator: GaeaGenerator :
+	set(value):
+		generator = value
+		_refresh()
 ## Cache used during generation to avoid recalculating data unnecessarily.
 ## The inner dictionary keys are the slot output port names, and the values are the cached data.
 var cache: Dictionary[GaeaNodeResource, Dictionary] = {}
