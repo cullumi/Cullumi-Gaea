@@ -139,3 +139,23 @@ func test_remove_node() -> void:
 		.override_failure_message("Graph's node resources list has unexpected size.")\
 		.append_failure_message("Current: %s\nExpected: %s" % [_nodes.size(), 1])\
 		.has_size(1)
+
+
+func test_assign_to_generator() -> void:
+	var premade_graph = load("uid://bhvhxcvp7uosa")
+	var scene:WalkerDemo = load("uid://di7u4f3idjdd").instantiate()
+	var _runner := scene_runner(scene)
+	scene.gaea_generator.data = premade_graph
+	await scene.test_generation()
+
+
+func test_duplicate() -> void:
+	load("uid://bhvhxcvp7uosa")._duplicate(true)
+
+
+func test_assign_duplicate() -> void:
+	var premade_graph = load("uid://bhvhxcvp7uosa")._duplicate(true)
+	var scene = load("uid://di7u4f3idjdd").instantiate()
+	var _runner := scene_runner(scene)
+	scene.gaea_generator.data = premade_graph
+	await scene.test_generation()
