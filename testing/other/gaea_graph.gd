@@ -142,7 +142,7 @@ func test_remove_node() -> void:
 
 
 func test_assign_to_generator() -> void:
-	var premade_graph = load("uid://bhvhxcvp7uosa")
+	var premade_graph = (load("uid://bhvhxcvp7uosa") as GaeaGraph)
 	var scene:WalkerDemo = load("uid://di7u4f3idjdd").instantiate()
 	var _runner := scene_runner(scene)
 	scene.gaea_generator.data = premade_graph
@@ -150,11 +150,11 @@ func test_assign_to_generator() -> void:
 
 
 func test_duplicate() -> void:
-	load("uid://bhvhxcvp7uosa")._duplicate(true)
+	(load("uid://bhvhxcvp7uosa") as GaeaGraph).duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
 
 
 func test_assign_duplicate() -> void:
-	var premade_graph = load("uid://bhvhxcvp7uosa")._duplicate(true)
+	var premade_graph = (load("uid://bhvhxcvp7uosa") as GaeaGraph).duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
 	var scene = load("uid://di7u4f3idjdd").instantiate()
 	var _runner := scene_runner(scene)
 	scene.gaea_generator.data = premade_graph

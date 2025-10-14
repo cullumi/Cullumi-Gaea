@@ -417,7 +417,7 @@ func _on_open_file_dialog_selected(path: String) -> void:
 
 
 func _on_save_file_dialog_selected(path: String) -> void:
-	var copy:GaeaGraph = _selected_generator.data.duplicate(true)
+	var copy: GaeaGraph = _selected_generator.data.duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
 	ResourceSaver.save(copy, path)
 
 
