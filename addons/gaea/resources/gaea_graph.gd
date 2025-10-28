@@ -215,6 +215,11 @@ func get_ids() -> Array[int]:
 	return _node_data.keys()
 
 
+## Returns all node data.
+func get_all_node_data() -> Dictionary[int, Dictionary]:
+	return _node_data
+
+
 ## Returns an available id.
 func get_next_available_id() -> int:
 	var _ids := get_ids()
@@ -276,6 +281,11 @@ func get_all_connections() -> Array[Dictionary]:
 	for connection_string in _connections:
 		all_connections.append(get_connection_dictionary(connection_string))
 	return all_connections
+
+
+## Returns all connections in the graph in the form "from_node-from_port-to_node-to_port" (ex.: 1-0-2-1)
+func get_raw_connections() -> Array[StringName]:
+	return _connections
 
 
 ## Returns all connections to and from the specified node as dictionaries.

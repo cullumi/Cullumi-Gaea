@@ -1,6 +1,8 @@
 extends GdUnitTestSuite
 
 
+@onready var walker_graph: GaeaGraph = load("uid://bhvhxcvp7uosa") # base_walker.tres
+@onready var walker_demo: PackedScene = load("uid://di7u4f3idjdd") # walker_demo.tscn
 var graph: GaeaGraph
 
 
@@ -142,11 +144,12 @@ func test_remove_node() -> void:
 
 
 func test_assign_to_generator() -> void:
-	var premade_graph = (load("uid://bhvhxcvp7uosa") as GaeaGraph)
-	var scene:WalkerDemo = load("uid://di7u4f3idjdd").instantiate()
+	var premade_graph = walker_graph
+	var scene:WalkerDemo = walker_demo.instantiate()
 	var _runner := scene_runner(scene)
 	scene.gaea_generator.data = premade_graph
 	await scene.test_generation()
+	assert_dict(scene.last_grid._grid).is_not_empty()
 
 
 # Dictionary comparison for use in [method test_duplciate].
@@ -162,9 +165,50 @@ func compare_dictionaries(expecteds:Array, currents:Array, target_base_path:Stri
 		return true
 
 
-func test_assign_duplicate() -> void:
-	var premade_graph = (load("uid://bhvhxcvp7uosa") as GaeaGraph).duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
-	var scene = load("uid://di7u4f3idjdd").instantiate()
-	var _runner := scene_runner(scene)
-	scene.gaea_generator.data = premade_graph
-	await scene.test_generation()
+### It is expected that the results of [GaeaGraph] duplication should have matching storage-exported fields:
+### [member GaeaGraph._connections], [member GaeaGraph._node_data], [member GaeaGraph._parameters], and [member GaeaGraph.save_version].
+func test_duplicate() -> void:
+	# Duplication
+	var _source = walker_graph
+	var _copy : GaeaGraph = _source.duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
+	
+	# Connections
+	var _copy_connections = _copy.get_raw_connections()
+	var _source_connections = _source.get_raw_connections()
+	assert_array(_copy_connections)\
+		.override_failure_message("Duplciate graph's connections do not match the original.")\
+		.append_failure_message("Size: %d\nExpected: %d" % [_copy_connections.size(), _source_connections.size()])\
+		.contains_same(_source_connections)
+	
+	# Nodes
+	var _copy_nodes = _copy.get_all_node_data()
+	var _source_nodes = _source.get_all_node_data()
+	
+	# Node IDs
+	assert_array(_copy_nodes.keys())\
+		.override_failure_message("Duplciate graph's node ids do not match the original.")\
+		.contains_same(_source_nodes.keys())
+	
+	# Node Values
+	assert_bool(compare_dictionaries(_source_nodes.values(), _copy_nodes.values(), _copy.resource_path))\
+		.override_failure_message("Duplicate graph's node values do not match the original.")\
+		.is_true()
+	
+	# Parameters
+	var _copy_parameters = _copy.get_parameter_list()
+	var _source_parameters = _source.get_parameter_list()
+	
+	# Parameter Keys
+	assert_array(_copy_parameters.keys())\
+		.override_failure_message("Duplicate graph's parameter keys do not match the original.")\
+		.contains_same(_source_parameters.keys())
+	
+	# Parameter Values
+	assert_bool(compare_dictionaries(_source_parameters.values(), _copy_parameters.values(), _copy.resource_path))\
+		.override_failure_message("Duplicate graph's parameter values do not match the original.")\
+		.is_true()
+	
+	# Save Version
+	assert_int(_copy.save_version)\
+		.override_failure_message("Duplicate graph's save version does not match the original.")\
+		.is_equal(_source.save_version)
