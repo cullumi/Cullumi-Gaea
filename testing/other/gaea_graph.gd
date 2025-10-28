@@ -149,8 +149,17 @@ func test_assign_to_generator() -> void:
 	await scene.test_generation()
 
 
-func test_duplicate() -> void:
-	(load("uid://bhvhxcvp7uosa") as GaeaGraph).duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
+# Dictionary comparison for use in [method test_duplciate].
+func compare_dictionaries(expecteds:Array, currents:Array, target_base_path:StringName):
+		for i in range(expecteds.size()):
+			var expected = expecteds[i]
+			var current = currents[i]
+			for key in expected.keys():
+				if expected[key] is Resource and ((current[key] as Resource).resource_path.begins_with(target_base_path)):
+					continue
+				elif expected[key] != current[key]:
+					return false
+		return true
 
 
 func test_assign_duplicate() -> void:
