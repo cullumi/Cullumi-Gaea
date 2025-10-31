@@ -27,7 +27,7 @@ var _dragged_from_left: bool = false
 @onready var _search_bar: LineEdit = %SearchBar
 @onready var _save_button: Button = %SaveButton
 @onready var _load_button: Button = %LoadButton
-@onready var _duplicate_button: Button = %DuplicateButton
+@onready var _duplicate_graph_button: Button = %DuplicateGraphButton
 @onready var _reload_node_tree_button: Button = %ReloadNodeTreeButton
 @onready var _reload_parameters_list_button: Button = %ReloadParametersListButton
 @onready var _file_open_dialog: FileDialog = $OpenFileDialog
@@ -53,7 +53,7 @@ func _ready() -> void:
 	_reload_parameters_list_button.icon = preload("uid://cwg7oy4i2cbwq")
 	_save_button.icon = EditorInterface.get_base_control().get_theme_icon(&"Save", &"EditorIcons")
 	_load_button.icon = EditorInterface.get_base_control().get_theme_icon(&"Load", &"EditorIcons")
-	_duplicate_button.icon = EditorInterface.get_base_control().get_theme_icon(
+	_duplicate_graph_button.icon = EditorInterface.get_base_control().get_theme_icon(
 		&"Duplicate", &"EditorIcons"
 	)
 	_window_popout_button.icon = EditorInterface.get_base_control().get_theme_icon(
@@ -539,7 +539,7 @@ func _on_graph_edit_connection_from_empty(
 
 
 #region Buttons
-func _on_duplicate_button_pressed() -> void:
+func _on_duplicate_graph_button_pressed() -> void:
 	_file_save_dialog.popup_centered()
 
 

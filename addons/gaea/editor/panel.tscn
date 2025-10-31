@@ -133,7 +133,7 @@ tooltip_text = "Assign a graph to this generator."
 icon = SubResource("ImageTexture_ve3i7")
 flat = true
 
-[node name="DuplicateButton" type="Button" parent="Editor/VBoxContainer/HBoxContainer"]
+[node name="DuplicateGraphButton" type="Button" parent="Editor/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -396,7 +396,7 @@ exclusive = true
 [connection signal="pressed" from="NoData/NewDataButton" to="." method="_on_new_data_button_pressed"]
 [connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/DuplicateButton" to="." method="_on_duplicate_button_pressed"]
+[connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/DuplicateGraphButton" to="." method="_on_duplicate_graph_button_pressed"]
 [connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/ReloadNodeTreeButton" to="." method="_on_reload_node_tree_button_pressed"]
 [connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/ReloadParametersListButton" to="." method="_on_reload_parameters_list_button_pressed"]
 [connection signal="pressed" from="Editor/VBoxContainer/HBoxContainer/GenerateButton" to="." method="_on_generate_button_pressed"]
