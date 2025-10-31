@@ -1,5 +1,5 @@
 extends Node2D
-class_name WalkerDemo
+class_name GaeaWalkerDemo
 
 @onready var gaea_generator: GaeaGenerator = $GaeaGenerator
 

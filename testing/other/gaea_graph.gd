@@ -145,7 +145,7 @@ func test_remove_node() -> void:
 
 func test_assign_to_generator() -> void:
 	var premade_graph = walker_graph
-	var scene:WalkerDemo = walker_demo.instantiate()
+	var scene: GaeaWalkerDemo = walker_demo.instantiate()
 	var _runner := scene_runner(scene)
 	scene.gaea_generator.data = premade_graph
 	await scene.test_generation()
@@ -170,13 +170,13 @@ func compare_dictionaries(expecteds:Array, currents:Array, target_base_path:Stri
 func test_duplicate() -> void:
 	# Duplication
 	var _source = walker_graph
-	var _copy : GaeaGraph = _source.duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
+	var _copy: GaeaGraph = _source.duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
 	
 	# Connections
 	var _copy_connections = _copy.get_raw_connections()
 	var _source_connections = _source.get_raw_connections()
 	assert_array(_copy_connections)\
-		.override_failure_message("Duplciate graph's connections do not match the original.")\
+		.override_failure_message("Duplicate graph's connections do not match the original.")\
 		.append_failure_message("Size: %d\nExpected: %d" % [_copy_connections.size(), _source_connections.size()])\
 		.contains_same(_source_connections)
 	
@@ -186,7 +186,7 @@ func test_duplicate() -> void:
 	
 	# Node IDs
 	assert_array(_copy_nodes.keys())\
-		.override_failure_message("Duplciate graph's node ids do not match the original.")\
+		.override_failure_message("Duplicate graph's node ids do not match the original.")\
 		.contains_same(_source_nodes.keys())
 	
 	# Node Values
