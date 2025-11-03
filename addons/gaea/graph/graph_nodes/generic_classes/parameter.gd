@@ -19,6 +19,22 @@ var hint_string: String:
 	get = _get_property_hint_string
 
 
+
+func _on_added_to_graph(graph: GaeaGraph) -> void:
+	var name := _get_available_name(graph.get_node_argument(id, &"name", _get_title()))
+	graph.set_node_argument(
+		id, &"name", name
+	)
+	arguments.set(&"name", name)
+	graph.add_parameter(name, {
+		"name": name,
+		"type": type,
+		"hint": hint,
+		"hint_string": hint_string,
+		"value": GaeaValue.get_default_value(type),
+		"usage": PROPERTY_USAGE_EDITOR
+	})
+
 ## Override this method to determine the [enum Variant.Type] for the variable this node adds.[br][br]
 ## Overriding this method is [b]required[/b].
 func _get_variant_type() -> int:
@@ -49,8 +65,9 @@ func _get_argument_default_value(_arg_name: StringName) -> Variant:
 
 func _get_available_name(from: String) -> String:
 	if not is_instance_valid(node):
-		return ""
+		return from
 
+	from = from.rstrip("1234567890")
 	var available_name: String = from
 	var suffix: int = 1
 	while node.generator.data.has_parameter(available_name):
