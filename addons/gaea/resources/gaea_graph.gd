@@ -43,14 +43,17 @@ const CURRENT_SAVE_VERSION := 5
 ## "from_node-from_port-to_node-to_port" (ex.: 1-0-2-1). That format
 ## can be converted into a connections dictionary using various methods in this class.[br]
 ## [br][color=yellow][b]Warning:[/b][/color] Setting this directly can break your saved graph.
-@export_storage var _connections: Array[StringName]
+@export_storage var _connections: Array[StringName] : 
+	get = get_raw_connections
 ## Saved data for each [GaeaNodeResource] such as position in the graph and changed arguments.
 ## [br][color=yellow][b]Warning:[/b][/color] Setting this directly can break your saved graph.
-@export_storage var _node_data: Dictionary[int, Dictionary]
+@export_storage var _node_data: Dictionary[int, Dictionary] :
+	get = get_all_node_data
 ## List of parameters created with [GaeaNodeParameter].
 ## [br][color=yellow][b]Warning:[/b][/color] Setting this directly can break your saved graph.
 ## Use [method set_parameter] instead.
-@export_storage var _parameters: Dictionary[StringName, Variant] : get = get_parameter_list
+@export_storage var _parameters: Dictionary[StringName, Variant] : 
+	get = get_parameter_list
 
 ## @deprecated: Kept for migration of old save data.
 var connections: Array[Dictionary]
