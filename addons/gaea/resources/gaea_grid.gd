@@ -9,6 +9,9 @@ extends Resource
 var _grid: Dictionary[int, GaeaValue.Map]
 
 
+func _init(dictionary:Dictionary[int, Dictionary] = {}) -> void:
+	_grid = dictionary
+
 ## Set the layer at [param idx] to the generated [param grid].
 ## Sets it to an empty grid if [param resource] is disabled (see [member GaeaLayer.enabled]).
 func add_layer(idx: int, grid: GaeaValue.Map, resource: GaeaLayer) -> void:
@@ -25,3 +28,6 @@ func get_layer(idx: int) -> GaeaValue.Map:
 ## Get the amount of layers the grid has.
 func get_layers_count() -> int:
 	return _grid.size()
+
+func  get_grid_data() -> Dictionary[int, Dictionary]:
+	return _grid

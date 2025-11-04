@@ -68,6 +68,25 @@ func generate_area(area: AABB) -> void:
 	var pouch: GaeaGenerationPouch = GaeaGenerationPouch.new(settings, area)
 	generation_finished.emit.call_deferred(graph.get_output_node().execute(graph, pouch))
 	pouch.clear_all_cache()
+	
+	if multithreaded:
+		_queue_execution(output_resource, area)
+	else:
+		_execute_and_finish(output_resource, area)
+
+
+## Emits [signal generation_finished] on the given [GaeaExecutionTask]
+func _finish_execution(task: GaeaExecutionTask):
+	task.log_finish_time()
+	var results: GaeaGrid = task.results
+	print("Finishing execution, result has %d elements." % results.get_grid_data().size())
+	generation_finished.emit.call_deferred(task.results)
+	data.cache.clear()
+
+ 
+func _process(_delta: float) -> void:
+	_finish_completed_execution_tasks()
+	_run_queued_execution_tasks()
 
 
 ## Emits [signal area_erased]. Does nothing by itself, but notifies [GaeaRenderer]s that they should
