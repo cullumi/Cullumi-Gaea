@@ -35,6 +35,23 @@ signal area_erased(area: AABB)
 
 @export var settings: GaeaGenerationSettings
 
+## Whether this generator should block the main thread.
+@export var multithreaded: bool = true
+
+## The max number of this generator's [GaeaExecutionTask]s that can running in the [WorkerThreadPool] at once.
+## All extra tasks will be queued to start as soon as room becomes available.
+## A value of Zero means there will be no queue, and all tasks will be sent to the [WorkerThreadPool] immediately.
+@export_range(0, 50, 1) var task_limit: int = 0 :
+	set(value):
+		task_limit = value
+		if _thread_pool:
+			_thread_pool.task_limit = value
+
+## The thread pool used by the Generator to perform tasks on multiple threads,
+## with the help fo the builtin [WorkerThreadPool].
+@onready var _thread_pool: GaeaThreadPool
+
+
 # For migration to GaeaGenerationSettings
 func _set(property: StringName, value: Variant) -> bool:
 	match property:
@@ -69,24 +86,32 @@ func generate_area(area: AABB) -> void:
 	generation_finished.emit.call_deferred(graph.get_output_node().execute(graph, pouch))
 	pouch.clear_all_cache()
 	
+	if not _thread_pool:
+		_thread_pool = GaeaThreadPool.new(_execution_task_finished, task_limit)
+	
+	var task := GaeaExecutionTask.new(
+		"Execute on %s" % area,
+		output_resource, data, area
+	)
+	
 	if multithreaded:
-		_queue_execution(output_resource, area)
+		_thread_pool.queue(task)
 	else:
-		_execute_and_finish(output_resource, area)
+		_thread_pool.execute(task)
 
 
-## Emits [signal generation_finished] on the given [GaeaExecutionTask]
-func _finish_execution(task: GaeaExecutionTask):
-	task.log_finish_time()
-	var results: GaeaGrid = task.results
-	print("Finishing execution, result has %d elements." % results.get_grid_data().size())
+## Emits [signal generation_finished] on the given results of the given [GaeaExecutionTask]
+func _execution_task_finished(task: GaeaThreadTask):
+	#assert(task_results is GaeaGraph)
+	assert(task is GaeaExecutionTask)
+	print("Finishing execution, result has %d elements." % task.results.get_grid_data().size())
 	generation_finished.emit.call_deferred(task.results)
 	data.cache.clear()
 
- 
+
 func _process(_delta: float) -> void:
-	_finish_completed_execution_tasks()
-	_run_queued_execution_tasks()
+	if _thread_pool:
+		_thread_pool.process()
 
 
 ## Emits [signal area_erased]. Does nothing by itself, but notifies [GaeaRenderer]s that they should
