@@ -2,7 +2,8 @@ class_name GaeaExecutionTask
 extends GaeaThreadTask
 
 
-var _results_dict: Dictionary[int, Dictionary]
+var _results_dict: Dictionary[int, GaeaValue.Map]
+var pouch: GaeaGenerationPouch
 
 
 func _set_results(value) -> void:
@@ -13,6 +14,7 @@ func _get_results() -> Variant:
 	return GaeaGrid.new(_results_dict)
 
 
-func _init(_description:String, _output_resource: GaeaNodeOutput, _graph: GaeaGraph, _area: AABB):
-	var _task = _output_resource.execute.bind(_area, _graph)
+func _init(_description:String, _graph:GaeaGraph, _pouch:GaeaGenerationPouch):
+	var _task = _graph.get_output_node().execute.bind(_graph, _pouch)
+	pouch = _pouch
 	super._init(_task, _description)

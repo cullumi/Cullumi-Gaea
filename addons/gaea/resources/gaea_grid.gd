@@ -6,10 +6,11 @@ extends Resource
 
 ## Dictionary of the format [code]{int: Dictionary}[/code] where the key is the layer index
 ## and the value is a grid of [GaeaMaterial]s.
-var _grid: Dictionary[int, GaeaValue.Map]
+var _grid: Dictionary[int, GaeaValue.Map]:
+	get = get_grid_data
 
 
-func _init(dictionary:Dictionary[int, Dictionary] = {}) -> void:
+func _init(dictionary:Dictionary[int, GaeaValue.Map] = {}) -> void:
 	_grid = dictionary
 
 ## Set the layer at [param idx] to the generated [param grid].
@@ -29,5 +30,5 @@ func get_layer(idx: int) -> GaeaValue.Map:
 func get_layers_count() -> int:
 	return _grid.size()
 
-func  get_grid_data() -> Dictionary[int, Dictionary]:
+func  get_grid_data() -> Dictionary[int, GaeaValue.Map]:
 	return _grid

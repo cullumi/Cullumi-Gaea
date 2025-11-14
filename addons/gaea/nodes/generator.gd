@@ -91,7 +91,8 @@ func generate_area(area: AABB) -> void:
 	
 	var task := GaeaExecutionTask.new(
 		"Execute on %s" % area,
-		output_resource, data, area
+		graph,
+		pouch,
 	)
 	
 	if multithreaded:
@@ -103,10 +104,10 @@ func generate_area(area: AABB) -> void:
 ## Emits [signal generation_finished] on the given results of the given [GaeaExecutionTask]
 func _execution_task_finished(task: GaeaThreadTask):
 	#assert(task_results is GaeaGraph)
-	assert(task is GaeaExecutionTask)
-	print("Finishing execution, result has %d elements." % task.results.get_grid_data().size())
-	generation_finished.emit.call_deferred(task.results)
-	data.cache.clear()
+	var exec: GaeaExecutionTask = task as GaeaExecutionTask
+	print("Finishing execution, result has %d elements." % exec.results.get_grid_data().size())
+	generation_finished.emit.call_deferred(exec.results)
+	exec.pouch.clear_all_cache()
 
 
 func _process(_delta: float) -> void:
