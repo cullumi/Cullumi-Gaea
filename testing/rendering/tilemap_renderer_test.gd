@@ -12,12 +12,15 @@ var runner: GdUnitSceneRunner
 var renderer: TileMapGaeaRenderer:
 	get: return scene.renderer
 
+
 func before() -> void:
 	scene = load("uid://xfcy8wwh3sd7").instantiate()
 	runner = scene_runner(scene)
 
 
-func test_full_area(multithreaded: bool = false) -> void:
+
+@warning_ignore("unused_parameter")
+func test_full_area(multithreaded, test_parameters := [[true], [false]]) -> void:
 	renderer.reset()
 	scene.generator.multithreaded = multithreaded
 	scene.generator.generate()
@@ -46,7 +49,8 @@ func test_reset() -> void:
 		.is_empty()
 
 
-func test_small_area(multithreaded: bool = false) -> void:
+@warning_ignore("unused_parameter")
+func test_small_area(multithreaded: bool, test_parameters := [[true], [false]]) -> void:
 	renderer.reset()
 	var area: AABB = AABB(Vector3.ZERO, Vector3.ONE * 16)
 	scene.generator.multithreaded = multithreaded
@@ -77,11 +81,3 @@ func test_null_layer() -> void:
 	renderer.tile_map_layers[1] = null
 	assert_error(scene.generator.generate)\
 		.is_success()
-
-
-func test_full_area_multithreaded() -> void:
-	test_full_area(true)
-
-
-func test_small_area_multithreaded() -> void:
-	test_small_area(true)
