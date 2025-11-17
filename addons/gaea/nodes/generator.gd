@@ -85,16 +85,16 @@ func generate_area(area: AABB) -> void:
 	var pouch: GaeaGenerationPouch = GaeaGenerationPouch.new(settings, area)
 	generation_finished.emit.call_deferred(graph.get_output_node().execute(graph, pouch))
 	pouch.clear_all_cache()
-	
+
 	if not _thread_pool:
 		_thread_pool = GaeaThreadPool.new(_execution_task_finished, task_limit)
-	
+
 	var task := GaeaExecutionTask.new(
 		"Execute on %s" % area,
 		graph,
 		pouch,
 	)
-	
+
 	if multithreaded:
 		_thread_pool.queue(task)
 	else:

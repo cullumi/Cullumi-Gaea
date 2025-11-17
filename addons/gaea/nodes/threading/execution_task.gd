@@ -15,6 +15,6 @@ func _get_results() -> Variant:
 
 
 func _init(_description:String, _graph:GaeaGraph, _pouch:GaeaGenerationPouch):
-	var _task = _graph.get_output_node().execute.bind(_graph, _pouch)
+	var new_task = _graph.get_output_node().execute.bind(_graph, _pouch)
 	pouch = _pouch
-	super._init(_task, _description)
+	super._init(new_task, _description)

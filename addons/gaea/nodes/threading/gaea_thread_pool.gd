@@ -32,13 +32,13 @@ func process() -> void:
 func _run_task(task:GaeaThreadTask):
 	if task.task:
 		task.log_run_time()
-		
+
 		# Spin up a task in the WorkerThreadPool.
 		task.task_id = WorkerThreadPool.add_task(
-			_execute, 
+			_execute,
 			false, task.description
 		)
-		
+
 		# Only add to the task list if a task was made successfully.
 		if task.task_id != -1:
 			_tasks[task.task_id] = task
@@ -77,10 +77,10 @@ func _execute(task: GaeaThreadTask = null):
 			if _tasks.has(task_id):
 				task = _tasks[task_id]
 			_mutex.unlock()
-	
+
 	# Execute
 	var results = task.task.call()
-	
+
 	# Pass back results
 	_mutex.lock()
 	task.results = results

@@ -40,6 +40,9 @@ func log_run_time(multithreaded:bool=true):
 func log_finish_time():
 	var finish_time = Time.get_unix_time_from_system()
 	if run_time >= 0:
-		print("Finished %s after %.2d seconds in WorkerThreadPool. Total lifetime %.2d seconds" % [description, finish_time - run_time, finish_time - creation_time])
+		print(
+			"Finished %s after %.2d seconds in WorkerThreadPool. Total lifetime %.2d seconds" %
+			[description, finish_time - run_time, finish_time - creation_time]
+		)
 	else:
 		print("Finished %s after %.2d seconds." % [description, finish_time - creation_time])
