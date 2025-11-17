@@ -1,10 +1,14 @@
 extends EditorInspectorPlugin
 
 const GradientVisualizer = preload("uid://cwaqlwiy2t1pe")
+const GeneratorButtons = preload("uid://dm42lg3fiyqub")
 
 
 func _can_handle(object: Object) -> bool:
-	return object is GradientGaeaMaterial
+	return (
+		object is GradientGaeaMaterial
+		or object is GaeaGenerator
+	)
 
 
 func _parse_begin(object: Object) -> void:
@@ -16,3 +20,8 @@ func _parse_begin(object: Object) -> void:
 
 		gradient_visualizer.update()
 		object.points_sorted.connect(gradient_visualizer.update)
+	elif object is GaeaGenerator:
+		var generator_buttons := GeneratorButtons.new()
+		generator_buttons.generator = object
+		
+		add_custom_control(generator_buttons)
