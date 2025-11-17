@@ -108,7 +108,9 @@ func generate_area(area: AABB) -> void:
 func _execution_task_finished(task: GaeaThreadTask):
 	#assert(task_results is GaeaGraph)
 	var exec: GaeaExecutionTask = task as GaeaExecutionTask
-	graph.log_lazy(GaeaGraph.Log.THREADING, func(): return "Finishing execution, result has %d elements." % exec.results.get_grid_data().size())
+	graph.log_lazy(GaeaGraph.Log.THREADING, func():
+		return "Finishing execution, result has %d elements." % exec.results.get_grid_data().size()
+	)
 	generation_finished.emit.call_deferred(exec.results)
 	exec.pouch.clear_all_cache()
 
