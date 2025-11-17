@@ -13,8 +13,9 @@ enum Log {
 	NONE=0,
 	EXECUTE=1, ## Log execution data such as current area & current layer.
 	TRAVERSE=2, ## Log traverse data (which nodes are being traversed in the graph).
-	DATA=4,  ## Log which data is being generated from which port.
-	ARGS=8  ## Log which arguments are being grabbed.
+	DATA=4, ## Log which data is being generated from which port.
+	ARGUMENTS=8, ## Log which arguments are being grabbed.
+	THREADING=16, ## Log thread creation and process.
 }
 
 enum NodeType {
@@ -37,7 +38,7 @@ const CURRENT_SAVE_VERSION := 5
 @export_group("Debug")
 @export_custom(PROPERTY_HINT_GROUP_ENABLE, "feature") var debug_enabled: bool = false
 ## Selection of what to print in the Output console during generation. See [enum Log].
-@export_flags("Execute", "Traverse", "Data", "Args") var logging: int = Log.NONE
+@export_flags("Execute", "Traverse", "Data", "Arguments", "Threading") var logging: int = Log.NONE
 
 ## The current save version, used for migrating checks.
 @export_storage var save_version: int = -1
@@ -133,6 +134,27 @@ func _initialize() -> void:
 	notify_property_list_changed()
 
 	_initialized = true
+
+
+## Log debug text to the output depending of the debug setting.
+func have_log_enabled(category: GaeaGraph.Log) -> bool:
+	if not debug_enabled:
+		return false
+	if not logging & category > 0:
+		return false
+	return true
+
+
+func log(log_category: GaeaGraph.Log, text: String) -> void:
+	if have_log_enabled(log_category):
+		var prefix: String = GaeaGraph.Log.find_key(log_category) if GaeaGraph.Log.has(log_category) else "Unknown"
+		print("%s|      %s" % [prefix.capitalize().rpad(10), text])
+
+
+func log_lazy(log_category: GaeaGraph.Log, text: Callable) -> void:
+	if have_log_enabled(log_category):
+		var prefix: String = GaeaGraph.Log.find_key(log_category) if GaeaGraph.Log.has(log_category) else "Unknown"
+		print("%s|      %s" % [prefix.capitalize().rpad(10), text.call()])
 
 
 ## Adds a new [param node] to the graph at [param position], identifiable with [param id].

@@ -16,7 +16,11 @@ func _assert_output_grid_matches(
 	var pouch := GaeaGenerationPouch.new(generation_settings, area)
 	node._define_rng(0)
 
-	var generated_data: GaeaValue.GridType = node._get_data(output, null, pouch)
+	var graph: GaeaGraph = GaeaGraph.new()
+	graph.ensure_initialized()
+	graph.add_node(node, Vector2i.ZERO)
+
+	var generated_data: GaeaValue.GridType = node._get_data(output, graph, pouch)
 	assert_bool(is_instance_valid(generated_data))\
 		.override_failure_message(
 			"Invalid result from [b]%s[b]" % node.get_tree_name()

@@ -6,6 +6,11 @@ func before():
 
 
 func _assert_operation_result(args: Array[Variant], expected: float) -> void:
+	var pouch: GaeaGenerationPouch = GaeaGenerationPouch.new(GaeaGenerationSettings.new(), AABB())
+	var graph: GaeaGraph = GaeaGraph.new()
+	graph.ensure_initialized()
+	graph.add_node(node, Vector2i.ZERO)
+
 	for i in node.get_arguments_list().size():
 		if node.get_argument_type(node.get_arguments_list()[i]) == GaeaValue.Type.SAMPLE:
 			var sample := GaeaValue.Sample.new()
@@ -15,7 +20,7 @@ func _assert_operation_result(args: Array[Variant], expected: float) -> void:
 			sample.set_cell(Vector3i(0, 1, 0), args[i])
 			args[i] = sample
 		node.set_argument_value(node.get_arguments_list()[i], args[i])
-	var grid: GaeaValue.Sample = node._get_data(&"result", null, null)
+	var grid: GaeaValue.Sample = node._get_data(&"result", graph, pouch)
 	assert_bool(grid.is_empty())\
 		.override_failure_message("[b]GaeaNodeSampleOp[/b] returned an empty grid with operation [b]%s[/b]."
 			% GaeaNodeSampleOp.Operation.keys()[node.get_enum_selection(0)])\

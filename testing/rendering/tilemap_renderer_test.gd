@@ -17,7 +17,9 @@ func before() -> void:
 	runner = scene_runner(scene)
 
 
-func test_full_area() -> void:
+func test_full_area(multithreaded: bool = false) -> void:
+	renderer.reset()
+	scene.generator.multithreaded = multithreaded
 	scene.generator.generate()
 	await renderer.render_finished
 
@@ -44,11 +46,12 @@ func test_reset() -> void:
 		.is_empty()
 
 
-func test_small_area() -> void:
+func test_small_area(multithreaded: bool = false) -> void:
+	renderer.reset()
 	var area: AABB = AABB(Vector3.ZERO, Vector3.ONE * 16)
+	scene.generator.multithreaded = multithreaded
 	scene.generator.generate_area(area)
-	await scene.generator.generation_finished
-	
+	await renderer.render_finished
 
 	var grass_hash: int = renderer.tile_map_layers[0].get_used_cells_by_id(0, Vector2i(0, 0)).hash()
 	assert_int(grass_hash)\
@@ -74,3 +77,11 @@ func test_null_layer() -> void:
 	renderer.tile_map_layers[1] = null
 	assert_error(scene.generator.generate)\
 		.is_success()
+
+
+func test_full_area_multithreaded() -> void:
+	test_full_area(true)
+
+
+func test_small_area_multithreaded() -> void:
+	test_small_area(true)

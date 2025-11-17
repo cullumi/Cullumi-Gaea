@@ -1,3 +1,4 @@
+@tool
 class_name GaeaExecutionTask
 extends GaeaThreadTask
 
@@ -9,11 +10,11 @@ func _set_results(value) -> void:
 	_results_dict = value.get_grid_data()
 
 
-func _get_results() -> Variant:
+func _get_results() -> GaeaGrid:
 	return GaeaGrid.new(_results_dict)
 
 
-func _init(_description:String, _graph:GaeaGraph, _pouch:GaeaGenerationPouch):
-	var new_task = _graph.get_output_node().execute.bind(_graph, _pouch)
-	pouch = _pouch
-	super._init(new_task, _description)
+func _init(task_description: String, graph: GaeaGraph, generation_pouch: GaeaGenerationPouch):
+	var new_task = graph.get_output_node().execute.bind(graph, generation_pouch)
+	pouch = generation_pouch
+	super._init(new_task, task_description, graph.have_log_enabled(GaeaGraph.Log.THREADING))

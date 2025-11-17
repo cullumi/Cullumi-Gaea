@@ -557,76 +557,39 @@ func connection_idx_to_output(output_idx: int) -> StringName:
 
 
 #region Logging
-func _log(
-	prefix: String, text: String, log_category: GaeaGraph.Log, graph: GaeaGraph
-) -> void:
-	if not is_instance_valid(graph):
-		return
-
-	if not graph.debug_enabled:
-		return
-
-	if not graph.logging & log_category > 0:
-		return
-
-	prefix = prefix.rpad(10)
-
-	print("%s|      %s" % [prefix, text])
-
-
 # If enabled in [member GaeaGraph.logging], log the execution information. (See [enum GaeaGraph.Log]).
 func _log_execute(message: String, area: AABB, graph: GaeaGraph) -> void:
 	message = message.strip_edges()
 	message = message if message == "" else message + " "
-	_log(
-		"Execute",
-		"%sArea %s on %s" % [message, area, _get_title()],
-		GaeaGraph.Log.EXECUTE,
-		graph
-	)
+	graph.log(GaeaGraph.Log.EXECUTE, "%sArea %s on %s" % [message, area, _get_title()])
 
 # If enabled in [member GaeaGraph.logging], log the time it took to generate. (See [enum GaeaGraph.Log]).
 func _log_time(message: String, time: int, graph: GaeaGraph) -> void:
 	message = message.strip_edges()
 	message = message if message == "" else message + " "
-	_log(
-		"Execute",
-		"%stook %sms. on %s" % [message, time, _get_title()],
-		GaeaGraph.Log.EXECUTE,
-		graph
-	)
+	graph.log(GaeaGraph.Log.EXECUTE, "%stook %sms. on %s" % [message, time, _get_title()])
 
 
 # If enabled in [member GaeaGraph.logging], log the layer information. (See [enum GaeaGraph.Log]).
 func _log_layer(message: String, layer: int, graph: GaeaGraph) -> void:
 	message = message.strip_edges()
 	message = message if message == "" else message + " "
-	_log(
-		"Execute",
-		"%sLayer %d on %s" % [message, layer, _get_title()],
-		GaeaGraph.Log.EXECUTE,
-		graph
-	)
+	graph.log(GaeaGraph.Log.EXECUTE, "%sLayer %d on %s" % [message, layer, _get_title()])
 
 
 # If enabled in [member GaeaGraph.logging], log the traverse information. (See [enum GaeaGraph.Log]).
 func _log_traverse(graph: GaeaGraph) -> void:
-	_log("Traverse", _get_title(), GaeaGraph.Log.TRAVERSE, graph)
+	graph.log(GaeaGraph.Log.TRAVERSE, _get_title())
 
 
 ## If enabled in [member GaeaGraph.logging], log the data information. (See [enum GaeaGraph.Log]).
 func _log_data(output_port: StringName, graph: GaeaGraph) -> void:
-	_log("Data", "%s from port %s" % [_get_title(), output_port], GaeaGraph.Log.DATA, graph)
+	graph.log(GaeaGraph.Log.DATA, "%s from port %s" % [_get_title(), output_port])
 
 
 # If enabled in [member GaeaGraph.logging], log the argument information. (See [enum GaeaGraph.Log]).
 func _log_arg(arg: String, graph: GaeaGraph) -> void:
-	_log(
-		"Argument",
-		"%s on %s" % [arg, _get_title()],
-		GaeaGraph.Log.ARGS,
-		graph
-	)
+	graph.log(GaeaGraph.Log.ARGUMENTS, "%s on %s" % [arg, _get_title()])
 
 
 ## Display a error message in the Output log panel.

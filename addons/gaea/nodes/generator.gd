@@ -83,8 +83,11 @@ func generate() -> void:
 ## Generate an [param area] using the graph saved in [member graph].
 func generate_area(area: AABB) -> void:
 	var pouch: GaeaGenerationPouch = GaeaGenerationPouch.new(settings, area)
-	generation_finished.emit.call_deferred(graph.get_output_node().execute(graph, pouch))
-	pouch.clear_all_cache()
+
+	if not multithreaded:
+		generation_finished.emit.call_deferred(graph.get_output_node().execute(graph, pouch))
+		pouch.clear_all_cache()
+		return
 
 	if not _thread_pool:
 		_thread_pool = GaeaThreadPool.new(_execution_task_finished, task_limit)
@@ -105,7 +108,7 @@ func generate_area(area: AABB) -> void:
 func _execution_task_finished(task: GaeaThreadTask):
 	#assert(task_results is GaeaGraph)
 	var exec: GaeaExecutionTask = task as GaeaExecutionTask
-	print("Finishing execution, result has %d elements." % exec.results.get_grid_data().size())
+	graph.log_lazy(GaeaGraph.Log.THREADING, func(): return "Finishing execution, result has %d elements." % exec.results.get_grid_data().size())
 	generation_finished.emit.call_deferred(exec.results)
 	exec.pouch.clear_all_cache()
 

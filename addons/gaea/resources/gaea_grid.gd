@@ -10,7 +10,7 @@ var _grid: Dictionary[int, GaeaValue.Map]:
 	get = get_grid_data
 
 
-func _init(dictionary:Dictionary[int, GaeaValue.Map] = {}) -> void:
+func _init(dictionary: Dictionary[int, GaeaValue.Map] = {}) -> void:
 	_grid = dictionary
 
 ## Set the layer at [param idx] to the generated [param grid].
