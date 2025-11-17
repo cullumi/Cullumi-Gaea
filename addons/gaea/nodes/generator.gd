@@ -70,8 +70,8 @@ func _migrate_settings_property(property: StringName, value: Variant):
 	settings.set(property, value)
 
 
-## Start the generaton process. First resets the current generation, then generates the whole
-## [member world_size].
+## Start the generaton process. First resets the current generation, 
+## then generates the whole [member world_size].
 func generate() -> void:
 	about_to_generate.emit()
 	if settings.random_seed_on_generate:

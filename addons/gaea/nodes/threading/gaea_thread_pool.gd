@@ -73,6 +73,7 @@ func _execute(task: GaeaThreadTask = null):
 	if task == null:
 		# Wait till the task can be found using the current task id.
 		var task_id: int = WorkerThreadPool.get_caller_task_id()
+		
 		while not task:
 			_mutex.lock()
 			if _tasks.has(task_id):
@@ -80,6 +81,7 @@ func _execute(task: GaeaThreadTask = null):
 			_mutex.unlock()
 
 	# Execute
+	task.log_start_work()
 	var results = task.task.call()
 
 	# Pass back results

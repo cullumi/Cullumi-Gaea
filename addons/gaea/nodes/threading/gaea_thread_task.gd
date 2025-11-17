@@ -44,6 +44,11 @@ func log_run_time(multithreaded: bool = true):
 			print("Running %s immediately on %s thread" % [description, "side" if multithreaded else "main"])
 
 
+func log_start_work():
+	if log_enabled:
+		print.call_deferred("Working %s as task %d" % [description, WorkerThreadPool.get_caller_task_id()])
+
+
 func log_finish_time():
 	var finish_time = Time.get_unix_time_from_system()
 	if log_enabled:
