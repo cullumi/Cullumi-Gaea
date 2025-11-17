@@ -25,7 +25,7 @@ func _init(on_finished:Callable, _task_limit:int) -> void:
 
 
 func process() -> void:
-	_finish_completed_tasks()
+	#_finish_completed_tasks()
 	_run_queued_tasks()
 
 
@@ -33,16 +33,44 @@ func process() -> void:
 func _run_task(task:GaeaThreadTask):
 	if task.task:
 		task.log_run_time()
-
+		
+		# Wait a frame for the UI to update
+		var main_loop: SceneTree = Engine.get_main_loop()
+		await main_loop.process_frame
+		
 		# Spin up a task in the WorkerThreadPool.
 		task.task_id = WorkerThreadPool.add_task(
 			_execute,
 			false, task.description
 		)
-
-		# Only add to the task list if a task was made successfully.
+		
+		# Only wait on the task if it was made successfully.
 		if task.task_id != -1:
-			_tasks[task.task_id] = task
+			wait_on_task(task)
+
+
+## A coroutine that adds a task to the task list, wait on it's id, 
+## then passes it along to be finished.
+func wait_on_task(task: GaeaThreadTask):
+	_mutex.lock()
+	_tasks[task.task_id] = task
+	_mutex.unlock()
+	
+	print("Task running, awaiting task completion.")
+	
+	# Wait for task completion
+	var main_loop: SceneTree = Engine.get_main_loop()
+	while not WorkerThreadPool.is_task_completed(task.task_id):
+		await main_loop.process_frame
+	
+	print("Task completed, waiting on it.")
+	
+	# Wait on task, then finish it
+	WorkerThreadPool.wait_for_task_completion(task.task_id)
+	_mutex.lock()
+	_tasks.erase(task.task_id)
+	_mutex.unlock()
+	_finish_task(task)
 
 
 ## Sends a new [GaeaExecutionTask] to the [member _task_queue] if the [member _task_limit] has been reached.
@@ -91,13 +119,11 @@ func _execute(task: GaeaThreadTask = null):
 
 
 ## Finishes [GaeaExecutionTask]s as the [WorkerThreadPool] completes them.
-func _finish_completed_tasks():
-	for task_id in _tasks.keys():
-		if task_id != 0 and WorkerThreadPool.is_task_completed(task_id):
-			WorkerThreadPool.wait_for_task_completion(task_id)
-			var task: GaeaExecutionTask = _tasks[task_id]
-			_tasks.erase(task_id)
-			_finish_task(task)
+#func _finish_completed_tasks():
+	#for task_id in _tasks.keys():
+		#if task_id != 0 and WorkerThreadPool.is_task_completed(task_id):
+			#WorkerThreadPool.wait_for_task_completion(task_id)
+			#
 
 
 ## Emits [signal generation_finished] on the given [GaeaExecutionTask]
