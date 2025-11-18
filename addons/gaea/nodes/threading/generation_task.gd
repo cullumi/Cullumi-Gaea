@@ -1,6 +1,6 @@
 @tool
-class_name GaeaExecutionTask
-extends GaeaThreadTask
+class_name GaeaGenerationTask
+extends GaeaTask
 
 var pouch: GaeaGenerationPouch
 
@@ -10,8 +10,13 @@ func _set_results(value) -> void:
 	_results_dict = value.get_grid_data()
 
 
-func _get_results() -> GaeaGrid:
+func _get_results() -> Variant:
 	return GaeaGrid.new(_results_dict)
+
+
+func _on_cancel() -> void:
+	if is_instance_valid(pouch):
+		pouch.cancelled = true
 
 
 func _init(task_description: String, graph: GaeaGraph, generation_pouch: GaeaGenerationPouch):

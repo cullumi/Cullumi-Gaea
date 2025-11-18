@@ -1,40 +1,59 @@
 @tool
 extends PanelContainer
 
-var generate_button: Button
-var clear_button: Button
+var _generate_button: Button
+var _clear_button: Button
+
+var _generate_icon: Texture2D
+var _clear_icon: Texture2D
+var _cancel_icon: Texture2D
 
 var generator: GaeaGenerator
 
+var _generating: bool = false
+
 func _enter_tree() -> void:
+	_generate_icon = get_theme_icon(&"Play", &"EditorIcons")
+	_clear_icon = get_theme_icon(&"Remove", &"EditorIcons")
+	_cancel_icon = get_theme_icon(&"Stop", &"EditorIcons")
+	
 	var vbox := VBoxContainer.new()
 	add_child(vbox)
 	
-	generate_button = Button.new()
-	generate_button.text = "Generate"
-	generate_button.pressed.connect(_generate)
-	generator.generation_finished.connect(reset)
-
-	vbox.add_child(generate_button)
+	_generate_button = Button.new()
+	_generate_button.text = "Generate"
+	_generate_button.icon = _generate_icon
+	_generate_button.pressed.connect(_generate.bind(true))
+	generator.generation_started.connect(_generate.bind(false))
+	generator.generation_finished.connect(reset.unbind(1))
+	vbox.add_child(_generate_button)
 	
-	clear_button = Button.new()
-	clear_button.text = "Clear"
-	clear_button.pressed.connect(_clear)
-	vbox.add_child(clear_button)
+	_clear_button = Button.new()
+	_clear_button.text = "Clear"
+	_clear_button.icon = _clear_icon
+	_clear_button.pressed.connect(_clear)
+	generator.generation_cancelled.connect(reset)
+	vbox.add_child(_clear_button)
 
 
-func _generate() -> void:
-	print("Generating...")
-	generate_button.disabled = false
-	generate_button.queue_redraw()
-	generator.generate()
+func _generate(do_generate:bool=true) -> void:
+	_generating = true
+	_generate_button.disabled = true
+	_clear_button.text = "Cancel"
+	_clear_button.icon = _cancel_icon
+	if do_generate:
+		generator.generate()
 
 
 func _clear() -> void:
-	print("Clearing generator")
-	generator.request_reset()
+	if _generating:
+		generator.cancel_generation()
+	else:
+		generator.request_reset()
 
 
-func reset(_discrd) -> void:
-	print("Reset generator buttons %s" % (_discrd as GaeaGrid).get_layers_count())
-	generate_button.disabled = true
+func reset() -> void:
+	_generating = false
+	_generate_button.disabled = false
+	_clear_button.text = "Clear"
+	_clear_button.icon = _clear_icon

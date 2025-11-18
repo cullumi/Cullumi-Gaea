@@ -1,5 +1,5 @@
 @tool
-class_name GaeaThreadTask
+class_name GaeaTask
 extends RefCounted
 
 var task: Callable
@@ -9,7 +9,8 @@ var creation_time: float = -1
 var queued_time: float = -1
 var run_time: float = -1
 var log_enabled: bool = false
-var results: GaeaGrid:
+var cancelled: bool = false
+var results: Variant:
 	set = _set_results,
 	get = _get_results
 
@@ -25,8 +26,17 @@ func _set_results(value) -> void:
 	results = value
 
 
-func _get_results() -> GaeaGrid:
+func _get_results() -> Variant:
 	return results
+
+
+func cancel() -> void:
+	cancelled = true
+	_on_cancel()
+
+
+func _on_cancel() -> void:
+	pass
 
 
 func log_queued_time():
@@ -52,10 +62,12 @@ func log_start_work():
 func log_finish_time():
 	var finish_time = Time.get_unix_time_from_system()
 	if log_enabled:
-		if run_time >= 0:
-			print(
-				"Finished %s after %.2d seconds in WorkerThreadPool. Total lifetime %.2d seconds" %
-				[description, finish_time - run_time, finish_time - creation_time]
-			)
-		else:
-			print("Finished %s after %.2d seconds." % [description, finish_time - creation_time])
+		var has_run_time := run_time >= 0
+		var start_time = run_time if has_run_time else creation_time
+		print("Finished %s after %.2d seconds%s. %s" %
+		[
+			description,
+			finish_time - start_time,
+			" in WorkerThreadPool" if has_run_time else "",
+			"(Canceled)" if cancel else ""
+		])
