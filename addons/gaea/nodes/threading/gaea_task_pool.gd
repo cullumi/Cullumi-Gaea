@@ -49,34 +49,34 @@ func cancel_all():
 func _run_task(task:GaeaTask):
 	if task.task:
 		task.log_run_time()
-		
+
 		# Wait a frame for the UI to update
 		var main_loop: SceneTree = Engine.get_main_loop()
 		await main_loop.process_frame
-		
+
 		# Spin up a task in the WorkerThreadPool.
 		task.task_id = WorkerThreadPool.add_task(
 			_execute,
 			false, task.description
 		)
-		
+
 		# Only wait on the task if it was made successfully.
 		if task.task_id != -1:
 			_wait_on_task(task)
 
 
-## A coroutine that adds a task to the task list, wait on it's id, 
+## A coroutine that adds a task to the task list, wait on it's id,
 ## then passes it along to be finished.
 func _wait_on_task(task: GaeaTask):
 	_mutex_tasks.lock()
 	_tasks[task.task_id] = task
 	_mutex_tasks.unlock()
-	
+
 	# Wait for task completion
 	var main_loop: SceneTree = Engine.get_main_loop()
 	while not WorkerThreadPool.is_task_completed(task.task_id):
 		await main_loop.process_frame
-	
+
 	# Wait on task, then finish it
 	WorkerThreadPool.wait_for_task_completion(task.task_id)
 	_mutex_tasks.lock()
@@ -113,7 +113,7 @@ func _execute(task: GaeaTask = null):
 	if task == null:
 		# Wait till the task can be found using the current task id.
 		var task_id: int = WorkerThreadPool.get_caller_task_id()
-		
+
 		while not task:
 			_mutex_tasks.lock()
 			if _tasks.has(task_id):
@@ -130,18 +130,10 @@ func _execute(task: GaeaTask = null):
 	_mutex_tasks.unlock()
 
 
-## Finishes [GaeaGenerationTask]s as the [WorkerThreadPool] completes them.
-#func _finish_completed_tasks():
-	#for task_id in _tasks.keys():
-		#if task_id != 0 and WorkerThreadPool.is_task_completed(task_id):
-			#WorkerThreadPool.wait_for_task_completion(task_id)
-			#
-
-
 ## Emits [signal generation_finished] on the given [GaeaGenerationTask]
 func _finish_task(task: GaeaTask):
 	task.log_finish_time()
-	
+
 	if not task.cancelled:
 		finished.emit(task)
 
