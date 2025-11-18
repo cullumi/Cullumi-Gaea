@@ -1,6 +1,8 @@
 @tool
 extends PanelContainer
 
+var generator: GaeaGenerator
+
 var _generate_button: Button
 var _clear_button: Button
 
@@ -8,18 +10,16 @@ var _generate_icon: Texture2D
 var _clear_icon: Texture2D
 var _cancel_icon: Texture2D
 
-var generator: GaeaGenerator
-
 var _generating: bool = false
 
 func _enter_tree() -> void:
 	_generate_icon = get_theme_icon(&"Play", &"EditorIcons")
 	_clear_icon = get_theme_icon(&"Remove", &"EditorIcons")
 	_cancel_icon = get_theme_icon(&"Stop", &"EditorIcons")
-	
+
 	var vbox := VBoxContainer.new()
 	add_child(vbox)
-	
+
 	_generate_button = Button.new()
 	_generate_button.text = "Generate"
 	_generate_button.icon = _generate_icon
@@ -27,7 +27,7 @@ func _enter_tree() -> void:
 	generator.generation_started.connect(_generate.bind(false))
 	generator.generation_finished.connect(reset.unbind(1))
 	vbox.add_child(_generate_button)
-	
+
 	_clear_button = Button.new()
 	_clear_button.text = "Clear"
 	_clear_button.icon = _clear_icon

@@ -25,5 +25,5 @@ func _parse_category(object: Object, category: String) -> void:
 	if object is GaeaGenerator and category == &"generator.gd":
 		var generator_buttons := GeneratorButtons.new()
 		generator_buttons.generator = object
-		
+
 		add_custom_control(generator_buttons)
