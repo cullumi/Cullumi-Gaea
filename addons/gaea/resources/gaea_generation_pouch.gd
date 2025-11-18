@@ -4,6 +4,13 @@ extends RefCounted
 
 ## Class used to handle various data during generation like generated area, seed and cache.
 
+
+## Cancellation token used to notify the [GaeaGraph] and any nodes within
+## that their results are no longer needed and will be discarded by the [GaeaTaskPool].
+## Cancellation does nothing unless it is explicitly handled.
+## Cancellation is not intended to be undone and is final.
+var cancelled: bool = false
+
 ## Area to generate.
 var area: AABB: get = get_area
 
@@ -13,12 +20,6 @@ var settings: GaeaGenerationSettings: get = get_settings
 ## Cache used during generation to avoid recalculating data unnecessarily.
 ## The inner dictionary keys are the slot output port names, and the values are the cached data.
 var _cache: Dictionary[GaeaNodeResource, Dictionary] = {}
-
-## Cancellation token used to notify the [GaeaGraph] and any nodes within
-## that their results are no longer needed and will be discarded by the [GaeaTaskPool].
-## Cancellation does nothing unless it is explicitly handled.
-## Cancellation is not intended to be undone and is final.
-var cancelled: bool = false
 
 
 func _init(generation_settings: GaeaGenerationSettings, generation_area: AABB) -> void:

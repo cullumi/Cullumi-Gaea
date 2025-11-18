@@ -9,6 +9,7 @@ const test_scene = "uid://dh5c2eomfri6n"
 func test_has_generated() -> void:
 	var scene : GaeaGenerationTester = load(test_scene).instantiate()
 	var _runner := scene_runner(scene)
+	scene.gaea_generator.multithreaded = false
 	await scene.test_generation()
 	first_grid = scene.last_grid
 	generator_seed = scene.gaea_generator.settings.seed
@@ -18,6 +19,21 @@ func test_has_generated() -> void:
 func test_generations_match() -> void:
 	var scene : GaeaGenerationTester = load(test_scene).instantiate()
 	var _runner := scene_runner(scene)
+	scene.gaea_generator.multithreaded = false
+	await scene.test_generation()
+	var second_grid: GaeaGrid = scene.last_grid
+	assert_that(generator_seed).is_equal(scene.gaea_generator.settings.seed)
+	for layer_idx in first_grid.get_layers_count():
+		assert_bool(
+			first_grid.get_layer(layer_idx)._grid == second_grid.get_layer(layer_idx)._grid
+		).is_true()
+
+
+func test_multithreaded_generations_match() -> void:
+	var scene : GaeaGenerationTester = load(test_scene).instantiate()
+	var _runner := scene_runner(scene)
+	scene.gaea_generator.multithreaded = true
+	scene.gaea_generator.task_limit = 0
 	await scene.test_generation()
 	var second_grid: GaeaGrid = scene.last_grid
 	assert_that(generator_seed).is_equal(scene.gaea_generator.settings.seed)

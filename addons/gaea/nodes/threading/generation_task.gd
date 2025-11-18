@@ -6,6 +6,7 @@ var pouch: GaeaGenerationPouch
 
 var _results_dict: Dictionary[int, GaeaValue.Map]
 
+
 func _set_results(value) -> void:
 	_results_dict = value.get_grid_data()
 
