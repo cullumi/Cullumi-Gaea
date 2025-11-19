@@ -13,6 +13,7 @@ var _grid: Dictionary[int, GaeaValue.Map]:
 func _init(dictionary: Dictionary[int, GaeaValue.Map] = {}) -> void:
 	_grid = dictionary
 
+
 ## Set the layer at [param idx] to the generated [param grid].
 ## Sets it to an empty grid if [param resource] is disabled (see [member GaeaLayer.enabled]).
 func add_layer(idx: int, grid: GaeaValue.Map, resource: GaeaLayer) -> void:
@@ -22,13 +23,16 @@ func add_layer(idx: int, grid: GaeaValue.Map, resource: GaeaLayer) -> void:
 
 	_grid[idx] = grid
 
+
 ## Get the grid at layer [param idx],
 func get_layer(idx: int) -> GaeaValue.Map:
 	return _grid.get(idx)
 
+
 ## Get the amount of layers the grid has.
 func get_layers_count() -> int:
 	return _grid.size()
+
 
 func get_grid_data() -> Dictionary[int, GaeaValue.Map]:
 	return _grid

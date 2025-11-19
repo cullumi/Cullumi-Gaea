@@ -145,16 +145,22 @@ func is_log_enabled(category: GaeaGraph.Log) -> bool:
 	return true
 
 
+## Print debug text to the output within the category.
+static func print_log(log_category: GaeaGraph.Log, text: String) -> void:
+	var prefix: String = GaeaGraph.Log.find_key(log_category) if GaeaGraph.Log.values().has(log_category) else "Unknown"
+	print("%s|      %s" % [prefix.capitalize().rpad(10), text])
+
+
+## Helper method to display debug text if enabled.
 func log(log_category: GaeaGraph.Log, text: String) -> void:
 	if is_log_enabled(log_category):
-		var prefix: String = GaeaGraph.Log.find_key(log_category) if GaeaGraph.Log.has(log_category) else "Unknown"
-		print("%s|      %s" % [prefix.capitalize().rpad(10), text])
+		print_log(log_category, text)
 
 
+## Helper method to display debug text if enabled. The [member text] callable need to return a string.
 func log_lazy(log_category: GaeaGraph.Log, text: Callable) -> void:
 	if is_log_enabled(log_category):
-		var prefix: String = GaeaGraph.Log.find_key(log_category) if GaeaGraph.Log.has(log_category) else "Unknown"
-		print("%s|      %s" % [prefix.capitalize().rpad(10), text.call()])
+		print_log(log_category, text.call())
 
 
 ## Adds a new [param node] to the graph at [param position], identifiable with [param id].
