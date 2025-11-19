@@ -17,17 +17,25 @@ var _queued: Array[GaeaTask] = []
 var _tasks: Dictionary[int, GaeaTask] = {}
 ## For locking shared data; enables proper setting of [ExecutionTask] results.
 var _mutex_tasks: Mutex = Mutex.new()
+var _main_loop: SceneTree :
+	get = _get_main_loop
 
 
 func _init(on_finished:Callable, _task_limit:int = 0) -> void:
 	if finished:
 		finished.connect(on_finished)
 	task_limit = _task_limit
+	_get_main_loop()
 
 
-func process() -> void:
-	#_finish_completed_tasks()
+func _process() -> void:
 	_run_queued_tasks()
+
+func _get_main_loop() -> SceneTree:
+	if (_main_loop == null):
+		_main_loop = Engine.get_main_loop()
+		_get_main_loop().process_frame.connect(_process)
+	return _main_loop
 
 
 func cancel(task:GaeaTask):
@@ -51,8 +59,7 @@ func _run_task(task:GaeaTask):
 		task.log_run_time()
 
 		# Wait a frame for the UI to update
-		var main_loop: SceneTree = Engine.get_main_loop()
-		await main_loop.process_frame
+		await _main_loop.process_frame
 
 		# Spin up a task in the WorkerThreadPool.
 		task.task_id = WorkerThreadPool.add_task(
@@ -73,9 +80,8 @@ func _wait_on_task(task: GaeaTask):
 	_mutex_tasks.unlock()
 
 	# Wait for task completion
-	var main_loop: SceneTree = Engine.get_main_loop()
 	while not WorkerThreadPool.is_task_completed(task.task_id):
-		await main_loop.process_frame
+		await _main_loop.process_frame
 
 	# Wait on task, then finish it
 	WorkerThreadPool.wait_for_task_completion(task.task_id)

@@ -121,11 +121,6 @@ func _execution_task_finished(task: GaeaTask):
 	exec.pouch.clear_all_cache()
 
 
-func _process(_delta: float) -> void:
-	if is_instance_valid(_task_pool):
-		_task_pool.process()
-
-
 ## Emits [signal area_erased]. Does nothing by itself, but notifies [GaeaRenderer]s that they should
 ## erase the points of [param area].
 func request_area_erasure(area: AABB) -> void:
