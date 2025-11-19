@@ -13,6 +13,11 @@ var _cancel_icon: Texture2D
 
 var _generating: bool = false
 
+var _gen_pressed_call = _generate.bind(true)
+var _gen_started_call = _generate.bind(false)
+var _gen_finished_call = reset.unbind(1)
+
+
 func _enter_tree() -> void:
 	_generate_icon = get_theme_icon(&"Play", &"EditorIcons")
 	_clear_icon = get_theme_icon(&"Remove", &"EditorIcons")
@@ -24,9 +29,9 @@ func _enter_tree() -> void:
 	_generate_button = Button.new()
 	_generate_button.text = "Generate"
 	_generate_button.icon = _generate_icon
-	_generate_button.pressed.connect(_generate.bind(true))
-	generator.generation_started.connect(_generate.bind(false))
-	generator.generation_finished.connect(reset.unbind(1))
+	_generate_button.pressed.connect(_gen_pressed_call)
+	generator.generation_started.connect(_gen_started_call)
+	generator.generation_finished.connect(_gen_finished_call)
 	vbox.add_child(_generate_button)
 
 	_clear_button = Button.new()
@@ -35,6 +40,14 @@ func _enter_tree() -> void:
 	_clear_button.pressed.connect(_clear)
 	generator.generation_cancelled.connect(reset)
 	vbox.add_child(_clear_button)
+
+
+func _exit_tree() -> void:
+	_generate_button.pressed.disconnect(_gen_pressed_call)
+	generator.generation_started.disconnect(_gen_started_call)
+	generator.generation_finished.disconnect(_gen_finished_call)
+	_clear_button.pressed.disconnect(_clear)
+	generator.generation_cancelled.disconnect(reset)
 
 
 func _generate(do_generate: bool = true) -> void:

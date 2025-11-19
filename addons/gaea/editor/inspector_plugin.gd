@@ -21,6 +21,7 @@ func _parse_begin(object: Object) -> void:
 		gradient_visualizer.update()
 		object.points_sorted.connect(gradient_visualizer.update)
 
+
 func _parse_category(object: Object, category: String) -> void:
 	if object is GaeaGenerator and category == &"generator.gd":
 		var generator_buttons := GeneratorButtons.new()
