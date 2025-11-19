@@ -32,8 +32,9 @@ signal area_erased(area: AABB)
 
 @export var settings: GaeaGenerationSettings
 
+@export_group("Multi-Threading")
 ## Whether this generator should block the main thread.
-@export var multithreaded: bool = true
+@export_custom(PROPERTY_HINT_GROUP_ENABLE, "feature") var multithreaded: bool = true
 
 ## The max number of this generator's [GaeaGenerationTask]s that can running in the [WorkerThreadPool] at once.
 ## All extra tasks will be queued to start as soon as room becomes available.
@@ -43,6 +44,7 @@ signal area_erased(area: AABB)
 		task_limit = value
 		if is_instance_valid(_task_pool):
 			_task_pool.task_limit = value
+
 
 ## The thread pool used by the Generator to perform tasks on multiple threads,
 ## with the help of the built-in [WorkerThreadPool].
