@@ -19,7 +19,7 @@ var _gen_finished_call = reset.unbind(1)
 
 
 func _enter_tree() -> void:
-	_generate_icon = get_theme_icon(&"Play", &"EditorIcons")
+	_generate_icon = get_theme_icon(&"Reload", &"EditorIcons")
 	_clear_icon = get_theme_icon(&"Remove", &"EditorIcons")
 	_cancel_icon = get_theme_icon(&"Stop", &"EditorIcons")
 
