@@ -1,4 +1,5 @@
 @tool
+class_name GaeaGeneratorButtons
 extends PanelContainer
 
 var generator: GaeaGenerator
@@ -36,7 +37,7 @@ func _enter_tree() -> void:
 	vbox.add_child(_clear_button)
 
 
-func _generate(do_generate:bool=true) -> void:
+func _generate(do_generate: bool = true) -> void:
 	_generating = true
 	_generate_button.disabled = true
 	_clear_button.text = "Cancel"

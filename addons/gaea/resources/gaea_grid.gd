@@ -30,5 +30,5 @@ func get_layer(idx: int) -> GaeaValue.Map:
 func get_layers_count() -> int:
 	return _grid.size()
 
-func  get_grid_data() -> Dictionary[int, GaeaValue.Map]:
+func get_grid_data() -> Dictionary[int, GaeaValue.Map]:
 	return _grid

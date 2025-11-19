@@ -23,4 +23,4 @@ func _on_cancel() -> void:
 func _init(task_description: String, graph: GaeaGraph, generation_pouch: GaeaGenerationPouch):
 	var new_task = graph.get_output_node().execute.bind(graph, generation_pouch)
 	pouch = generation_pouch
-	super._init(new_task, task_description, graph.have_log_enabled(GaeaGraph.Log.THREADING))
+	super._init(new_task, task_description, graph.is_log_enabled(GaeaGraph.Log.THREADING))

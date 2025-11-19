@@ -5,9 +5,10 @@ extends RefCounted
 var task: Callable
 var task_id: int = -1
 var description: String
-var creation_time: float = -1
-var queued_time: float = -1
-var run_time: float = -1
+var creation_time: float = -1.0
+var queued_time: float = -1.0
+var run_time: float = -1.0
+var finish_time: float = -1.0
 var log_enabled: bool = false
 var cancelled: bool = false
 var results: Variant:
@@ -15,7 +16,7 @@ var results: Variant:
 	get = _get_results
 
 
-func _init(_task:Callable, _description:String, enable_log: bool = false):
+func _init(_task: Callable, _description: String, enable_log: bool = false):
 	task = _task
 	description = _description
 	creation_time = Time.get_unix_time_from_system()
@@ -60,7 +61,7 @@ func log_start_work():
 
 
 func log_finish_time():
-	var finish_time = Time.get_unix_time_from_system()
+	finish_time = Time.get_unix_time_from_system()
 	if log_enabled:
 		var has_run_time := run_time >= 0
 		var start_time = run_time if has_run_time else creation_time

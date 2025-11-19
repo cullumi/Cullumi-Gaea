@@ -37,15 +37,15 @@ signal area_erased(area: AABB)
 
 ## The max number of this generator's [GaeaGenerationTask]s that can running in the [WorkerThreadPool] at once.
 ## All extra tasks will be queued to start as soon as room becomes available.
-## A value of Zero means there will be no queue, and all tasks will be sent to the [WorkerThreadPool] immediately.
+## A value of [code]0[/code] means there will be no queue, and all tasks will be sent to the [WorkerThreadPool] immediately.
 @export_range(0, 50, 1) var task_limit: int = 0 :
 	set(value):
 		task_limit = value
-		if _task_pool:
+		if is_instance_valid(_task_pool):
 			_task_pool.task_limit = value
 
 ## The thread pool used by the Generator to perform tasks on multiple threads,
-## with the help fo the builtin [WorkerThreadPool].
+## with the help of the built-in [WorkerThreadPool].
 @onready var _task_pool: GaeaTaskPool
 
 
@@ -120,7 +120,7 @@ func _execution_task_finished(task: GaeaTask):
 
 
 func _process(_delta: float) -> void:
-	if _task_pool:
+	if is_instance_valid(_task_pool):
 		_task_pool.process()
 
 

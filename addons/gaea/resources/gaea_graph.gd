@@ -137,7 +137,7 @@ func _initialize() -> void:
 
 
 ## Log debug text to the output depending of the debug setting.
-func have_log_enabled(category: GaeaGraph.Log) -> bool:
+func is_log_enabled(category: GaeaGraph.Log) -> bool:
 	if not debug_enabled:
 		return false
 	if not logging & category > 0:
@@ -146,13 +146,13 @@ func have_log_enabled(category: GaeaGraph.Log) -> bool:
 
 
 func log(log_category: GaeaGraph.Log, text: String) -> void:
-	if have_log_enabled(log_category):
+	if is_log_enabled(log_category):
 		var prefix: String = GaeaGraph.Log.find_key(log_category) if GaeaGraph.Log.has(log_category) else "Unknown"
 		print("%s|      %s" % [prefix.capitalize().rpad(10), text])
 
 
 func log_lazy(log_category: GaeaGraph.Log, text: Callable) -> void:
-	if have_log_enabled(log_category):
+	if is_log_enabled(log_category):
 		var prefix: String = GaeaGraph.Log.find_key(log_category) if GaeaGraph.Log.has(log_category) else "Unknown"
 		print("%s|      %s" % [prefix.capitalize().rpad(10), text.call()])
 
