@@ -56,6 +56,6 @@ func _get_data(_output_port: StringName, graph: GaeaGraph, pouch: GaeaGeneration
 ## in the output.
 @abstract
 func _passes_filter(
-	input_sample: GaeaValue.GridType, cell: Vector3i, 
+	input_sample: GaeaValue.GridType, cell: Vector3i,
 	args: Dictionary[StringName, Variant], pouch: GaeaGenerationPouch
 ) -> bool

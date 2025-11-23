@@ -109,7 +109,7 @@ func _get_data(_output_port: StringName, graph: GaeaGraph, pouch: GaeaGeneration
 	var result: GaeaValue.Map = GaeaValue.Map.new()
 
 	var rules: Dictionary = _get_arg(&"rules", graph, pouch)
-	
+
 	var rng = _get_rng(pouch)
 
 	material = material.prepare_sample(rng)
