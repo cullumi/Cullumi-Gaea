@@ -489,6 +489,10 @@ func _get_arg(arg_name: StringName, graph: GaeaGraph, pouch: GaeaGenerationPouch
 func traverse(output_port: StringName, graph: GaeaGraph, pouch: GaeaGenerationPouch) -> Variant:
 	_log_traverse(graph)
 
+	# Cancellation
+	if pouch.cancelled:
+		return {}
+
 	# Validation
 	if not _has_inputs_connected(_get_required_arguments(), graph):
 		return {}
