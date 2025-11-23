@@ -53,7 +53,7 @@ func log_run_time(multithreaded: bool = true):
 	run_time = Time.get_ticks_msec()
 	if log_enabled:
 		if queued_time != -1:
-			GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Running %s after %.0f miliseconds in queue" % [
+			GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Running %s after %.0f ms in queue" % [
 				description,
 				(run_time - queued_time)
 			])
@@ -77,7 +77,7 @@ func log_finish_time():
 	if log_enabled:
 		var has_run_time := run_time >= 0
 		var start_time = run_time if has_run_time else creation_time
-		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Finished %s after %.0f miliseconds%s. Total lifetime %.0f miliseconds. %s" %
+		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Finished %s after %.0f ms%s. Total lifetime %.0f ms. %s" %
 		[
 			description,
 			(finish_time - start_time),
