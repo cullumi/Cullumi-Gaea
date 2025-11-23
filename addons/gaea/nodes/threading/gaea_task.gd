@@ -19,7 +19,7 @@ var results: Variant:
 func _init(_task: Callable, _description: String, enable_log: bool = false):
 	task = _task
 	description = _description
-	creation_time = Time.get_unix_time_from_system()
+	creation_time = Time.get_ticks_msec()
 	log_enabled = enable_log
 
 
@@ -41,21 +41,21 @@ func _on_cancel() -> void:
 
 
 func log_queued_time():
-	queued_time = Time.get_unix_time_from_system()
+	queued_time = Time.get_ticks_msec()
 	if log_enabled:
-		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Queued %s at time %d" % [
+		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Queued %s at time %.2f" % [
 			description,
-			queued_time
+			queued_time / 1000
 		])
 
 
 func log_run_time(multithreaded: bool = true):
-	run_time = Time.get_unix_time_from_system()
+	run_time = Time.get_ticks_msec()
 	if log_enabled:
 		if queued_time != -1:
-			GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Running %s after %.2d seconds in queue" % [
+			GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Running %s after %.0f miliseconds in queue" % [
 				description,
-				run_time - queued_time
+				(run_time - queued_time)
 			])
 		else:
 			GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Running %s immediately on %s thread" % [
@@ -73,14 +73,15 @@ func log_start_work():
 
 
 func log_finish_time():
-	finish_time = Time.get_unix_time_from_system()
+	finish_time = Time.get_ticks_msec()
 	if log_enabled:
 		var has_run_time := run_time >= 0
 		var start_time = run_time if has_run_time else creation_time
-		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Finished %s after %.2d seconds%s. %s" %
+		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Finished %s after %.0f miliseconds%s. Total lifetime %.0f miliseconds. %s" %
 		[
 			description,
-			finish_time - start_time,
+			(finish_time - start_time),
 			" in WorkerThreadPool" if has_run_time else "",
+			(finish_time - creation_time),
 			"(Canceled)" if cancel else ""
 		])
