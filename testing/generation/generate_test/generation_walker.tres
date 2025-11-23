@@ -112,7 +112,6 @@ script = ExtResource("4_l0sp8")
 metadata/_custom_type_script = "uid://3qsmwhn2sk47"
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("5_a3tep")
 layers = Array[ExtResource("4_l0sp8")]([SubResource("Resource_cvc88"), SubResource("Resource_hvaua"), SubResource("Resource_nmtgh")])
 save_version = 5

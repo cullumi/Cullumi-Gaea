@@ -13,6 +13,7 @@ func _assert_output_grid_matches(
 		node.set_argument_value(arg_name, args[arg_name])
 
 	generation_settings = GaeaGenerationSettings.new()
+	generation_settings.seed = 0
 	var pouch := GaeaGenerationPouch.new(generation_settings, area)
 	pouch.settings.seed = 0
 	node._define_rng(pouch)
