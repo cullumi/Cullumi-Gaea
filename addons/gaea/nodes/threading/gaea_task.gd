@@ -40,11 +40,11 @@ func _on_cancel() -> void:
 	pass
 
 
-func compare(other: GaeaTask) -> bool:
-	return _compare(other)
+func equals(other: GaeaTask) -> bool:
+	return _equals(other)
 
 
-func _compare(other: GaeaTask) -> bool:
+func _equals(other: GaeaTask) -> bool:
 	return task == other.task
 
 

@@ -15,8 +15,8 @@ func _get_results() -> Variant:
 	return GaeaGrid.new(_results_dict)
 
 
-func _compare(other: GaeaTask) -> bool:
-	return pouch.area == other.pouch.area and super._compare(other)
+func _equals(other: GaeaTask) -> bool:
+	return pouch.area == other.pouch.area and super._equals(other)
 
 
 func _on_cancel() -> void:

@@ -115,10 +115,10 @@ func _wait_on_task(task: GaeaTask):
 ## if one is queued or running.
 func _find_duplicate(task: GaeaTask) -> GaeaTask:
 	for other in _queued:
-		if not other.cancelled and task.compare(other):
+		if not other.cancelled and task.equals(other):
 			return other
 	for other in _tasks.values():
-		if not other.cancelled and task.compare(other):
+		if not other.cancelled and task.equals(other):
 			return other
 	return null
 
