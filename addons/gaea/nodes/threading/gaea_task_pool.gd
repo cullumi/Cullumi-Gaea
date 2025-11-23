@@ -58,9 +58,6 @@ func _run_task(task:GaeaTask):
 	if task.task:
 		task.log_run_time()
 
-		# Wait a frame for the UI to update
-		await _main_loop.process_frame
-
 		# Spin up a task in the WorkerThreadPool.
 		task.task_id = WorkerThreadPool.add_task(
 			_execute,
