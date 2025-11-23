@@ -83,5 +83,5 @@ func log_finish_time():
 			(finish_time - start_time),
 			" in WorkerThreadPool" if has_run_time else "",
 			(finish_time - creation_time),
-			"(Canceled)" if cancel else ""
+			"(Canceled)" if cancelled else ""
 		])
