@@ -58,7 +58,7 @@ func test_multithreaded_discard_new() -> void:
 	var _runner := scene_runner(scene)
 	scene.gaea_generator.task_pool.multithreaded = true
 	scene.gaea_generator.task_pool.task_limit = 0
-	scene.gaea_generator.task_pool.duplication_strategy = GaeaTaskPool.DeDuplicationStrategy.DropNew
+	scene.gaea_generator.task_pool.duplication_strategy = GaeaTaskPool.DeDuplicationStrategy.DROP_NEW
 	await scene.test_generation(generator_seed, 2)
 
 	var cancellation = scene.last_cancelled
@@ -80,7 +80,7 @@ func test_multithreaded_discard_existing() -> void:
 	var _runner := scene_runner(scene)
 	scene.gaea_generator.task_pool.multithreaded = true
 	scene.gaea_generator.task_pool.task_limit = 0
-	scene.gaea_generator.task_pool.duplication_strategy = GaeaTaskPool.DeDuplicationStrategy.DropExisting
+	scene.gaea_generator.task_pool.duplication_strategy = GaeaTaskPool.DeDuplicationStrategy.DROP_EXISTING
 	await scene.test_generation(generator_seed, 2)
 
 	var cancellation = scene.last_cancelled

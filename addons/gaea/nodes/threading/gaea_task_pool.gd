@@ -9,7 +9,7 @@ signal task_discarded(results:GaeaTask)
 signal task_cancelled(results:GaeaTask)
 
 
-enum DeDuplicationStrategy { None, DropNew, DropExisting }
+enum DeDuplicationStrategy { NONE, DROP_NEW, DROP_EXISTING }
 
 
 @export_group("Multi-Threading")
