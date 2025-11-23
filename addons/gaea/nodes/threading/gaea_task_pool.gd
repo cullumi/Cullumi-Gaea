@@ -22,7 +22,7 @@ var _main_loop: SceneTree :
 
 
 func _init(on_finished: Callable, _task_limit: int = 0) -> void:
-	if is_instance_valid(on_finished) and on_finished.is_valid():
+	if on_finished.is_valid():
 		finished.connect(on_finished)
 	task_limit = _task_limit
 	_get_main_loop()
