@@ -48,6 +48,8 @@ func _get_data(_output_port: StringName, graph: GaeaGraph, pouch: GaeaGeneration
 	cells_to_place_on.shuffle()
 	cells_to_place_on.resize(mini(_get_arg(&"amount", graph, pouch), cells_to_place_on.size()))
 
+	var rng = _get_rng(pouch)
+
 	material = material.prepare_sample(rng)
 	if not is_instance_valid(material):
 		material = _get_arg(&"material", graph, pouch)

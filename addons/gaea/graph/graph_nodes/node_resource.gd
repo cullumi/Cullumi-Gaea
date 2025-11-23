@@ -63,8 +63,6 @@ var enum_selections: Array
 ## An additional value added to the generation's seed to prevent
 ## duplicates of the same node from having the same randomness. (See [member GaeaGenerator.seed]).
 var salt: int = 0
-## The RandomNumberGenerator that gets defined every time data is asked of this node.
-var rng: RandomNumberGenerator
 ## Id in the [GaeaGraph] save data.
 var id: int = 0
 ## If empty, [method _get_title] will be used instead.
@@ -761,10 +759,15 @@ func _get_seed(pouch: GaeaGenerationPouch) -> int:
 
 
 func _define_rng(pouch: GaeaGenerationPouch) -> void:
-	rng = RandomNumberGenerator.new()
+	var rng = RandomNumberGenerator.new()
 	rng.set_seed(_get_seed(pouch))
+	pouch.rng[self] = rng
 	seed(rng.seed)
 #endregion
+
+
+func _get_rng(pouch: GaeaGenerationPouch) -> RandomNumberGenerator:
+	return pouch.rng[self]
 
 
 func load_save_data(saved_data: Dictionary) -> void:

@@ -113,7 +113,6 @@ func cancel_generation():
 
 ## Emits [signal generation_finished] on the given results of the given [GaeaGenerationTask]
 func _execution_task_finished(task: GaeaTask):
-	#assert(task_results is GaeaGraph)
 	var exec: GaeaGenerationTask = task as GaeaGenerationTask
 	graph.log_lazy(GaeaGraph.Log.THREADING, func():
 		return "Finishing execution, result has %d elements." % exec.results.get_grid_data().size()

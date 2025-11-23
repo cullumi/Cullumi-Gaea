@@ -28,7 +28,8 @@ func _get_output_port_type(_output_name: StringName) -> GaeaValue.Type:
 
 
 func _passes_filter(
-	input_sample: GaeaValue.GridType, cell: Vector3i, args: Dictionary[StringName, Variant]
+	input_sample: GaeaValue.GridType, cell: Vector3i, 
+	args: Dictionary[StringName, Variant], _pouch: GaeaGenerationPouch
 ) -> bool:
 	var range_value: Dictionary = args.get(&"range", {})
 	var cell_value = input_sample.get_cell(cell)

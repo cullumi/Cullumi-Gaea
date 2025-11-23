@@ -155,6 +155,8 @@ func _get_data(_output_port: StringName, graph: GaeaGraph, pouch: GaeaGeneration
 
 	_add_walker(starting_position, walkers)
 
+	var rng = _get_rng(pouch)
+
 	while iterations < 10000 and walked_cells.size() < max_cells:
 		for walker in walkers:
 			if rng.randf() <= destroy_walker_chance and walkers.size() > 1:

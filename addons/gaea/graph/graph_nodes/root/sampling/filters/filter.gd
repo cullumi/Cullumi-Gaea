@@ -45,7 +45,7 @@ func _get_data(_output_port: StringName, graph: GaeaGraph, pouch: GaeaGeneration
 		args.set(arg, _get_arg(arg, graph, pouch))
 
 	for cell: Vector3i in input_sample.get_cells():
-		if _passes_filter(input_sample, cell, args):
+		if _passes_filter(input_sample, cell, args, pouch):
 			new_data.set_cell(cell, input_sample.get_cell(cell))
 
 	return new_data
@@ -56,5 +56,6 @@ func _get_data(_output_port: StringName, graph: GaeaGraph, pouch: GaeaGeneration
 ## in the output.
 @abstract
 func _passes_filter(
-	input_sample: GaeaValue.GridType, cell: Vector3i, args: Dictionary[StringName, Variant]
+	input_sample: GaeaValue.GridType, cell: Vector3i, 
+	args: Dictionary[StringName, Variant], pouch: GaeaGenerationPouch
 ) -> bool

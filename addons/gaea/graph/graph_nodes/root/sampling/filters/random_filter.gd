@@ -42,11 +42,11 @@ func _get_output_port_type(_output_name: StringName) -> GaeaValue.Type:
 
 
 func _passes_filter(
-	_input_sample: GaeaValue.GridType, _cell: Vector3i, args: Dictionary[StringName, Variant]
+	_input_sample: GaeaValue.GridType, _cell: Vector3i, 
+	args: Dictionary[StringName, Variant], pouch: GaeaGenerationPouch
 ) -> bool:
 	var chance: float = float(args.get(&"chance")) / 100.0
-	return rng.randf() <= chance
-
+	return _get_rng(pouch).randf() <= chance
 
 func _get_seed(pouch: GaeaGenerationPouch) -> int:
 	return super(pouch) + hash(pouch.area)
