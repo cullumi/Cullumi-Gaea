@@ -1,30 +1,45 @@
 @tool
 class_name GaeaTaskPool
-extends RefCounted
+extends Resource
 
 
-signal finished(results:GaeaTask)
+signal task_finished(results:GaeaTask)
+signal task_started(results:GaeaTask)
+signal task_discarded(results:GaeaTask)
+signal task_cancelled(results:GaeaTask)
+
+
+enum DeDuplicationStrategy { None, DropNew } # todo: add DropExisting
+
+
+@export_group("Multi-Threading")
+## Whether this generator should block the main thread.
+@export_custom(PROPERTY_HINT_GROUP_ENABLE, "feature") var multithreaded: bool = true
 
 ## The max number of this generator's [GaeaGenerationTask]s that can running in the [WorkerThreadPool] at once.
 ## All extra tasks will be queued to start as soon as room becomes available.
 ## A value of Zero means there will be no queue, and all tasks will be sent to the [WorkerThreadPool] immediately.
 @export_range(0, 50, 1) var task_limit: int = 0
+
+## Decides what to do when duplicate tasks are queued.
+@export var duplication_strategy: DeDuplicationStrategy
+
 ## The multithreading queue.
 ## [GaeaExecutionTasks] will wait here until the generator is ready to run them on the [WorkerThreadPool].
 var _queued: Array[GaeaTask] = []
+
 ## The multithreading tasks currently in progress.
 ## [GaeaExecutionTasks] are tracked here until they are finished in [method _finish_completed_execution_tasks].
 var _tasks: Dictionary[int, GaeaTask] = {}
+
 ## For locking shared data; enables proper setting of [ExecutionTask] results.
 var _mutex_tasks: Mutex = Mutex.new()
+
 var _main_loop: SceneTree :
 	get = _get_main_loop
 
 
-func _init(on_finished: Callable, _task_limit: int = 0) -> void:
-	if on_finished.is_valid():
-		finished.connect(on_finished)
-	task_limit = _task_limit
+func _init() -> void:
 	_get_main_loop()
 
 
@@ -39,18 +54,26 @@ func _get_main_loop() -> SceneTree:
 
 
 func cancel(task:GaeaTask):
+	task.cancel()
 	if _queued.has(task):
 		_queued.erase(task)
-	else:
-		task.cancel()
+	task_cancelled.emit(task)
 
 
 func cancel_all():
+	for task in _queued:
+		task.cancel()
 	_queued.clear()
+
 	_mutex_tasks.lock()
 	for task in _tasks.values():
 		task.cancel()
 	_mutex_tasks.unlock()
+
+
+func _discard_task(task: GaeaTask):
+	task.log_discarded()
+	task_discarded.emit(task)
 
 
 ## Send an [GaeaGenerationTask] to the [WorkerThreadPool] to start running immediately.
@@ -88,9 +111,39 @@ func _wait_on_task(task: GaeaTask):
 	_finish_task(task)
 
 
-## Sends a new [GaeaGenerationTask] to the [member _task_queue] if the [member _task_limit] has been reached.
-## Otherwise run it on the [WorkerThreadPool] immediately.
+## Returns true or false depending on whether the given task
+## already exists within the queue or is currently running.
+func _is_duplicate(task: GaeaTask) -> bool:
+	for other in _queued:
+		if not other.cancelled and task.compare(other):
+			return true
+	for other in _tasks.values():
+		if not other.cancelled and task.compare(other):
+			return true
+	return false
+
+
+## Either queues a task when [member multithreaded] is true,
+## else executes on the main thread.
+func submit(task: GaeaTask):
+	if multithreaded:
+		queue(task)
+		task_started.emit(task)
+	else:
+		task_started.emit(task)
+		execute(task)
+
+
+## Sends a new [GaeaGenerationTask] to the [member _task_queue] if
+## the [member _task_limit] has been reached. Otherwise run
+## it on the [WorkerThreadPool] immediately. Ignores duplicates.
 func queue(task: GaeaTask):
+	match duplication_strategy:
+		DeDuplicationStrategy.DropNew:
+			if _is_duplicate(task):
+				_discard_task(task)
+				return
+
 	if task_limit > 0 and _tasks.size() >= task_limit:
 		# Queue the task to run later.
 		task.log_queued_time()
@@ -104,7 +157,6 @@ func queue(task: GaeaTask):
 func execute(task: GaeaTask):
 	task.task_id = 0
 	task.log_run_time(false)
-	_tasks[0] = task
 	_execute(task)
 	_finish_task(task)
 
@@ -138,7 +190,7 @@ func _finish_task(task: GaeaTask):
 	task.log_finish_time()
 
 	if not task.cancelled:
-		finished.emit(task)
+		task_finished.emit(task)
 
 
 ## Starts running queued [GaeaGenerationTask]s on the [WorkerThreadPool] as space clears up.

@@ -40,6 +40,29 @@ func _on_cancel() -> void:
 	pass
 
 
+func compare(other: GaeaTask) -> bool:
+	return _compare(other)
+
+
+func _compare(other: GaeaTask) -> bool:
+	return task == other.task
+
+
+func log_discarded():
+	if log_enabled:
+		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Discard %s." % [
+			description
+		])
+
+
+func log_cancelled():
+	finish_time = Time.get_ticks_msec()
+	if log_enabled:
+		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Cancelled %s." % [
+			description
+		])
+
+
 func log_queued_time():
 	queued_time = Time.get_ticks_msec()
 	if log_enabled:

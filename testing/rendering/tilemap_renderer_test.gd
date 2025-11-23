@@ -22,7 +22,7 @@ func before() -> void:
 @warning_ignore("unused_parameter")
 func test_full_area(multithreaded, test_parameters := [[true], [false]]) -> void:
 	renderer.reset()
-	scene.generator.multithreaded = multithreaded
+	scene.generator.task_pool.multithreaded = multithreaded
 	scene.generator.generate()
 	await renderer.render_finished
 
@@ -53,7 +53,7 @@ func test_reset() -> void:
 func test_small_area(multithreaded: bool, test_parameters := [[true], [false]]) -> void:
 	renderer.reset()
 	var area: AABB = AABB(Vector3.ZERO, Vector3.ONE * 16)
-	scene.generator.multithreaded = multithreaded
+	scene.generator.task_pool.multithreaded = multithreaded
 	scene.generator.generate_area(area)
 	await renderer.render_finished
 

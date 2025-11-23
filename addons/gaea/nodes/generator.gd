@@ -12,7 +12,7 @@ signal graph_changed(old_graph: GaeaGraph)
 signal about_to_generate
 ## Emitted when a [GaeaGenerationTask] is queued.
 signal generation_started()
-## Emitted when all [GaeaGenerationTask]s are canceled.
+## Emitted when a [GaeaGenerationTask] is canceled.
 signal generation_cancelled()
 ## Emitted a [GaeaGenerationTask] has finished.
 signal generation_finished(grid: GaeaGrid)
@@ -33,23 +33,22 @@ signal area_erased(area: AABB)
 
 @export var settings: GaeaGenerationSettings
 
-@export_group("Multi-Threading")
-## Whether this generator should block the main thread.
-@export_custom(PROPERTY_HINT_GROUP_ENABLE, "feature") var multithreaded: bool = true
-
-## The max number of this generator's [GaeaGenerationTask]s that can running in the [WorkerThreadPool] at once.
-## All extra tasks will be queued to start as soon as room becomes available.
-## A value of [code]0[/code] means there will be no queue, and all tasks will be sent to the [WorkerThreadPool] immediately.
-@export_range(0, 50, 1) var task_limit: int = 0 :
-	set(value):
-		task_limit = value
-		if is_instance_valid(_task_pool):
-			_task_pool.task_limit = value
-
 
 ## The thread pool used by the Generator to perform tasks on multiple threads,
 ## with the help of the built-in [WorkerThreadPool].
-@onready var _task_pool: GaeaTaskPool
+@export var task_pool: GaeaTaskPool :
+	get:
+		if not task_pool:
+			task_pool = GaeaTaskPool.new()
+		if not task_pool.task_finished.is_connected(_execution_task_finished):
+			task_pool.task_finished.connect(_execution_task_finished)
+		if not task_pool.task_started.is_connected(generation_started.emit.unbind(1)):
+			task_pool.task_started.connect(generation_started.emit.unbind(1))
+		if not task_pool.task_discarded.is_connected(generation_cancelled.emit.unbind(1)):
+			task_pool.task_discarded.connect(generation_cancelled.emit.unbind(1))
+		if not task_pool.task_discarded.is_connected(generation_cancelled.emit.unbind(1)):
+			task_pool.task_cancelled.connect(generation_cancelled.emit.unbind(1))
+		return task_pool
 
 
 # For migration to GaeaGenerationSettings
@@ -84,13 +83,10 @@ func generate() -> void:
 func generate_area(area: AABB) -> void:
 	var pouch: GaeaGenerationPouch = GaeaGenerationPouch.new(settings, area)
 
-	if not multithreaded:
-		generation_finished.emit.call_deferred(graph.get_output_node().execute(graph, pouch))
-		pouch.clear_all_cache()
-		return
-
-	if not _task_pool:
-		_task_pool = GaeaTaskPool.new(_execution_task_finished, task_limit)
+	#if not multithreaded:
+		#generation_finished.emit.call_deferred(graph.get_output_node().execute(graph, pouch))
+		#pouch.clear_all_cache()
+		#return
 
 	var task := GaeaGenerationTask.new(
 		"Execute on %s" % area,
@@ -98,16 +94,11 @@ func generate_area(area: AABB) -> void:
 		pouch,
 	)
 
-	if multithreaded:
-		_task_pool.queue(task)
-		generation_started.emit()
-	else:
-		generation_started.emit()
-		_task_pool.execute(task)
+	task_pool.submit(task)
 
 
 func cancel_generation():
-	_task_pool.cancel_all()
+	task_pool.cancel_all()
 	generation_cancelled.emit()
 
 
