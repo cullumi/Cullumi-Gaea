@@ -53,7 +53,7 @@ func test_multithreaded_match() -> void:
 	assert_bool(compare_grids(first_grid, second_grid)).is_true()
 
 
-func test_multithreaded_discard() -> void:
+func test_multithreaded_discard_new() -> void:
 	var scene : GaeaGenerationTester = load(test_scene).instantiate()
 	var _runner := scene_runner(scene)
 	scene.gaea_generator.task_pool.multithreaded = true
@@ -75,6 +75,29 @@ func test_multithreaded_discard() -> void:
 	assert_bool(compare_grids(first_grid, second_grid)).is_true()
 
 
+func test_multithreaded_discard_existing() -> void:
+	var scene : GaeaGenerationTester = load(test_scene).instantiate()
+	var _runner := scene_runner(scene)
+	scene.gaea_generator.task_pool.multithreaded = true
+	scene.gaea_generator.task_pool.task_limit = 0
+	scene.gaea_generator.task_pool.duplication_strategy = GaeaTaskPool.DeDuplicationStrategy.DropExisting
+	await scene.test_generation(generator_seed, 2)
+
+	var cancellation = scene.last_cancelled
+	assert_that(cancellation).is_not_null()
+	assert_bool(cancellation.cancelled).is_true()
+
+	var discard = scene.last_discarded
+	assert_that(discard).is_null()
+
+	var second_grid: GaeaGrid = scene.last_grid
+	assert_that(scene.gaea_generator.settings.seed).is_equal(generator_seed)
+	assert_that(first_grid).is_not_null()
+	assert_that(second_grid).is_not_null()
+	print(compare_string(first_grid, second_grid))
+	assert_bool(compare_grids(first_grid, second_grid)).is_true()
+
+
 func test_generations_dont_match() -> void:
 	var scene : GaeaGenerationTester = load(test_scene).instantiate()
 	var _runner := scene_runner(scene)
@@ -93,6 +116,10 @@ func compare_grids(grid_a, grid_b) -> bool:
 		if grid_a.get_layer(layer_idx)._grid != grid_b.get_layer(layer_idx)._grid:
 			return false
 	return true
+
+
+func compare_string(grid_1: GaeaGrid, grid_2: GaeaGrid) -> String:
+	return "\n%s\n%s\n" % [grid_string(grid_1), grid_string(grid_2)]
 
 
 func grid_string(grid: GaeaGrid) -> String:

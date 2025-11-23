@@ -9,7 +9,7 @@ signal task_discarded(results:GaeaTask)
 signal task_cancelled(results:GaeaTask)
 
 
-enum DeDuplicationStrategy { None, DropNew } # todo: add DropExisting
+enum DeDuplicationStrategy { None, DropNew, DropExisting }
 
 
 @export_group("Multi-Threading")
@@ -111,16 +111,22 @@ func _wait_on_task(task: GaeaTask):
 	_finish_task(task)
 
 
+## Returns a task that is a duplicate of the given one,
+## if one is queued or running.
+func _find_duplicate(task: GaeaTask) -> GaeaTask:
+	for other in _queued:
+		if not other.cancelled and task.compare(other):
+			return other
+	for other in _tasks.values():
+		if not other.cancelled and task.compare(other):
+			return other
+	return null
+
+
 ## Returns true or false depending on whether the given task
 ## already exists within the queue or is currently running.
 func _is_duplicate(task: GaeaTask) -> bool:
-	for other in _queued:
-		if not other.cancelled and task.compare(other):
-			return true
-	for other in _tasks.values():
-		if not other.cancelled and task.compare(other):
-			return true
-	return false
+	return _find_duplicate(task) != null
 
 
 ## Either queues a task when [member multithreaded] is true,
@@ -134,15 +140,26 @@ func submit(task: GaeaTask):
 		execute(task)
 
 
-## Sends a new [GaeaGenerationTask] to the [member _task_queue] if
-## the [member _task_limit] has been reached. Otherwise run
-## it on the [WorkerThreadPool] immediately. Ignores duplicates.
-func queue(task: GaeaTask):
+## Returns true if the given task is discarded.
+func _handle_duplication(task: GaeaTask) -> bool:
 	match duplication_strategy:
 		DeDuplicationStrategy.DropNew:
 			if _is_duplicate(task):
 				_discard_task(task)
-				return
+				return true
+		DeDuplicationStrategy.DropExisting:
+			var copy := _find_duplicate(task)
+			if copy:
+				cancel(copy)
+	return false
+
+
+## Sends a new [GaeaGenerationTask] to the [member _task_queue] if
+## the [member _task_limit] has been reached. Otherwise run
+## it on the [WorkerThreadPool] immediately. Ignores duplicates.
+func queue(task: GaeaTask):
+	if _handle_duplication(task):
+		return
 
 	if task_limit > 0 and _tasks.size() >= task_limit:
 		# Queue the task to run later.
