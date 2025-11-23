@@ -143,11 +143,11 @@ func submit(task: GaeaTask):
 ## Returns true if the given task is discarded.
 func _handle_duplication(task: GaeaTask) -> bool:
 	match duplication_strategy:
-		DeDuplicationStrategy.DropNew:
+		DeDuplicationStrategy.DROP_NEW:
 			if _is_duplicate(task):
 				_discard_task(task)
 				return true
-		DeDuplicationStrategy.DropExisting:
+		DeDuplicationStrategy.DROP_EXISTING:
 			var copy := _find_duplicate(task)
 			if copy:
 				cancel(copy)
