@@ -91,7 +91,7 @@ func _wait_on_task(task: GaeaTask):
 ## Sends a new [GaeaGenerationTask] to the [member _task_queue] if the [member _task_limit] has been reached.
 ## Otherwise run it on the [WorkerThreadPool] immediately.
 func queue(task: GaeaTask):
-	if task_limit > 0 and _tasks.size() > task_limit:
+	if task_limit > 0 and _tasks.size() >= task_limit:
 		# Queue the task to run later.
 		task.log_queued_time()
 		_queued.push_back(task)
