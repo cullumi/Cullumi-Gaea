@@ -76,6 +76,14 @@ func _discard_task(task: GaeaTask):
 	task_discarded.emit(task)
 
 
+func _sort_queue():
+	_queued.sort_custom(_sort_task)
+
+
+func _sort_task(task_a: GaeaTask, task_b: GaeaTask):
+	return task_a.priority_level < task_b.priority_level
+
+
 ## Send an [GaeaGenerationTask] to the [WorkerThreadPool] to start running immediately.
 func _run_task(task:GaeaTask):
 	if task.task:
@@ -165,6 +173,7 @@ func queue(task: GaeaTask):
 		# Queue the task to run later.
 		task.log_queued_time()
 		_queued.push_back(task)
+		_queued.sort()
 	else:
 		# Run the task immediately.
 		_run_task(task)
@@ -212,5 +221,6 @@ func _finish_task(task: GaeaTask):
 
 ## Starts running queued [GaeaGenerationTask]s on the [WorkerThreadPool] as space clears up.
 func _run_queued_tasks():
+	_sort_queue()
 	while (task_limit <= 0 or _tasks.size() < task_limit) and not _queued.is_empty():
 		_run_task(_queued.pop_front())

@@ -15,6 +15,11 @@ var cancelled: bool = false
 ## Area to generate.
 var area: AABB: get = get_area
 
+
+## An object for calculating priority.
+var priority: GaeaGenerationPriority
+
+
 ## Generation settings used for this generation. This property should be treated as read-only deeply.
 var settings: GaeaGenerationSettings: get = get_settings
 

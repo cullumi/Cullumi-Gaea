@@ -2,9 +2,13 @@
 class_name GaeaTask
 extends RefCounted
 
+
 var task: Callable
 var task_id: int = -1
 var description: String
+var priority: GaeaPriority
+var priority_level: float:
+	get = _get_priority_level
 var creation_time: float = -1.0
 var queued_time: float = -1.0
 var run_time: float = -1.0
@@ -16,21 +20,31 @@ var results: Variant:
 	get = _get_results
 
 
-func _init(_task: Callable, _description: String, enable_log: bool = false):
+func _init(_task: Callable, _description: String, enable_log: bool = false, _priority:GaeaPriority = null):
 	task = _task
 	description = _description
 	creation_time = Time.get_ticks_msec()
 	log_enabled = enable_log
+	priority = _priority
 
 
+#region Priority
+func _get_priority_level() -> float:
+	return priority.level if priority else creation_time
+#endregion
+
+
+#region Results
 func _set_results(value) -> void:
 	results = value
 
 
 func _get_results() -> Variant:
 	return results
+#endregion
 
 
+#region Cancellation
 func cancel() -> void:
 	cancelled = true
 	_on_cancel()
@@ -38,6 +52,16 @@ func cancel() -> void:
 
 func _on_cancel() -> void:
 	pass
+#endregion
+
+
+#region Comparison
+func compare(other: GaeaTask) -> bool:
+	return _compare(other)
+
+
+func _compare(other: GaeaTask) -> bool:
+	return creation_time < other.creation_time
 
 
 func equals(other: GaeaTask) -> bool:
@@ -46,8 +70,10 @@ func equals(other: GaeaTask) -> bool:
 
 func _equals(other: GaeaTask) -> bool:
 	return task == other.task
+#endregion
 
 
+#region Logging
 func log_discarded():
 	if log_enabled:
 		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Discard %s." % [
@@ -76,14 +102,16 @@ func log_run_time(multithreaded: bool = true):
 	run_time = Time.get_ticks_msec()
 	if log_enabled:
 		if queued_time != -1:
-			GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Running %s after %.0f ms in queue" % [
+			GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Running %s after %.0f ms in queue (priority %f)" % [
 				description,
-				(run_time - queued_time)
+				(run_time - queued_time),
+				priority_level,
 			])
 		else:
-			GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Running %s immediately on %s thread" % [
+			GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Running %s immediately on %s thread (priority %f)" % [
 				description,
-				"side" if multithreaded else "main"
+				"side" if multithreaded else "main",
+				priority_level,
 			])
 
 
@@ -108,3 +136,4 @@ func log_finish_time():
 			(finish_time - creation_time),
 			"(Canceled)" if cancelled else ""
 		])
+#endregion

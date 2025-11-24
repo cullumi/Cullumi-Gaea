@@ -71,27 +71,23 @@ func _migrate_settings_property(property: StringName, value: Variant):
 
 ## Start the generaton process. First resets the current generation,
 ## then generates the whole [member world_size].
-func generate() -> void:
+func generate(origin = null) -> void:
 	about_to_generate.emit()
 	if settings.random_seed_on_generate:
 		settings.seed = randi()
 	request_reset()
-	generate_area(AABB(Vector3.ZERO, settings.world_size))
+	generate_area(AABB(Vector3.ZERO, settings.world_size), origin)
 
 
 ## Generate an [param area] using the graph saved in [member graph].
-func generate_area(area: AABB) -> void:
+func generate_area(area: AABB, origin = null) -> void:
 	var pouch: GaeaGenerationPouch = GaeaGenerationPouch.new(settings, area)
 
-	#if not multithreaded:
-		#generation_finished.emit.call_deferred(graph.get_output_node().execute(graph, pouch))
-		#pouch.clear_all_cache()
-		#return
-
 	var task := GaeaGenerationTask.new(
-		"Execute on %s" % area,
+		"Execute on %s" % area.position,
 		graph,
 		pouch,
+		origin
 	)
 
 	task_pool.submit(task)
