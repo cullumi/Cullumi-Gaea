@@ -14,7 +14,7 @@ func _init(origin, _gen_pouch: GaeaGenerationPouch) -> void:
 
 
 func _calculate() -> float:
-	return _get_origin().distance_to(_convert_vector(_pouch.area.position/_pouch.area.size))
+	return _get_origin().distance_to(Vector.to_vec4(_pouch.area.position/_pouch.area.size))
 
 
 func _get_origin() -> Vector4:
@@ -23,28 +23,29 @@ func _get_origin() -> Vector4:
 		value = _origin.call()
 	if value is Node:
 		if value is Node2D or value is Node3D or value is Control:
-			return _convert_vector(value.global_position)
+			return Vector.to_vec4(value.global_position)
 		return Vector4.ZERO
-	return _convert_vector(value)
+	return Vector.to_vec4(value)
 
 
-const has_valid_w: Array[Variant.Type] = [TYPE_VECTOR4, TYPE_VECTOR4I]
-const has_valid_z: Array[Variant.Type] = [TYPE_VECTOR3, TYPE_VECTOR3I, TYPE_VECTOR4, TYPE_VECTOR4I]
-const has_valid_x: Array[Variant.Type] = [TYPE_VECTOR2, TYPE_VECTOR2I, TYPE_VECTOR3, TYPE_VECTOR3I, TYPE_VECTOR4, TYPE_VECTOR4I]
-const has_valid_y: Array[Variant.Type] = [TYPE_VECTOR2, TYPE_VECTOR2I, TYPE_VECTOR3, TYPE_VECTOR3I, TYPE_VECTOR4, TYPE_VECTOR4I]
+class Vector:
+	const HAS_VALID_W: Array[Variant.Type] = [TYPE_VECTOR4, TYPE_VECTOR4I]
+	const HAS_VALID_Z: Array[Variant.Type] = [TYPE_VECTOR3, TYPE_VECTOR3I, TYPE_VECTOR4, TYPE_VECTOR4I]
+	const HAS_VALID_Y: Array[Variant.Type] = [TYPE_VECTOR2, TYPE_VECTOR2I, TYPE_VECTOR3, TYPE_VECTOR3I, TYPE_VECTOR4, TYPE_VECTOR4I]
+	const HAS_VALID_X: Array[Variant.Type] = [TYPE_VECTOR2, TYPE_VECTOR2I, TYPE_VECTOR3, TYPE_VECTOR3I, TYPE_VECTOR4, TYPE_VECTOR4I]
 
-func _convert_vector(vector) -> Vector4:
-	var v_type = typeof(vector)
-	var x = 0
-	if v_type in has_valid_x:
-		x = vector.x
-	var y = 0
-	if v_type in has_valid_y:
-		y = vector.y
-	var z = 0
-	if v_type in has_valid_z:
-		z = vector.z
-	var w = 0
-	if v_type in has_valid_w:
-		w = vector.w
-	return Vector4(x, y, z, w)
+	static func to_vec4(vector) -> Vector4:
+		var v_type = typeof(vector)
+		var x = 0
+		if v_type in HAS_VALID_X:
+			x = vector.x
+		var y = 0
+		if v_type in HAS_VALID_Y:
+			y = vector.y
+		var z = 0
+		if v_type in HAS_VALID_Z:
+			z = vector.z
+		var w = 0
+		if v_type in HAS_VALID_W:
+			w = vector.w
+		return Vector4(x, y, z, w)
