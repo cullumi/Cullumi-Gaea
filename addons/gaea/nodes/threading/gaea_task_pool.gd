@@ -3,10 +3,10 @@ class_name GaeaTaskPool
 extends Resource
 
 
-signal task_finished(results:GaeaTask)
-signal task_started(results:GaeaTask)
-signal task_discarded(results:GaeaTask)
-signal task_cancelled(results:GaeaTask)
+signal task_finished(task: GaeaTask)
+signal task_started(task: GaeaTask)
+signal task_discarded(task: GaeaTask)
+signal task_cancelled(task: GaeaTask)
 
 
 enum DeDuplicationStrategy { NONE, DROP_NEW, DROP_EXISTING }

@@ -128,12 +128,12 @@ func log_finish_time():
 	if log_enabled:
 		var has_run_time := run_time >= 0
 		var start_time = run_time if has_run_time else creation_time
-		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Finished %s after %.0f ms%s. Total lifetime %.0f ms. %s" %
+		GaeaGraph.print_log(GaeaGraph.Log.THREADING, "Finished %s after %.0f ms%s. Total lifetime %.0f ms.%s" %
 		[
 			description,
 			(finish_time - start_time),
 			" in WorkerThreadPool" if has_run_time else "",
 			(finish_time - creation_time),
-			"(Canceled)" if cancelled else ""
+			" (Canceled)" if cancelled else ""
 		])
 #endregion

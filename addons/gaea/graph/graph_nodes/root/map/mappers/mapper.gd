@@ -34,7 +34,7 @@ func _get_data(_output_port: StringName, graph: GaeaGraph, pouch: GaeaGeneration
 		_log_error("Invalid material provided", graph, graph.resources.find(self))
 		return result
 
-	var rng = _get_rng(pouch)
+	var rng := _get_rng(pouch)
 
 	material = material.prepare_sample(rng)
 	if not is_instance_valid(material):

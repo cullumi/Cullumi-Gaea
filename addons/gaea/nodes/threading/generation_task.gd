@@ -7,13 +7,14 @@ var pouch: GaeaGenerationPouch
 var _results_dict: Dictionary[int, GaeaValue.Map]
 
 
-func _init(task_description: String, graph: GaeaGraph, _pouch: GaeaGenerationPouch, _origin = null):
-	var new_task = graph.get_output_node().execute.bind(graph, _pouch)
-	pouch = _pouch
+@warning_ignore("shadowed_variable")
+func _init(task_description: String, graph: GaeaGraph, pouch: GaeaGenerationPouch, origin = null):
+	var new_task = graph.get_output_node().execute.bind(graph, pouch)
+	self.pouch = pouch
 	super._init(
 		new_task, task_description,
 		graph.is_log_enabled(GaeaGraph.Log.THREADING),
-		GaeaGenerationPriority.new(_origin, _pouch),
+		GaeaGenerationPriority.new(origin, pouch.area),
 	)
 
 
@@ -36,7 +37,7 @@ func _on_cancel() -> void:
 
 #region Comparison
 func _compare(other: GaeaTask) -> bool:
-	return pouch.priority < other.pouch.priority
+	return priority_level < other.priority_level
 
 
 func _equals(other: GaeaTask) -> bool:

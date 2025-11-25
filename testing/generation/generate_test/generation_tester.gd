@@ -2,6 +2,10 @@ extends Node2D
 
 class_name GaeaGenerationTester
 
+
+signal generation_ended
+
+
 @onready var gaea_generator: GaeaGenerator = $GaeaGenerator
 
 var last_grid: GaeaGrid
@@ -10,7 +14,6 @@ var last_discarded: GaeaGenerationTask
 var last_finished: GaeaGenerationTask
 var timer: SceneTreeTimer
 
-signal generation_ended
 
 ## Used for integration testing.
 func test_generation(fixed_seed: int = 0, copies: int = 1) -> void:
@@ -59,21 +62,26 @@ func _on_generation_finished(result):
 	# Ended
 	generation_ended.emit()
 
+
 func _set_last_grid(grid):
 	print("Grid set to %s" % grid)
 	last_grid = grid
+
 
 func _set_last_cancelled(task: GaeaTask):
 	print("Cancelled %s" % task.description)
 	last_cancelled = task
 
+
 func _set_last_discarded(task: GaeaTask):
 	print("Discarded %s" % task.description)
 	last_discarded = task
 
+
 func _set_last_finished(task: GaeaTask):
 	print("Finished %s" % task.description)
 	last_finished = task
+
 
 func _on_generate_pressed() -> void:
 	gaea_generator.generate()
