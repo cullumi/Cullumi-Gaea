@@ -1,15 +1,27 @@
 @tool
 class_name GaeaTaskPool
 extends Resource
+## A [GaeaTask] pool used to utilize a variety of features while managing a
+## [WorkerThreadPool] for multithreading.
 
 
+## Emitted when a [GaeaTask] is finished running. [param task]'s
+## [member GaeaTask.results] is expected to have a usable value at this point.
 signal task_finished(task: GaeaTask)
+## Emitted when a [GaeaTask] is submitted to the queue.
 signal task_started(task: GaeaTask)
+## Emitted when a [GaeaTask] is discarded based on the [enum DeDuplicationStrategy].
 signal task_discarded(task: GaeaTask)
+## Emitted when a [GaeaTask] is cancelled for any reason.
 signal task_cancelled(task: GaeaTask)
 
 
-enum DeDuplicationStrategy { NONE, DROP_NEW, DROP_EXISTING }
+enum DeDuplicationStrategy
+{
+	NONE, ## Do not detect duplicate tasks.
+	DROP_NEW, ## Discard tasks when they are first queued.
+	DROP_EXISTING ## Discard from the queue and cancel already running tasks.
+}
 
 
 @export_group("Multi-Threading")
@@ -53,6 +65,8 @@ func _get_main_loop() -> SceneTree:
 	return _main_loop
 
 
+## Removes [param task] from the queue and marks it as
+## cancelled using [method GaeaTask.cancel]
 func cancel(task:GaeaTask):
 	task.cancel()
 	if _queued.has(task):
@@ -60,6 +74,8 @@ func cancel(task:GaeaTask):
 	task_cancelled.emit(task)
 
 
+## Removes all tasks from the queue and marks all running tasks
+## as cancelled using [method GaeaTask.cancel].
 func cancel_all():
 	for task in _queued:
 		task.cancel()
@@ -100,8 +116,8 @@ func _run_task(task:GaeaTask):
 			_wait_on_task(task)
 
 
-## A coroutine that adds a task to the task list, wait on it's id,
-## then passes it along to be finished.
+## A coroutine that adds [param task] to the task list, waits on
+## it's [member GaeaTask.task_id], then passes it along to be finished.
 func _wait_on_task(task: GaeaTask):
 	_mutex_tasks.lock()
 	_tasks[task.task_id] = task
@@ -119,8 +135,7 @@ func _wait_on_task(task: GaeaTask):
 	_finish_task(task)
 
 
-## Returns a task that is a duplicate of the given one,
-## if one is queued or running.
+## Returns a queue or running task that is a equal to of [param task].
 func _find_duplicate(task: GaeaTask) -> GaeaTask:
 	for other in _queued:
 		if not other.cancelled and task.equals(other):
