@@ -117,7 +117,7 @@ func _run_task(task:GaeaTask):
 
 
 ## A coroutine that adds [param task] to the task list, waits on
-## it's [member GaeaTask.task_id], then passes it along to be finished.
+## its [member GaeaTask.task_id], then passes it along to be finished.
 func _wait_on_task(task: GaeaTask):
 	_mutex_tasks.lock()
 	_tasks[task.task_id] = task
