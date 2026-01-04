@@ -110,7 +110,7 @@ func _get_data(_output_port: StringName, graph: GaeaGraph, pouch: GaeaGeneration
 
 	var rules: Dictionary = _get_arg(&"rules", graph, pouch)
 
-	var rng = _get_rng(pouch)
+	var rng: RandomNumberGenerator = _get_rng(pouch)
 
 	material = material.prepare_sample(rng)
 	if not is_instance_valid(material):
