@@ -14,15 +14,15 @@ var _results_dict: Dictionary[int, GaeaValue.Map]
 ## Sets [member task] equal to a bound [Callable] created from
 ## [param graph]'s execute method and sets [member priority] to a
 ## [GaeaGenerationPriority] using [param origin] and
-## [param pouch]'s [member GaeaGenerationPouch.area].
-@warning_ignore("shadowed_variable")
-func _init(task_description: String, graph: GaeaGraph, pouch: GaeaGenerationPouch, origin = null):
-	var new_task = graph.get_output_node().execute.bind(graph, pouch)
-	self.pouch = pouch
+## [param task_pouch]'s [member GaeaGenerationPouch.area].
+## [br] See [member GaeaGenerationPriority.origin] for [member origin] type.
+func _init(task_description: String, graph: GaeaGraph, task_pouch: GaeaGenerationPouch, origin: Variant = null):
+	var new_task = graph.get_output_node().execute.bind(graph, task_pouch)
+	self.pouch = task_pouch
 	super._init(
 		new_task, task_description,
 		graph.is_log_enabled(GaeaGraph.Log.THREADING),
-		GaeaGenerationPriority.new(origin, pouch.area),
+		GaeaGenerationPriority.new(origin, task_pouch.area),
 	)
 
 

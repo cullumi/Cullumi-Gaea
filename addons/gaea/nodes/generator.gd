@@ -71,7 +71,8 @@ func _migrate_settings_property(property: StringName, value: Variant):
 
 ## Start the generaton process. First resets the current generation,
 ## then generates the whole [member world_size].
-func generate(origin = null) -> void:
+## [br] See [member GaeaGenerationPriority.origin] for [member origin] type.
+func generate(origin: Variant = null) -> void:
 	about_to_generate.emit()
 	if settings.random_seed_on_generate:
 		settings.seed = randi()
@@ -80,7 +81,8 @@ func generate(origin = null) -> void:
 
 
 ## Generate an [param area] using the graph saved in [member graph].
-func generate_area(area: AABB, origin = null) -> void:
+## [br] See [member GaeaGenerationPriority.origin] for [member origin] type.
+func generate_area(area: AABB, origin: Variant = null) -> void:
 	var pouch: GaeaGenerationPouch = GaeaGenerationPouch.new(settings, area)
 
 	var task := GaeaGenerationTask.new(

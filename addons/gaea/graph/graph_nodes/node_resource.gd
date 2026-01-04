@@ -763,7 +763,7 @@ func _get_seed(pouch: GaeaGenerationPouch) -> int:
 
 
 func _define_rng(pouch: GaeaGenerationPouch) -> void:
-	var rng = RandomNumberGenerator.new()
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.set_seed(_get_seed(pouch))
 	pouch.rng[self] = rng
 	seed(rng.seed)
